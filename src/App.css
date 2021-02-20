@@ -14,8 +14,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,4 +23,19 @@
 
 .App-link {
   color: #61dafb;
+}
+
+body {
+  background-color: #282c34;
+}
+
+table {
+  color: white;
+  width: 100%;
+  text-align: left;
+  padding: 0 2rem;
+}
+
+form {
+  padding: 2rem;
 }

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "code": 123,
+    "title": "If you wanna be my lover",
+    "artist": "The Spice Girls"
+  },
+  {
+    "id": 2,
+    "code": 456,
+    "title": "Make it wit chu",
+    "artist": "Queens of the Stone Age"
+  },
+  {
+    "id": 3,
+    "code": 789,
+    "title": "Don't stop me now",
+    "artist": "Queen"
+  }
+]
