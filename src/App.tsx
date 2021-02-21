@@ -18,6 +18,7 @@ class App extends React.Component<any, any> {
         const songList = entries.filter((entry) => {
             return entry.title.toLowerCase().includes(searchTerm)
                 || entry.artist.toLowerCase().includes(searchTerm)
+                || entry.location.toLowerCase().includes(searchTerm)
         })
         this.setState({...this.state, songList})
     }
