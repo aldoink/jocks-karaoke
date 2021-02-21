@@ -28,6 +28,7 @@ class App extends React.Component<any, any> {
             <div className="App">
                 <header className="App-header">
                     <img src={bluezer} className="App-logo" alt="logo"/>
+                    <h1>Jock's Karaoke</h1>
                 </header>
                 <input type="text"
                        placeholder="Search"
