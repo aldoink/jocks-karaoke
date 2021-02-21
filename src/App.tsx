@@ -1,16 +1,18 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent, Ref, useRef} from 'react';
 import bluezer from './The Bluezer.jpeg';
 import './App.scss';
 import entries from "./assets/entries.json"
 import Table from "./Table";
 
 class App extends React.Component<any, any> {
+    private searchInputRef: React.RefObject<HTMLInputElement>;
 
     constructor(props: any) {
         super(props);
         this.state = {
             songList: entries
         }
+        this.searchInputRef = React.createRef();
     }
 
     handleChange = (event: FormEvent<HTMLInputElement>) => {
@@ -32,10 +34,24 @@ class App extends React.Component<any, any> {
                 </header>
                 <input type="text"
                        placeholder="Search"
-                       onChange={this.handleChange}/>
+                       onFocusCapture={this.scrollToTop}
+                       onChange={this.handleChange}
+                       ref={this.searchInputRef}/>
                 <Table songList={this.state.songList}/>
             </div>
         );
+    }
+
+    scrollToTop = () => {
+        if (this.searchInputRef.current != null){
+            // this.searchInputRef.current.scrollIntoView();
+            const elementPosition = this.searchInputRef.current.offsetTop
+            const offsetPosition = elementPosition - 20;
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            })
+        }
     }
 }
 
