@@ -12,7 +12,7 @@ export default function Table({songList}: TableProps) {
             <tr>
                 <th>Song Title</th>
                 <th>Artist</th>
-                <th>Code</th>
+                <th>Location</th>
             </tr>
             </thead>
             <tbody>
