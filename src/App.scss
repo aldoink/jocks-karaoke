@@ -33,9 +33,20 @@ table {
   color: white;
   width: 100%;
   text-align: left;
-  padding: 0 2rem;
+  border-collapse: collapse;
+  box-sizing: border-box;
 }
 
-form {
-  padding: 2rem;
+table, th, td {
+  border: 1px solid white;
+}
+
+input {
+  margin: 2rem;
+}
+
+.table-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2rem;
 }

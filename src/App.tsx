@@ -1,13 +1,25 @@
 import React, {FormEvent} from 'react';
 import bluezer from './The Bluezer.jpeg';
-import './App.css';
+import './App.scss';
 import entries from "./assets/entries.json"
 import Table from "./Table";
 
-class App extends React.Component<any, any>{
+class App extends React.Component<any, any> {
 
-    handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        alert("Test")
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            songList: entries
+        }
+    }
+
+    handleChange = (event: FormEvent<HTMLInputElement>) => {
+        const searchTerm = event.currentTarget.value.toLowerCase();
+        const songList = entries.filter((entry) => {
+            return entry.title.toLowerCase().includes(searchTerm)
+                || entry.artist.toLowerCase().includes(searchTerm)
+        })
+        this.setState({...this.state, songList})
     }
 
     render() {
@@ -16,11 +28,10 @@ class App extends React.Component<any, any>{
                 <header className="App-header">
                     <img src={bluezer} className="App-logo" alt="logo"/>
                 </header>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Search"/>
-                    <input type="submit" value="Go!"/>
-                </form>
-                <Table></Table>
+                <input type="text"
+                       placeholder="Search"
+                       onChange={this.handleChange}/>
+                <Table songList={this.state.songList}/>
             </div>
         );
     }
