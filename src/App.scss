@@ -2,6 +2,7 @@
 
 .App {
   text-align: center;
+  padding: 0 2rem;
 }
 
 .App-logo {
@@ -21,7 +22,7 @@
 }
 
 body {
-  background-color: #282c34;
+  background-color: #0033a0;
 }
 
 table {
@@ -35,6 +36,7 @@ table {
 
 table, th, td {
   border: 1px solid white;
+  padding: 4px;
 }
 
 input {
@@ -43,6 +45,7 @@ input {
 
 .table-container {
   width: 100%;
-  box-sizing: border-box;
-  padding: 0 2rem;
+  box-sizing: content-box;
+  border: 1px solid red;
+  padding: 4px;
 }
