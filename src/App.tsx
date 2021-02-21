@@ -1,5 +1,5 @@
-import React, {FormEvent, Ref, useRef} from 'react';
-import bluezer from './The Bluezer.jpeg';
+import React, {FormEvent} from 'react';
+import logo from './assets/Jock\'s_FC-min.png';
 import './App.scss';
 import entries from "./assets/entries.json"
 import Table from "./Table";
@@ -29,8 +29,7 @@ class App extends React.Component<any, any> {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={bluezer} className="App-logo" alt="logo"/>
-                    <h1>Jock's Karaoke</h1>
+                    <img src={logo} className="App-logo" alt="logo"/>
                 </header>
                 <input type="text"
                        placeholder="Search"
@@ -44,7 +43,6 @@ class App extends React.Component<any, any> {
 
     scrollToTop = () => {
         if (this.searchInputRef.current != null){
-            // this.searchInputRef.current.scrollIntoView();
             const elementPosition = this.searchInputRef.current.offsetTop
             const offsetPosition = elementPosition - 20;
             window.scrollTo({
