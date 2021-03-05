@@ -40,6 +40,14 @@ table, th, td {
   padding: 4px;
 }
 
+td {
+  width: 45%;
+
+  &:last-child {
+    width: 10%;
+  }
+}
+
 input {
   margin-bottom: 2rem;
   width: 30vmin;
