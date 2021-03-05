@@ -16,7 +16,7 @@ export default function Table({songList}: TableProps) {
             </tr>
             </thead>
             <tbody>
-            {songList?.map((entry: Entry) => (<tr key={entry.id}>
+            {songList?.map((entry: Entry, index) => (<tr key={index}>
 
                 <td>{entry.title}</td>
                 <td>{entry.artist}</td>

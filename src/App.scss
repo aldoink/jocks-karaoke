@@ -2,7 +2,12 @@
 
 .App {
   text-align: center;
-  padding: 0 2rem;
+
+  padding: 0 0.5rem 0.5rem 0.5rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 2rem 2rem 2rem;
+  }
 }
 
 .App-logo {
@@ -26,6 +31,15 @@ body {
   background-color: #1e359c;
 }
 
+.table-container {
+  width: 100%;
+  max-width: 80rem;
+  box-sizing: border-box;
+  border: 1px solid red;
+  padding: 4px;
+  margin: auto;
+}
+
 table {
   color: white;
   width: 100%;
@@ -33,6 +47,11 @@ table {
   border-collapse: collapse;
   box-sizing: border-box;
   font-family: Gilroy, sans-serif;
+  word-break: break-word;
+
+  td:last-child {
+    width: 70px;
+  }
 }
 
 table, th, td {
@@ -40,23 +59,9 @@ table, th, td {
   padding: 4px;
 }
 
-td {
-  width: 45%;
-
-  &:last-child {
-    width: 10%;
-  }
-}
-
 input {
   margin-bottom: 2rem;
-  width: 30vmin;
+  width: 80vmin;
   padding: 0.5rem;
 }
 
-.table-container {
-  width: 100%;
-  box-sizing: content-box;
-  border: 1px solid red;
-  padding: 4px;
-}
