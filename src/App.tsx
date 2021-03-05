@@ -42,7 +42,7 @@ class App extends React.Component<any, any> {
     }
 
     scrollToTop = () => {
-        if (this.searchInputRef.current != null){
+        if (this.searchInputRef.current != null) {
             const elementPosition = this.searchInputRef.current.offsetTop
             const offsetPosition = elementPosition - 20;
             window.scrollTo({
