@@ -2,7 +2,7 @@ import React, {FormEvent} from 'react';
 import logo from './assets/Jock\'s_FC-min.png';
 import './App.scss';
 import entries from "./assets/entries.json"
-import Table from "./Table";
+import Table from "./components/Table";
 
 class App extends React.Component<any, any> {
     private searchInputRef: React.RefObject<HTMLInputElement>;
@@ -28,8 +28,8 @@ class App extends React.Component<any, any> {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
+                <header className="logo-container">
+                    <img src={logo} className="logo" alt="logo"/>
                 </header>
                 <input type="text"
                        placeholder="Search"

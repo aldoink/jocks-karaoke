@@ -1,5 +1,5 @@
 import React from "react";
-import {Entry} from "./Entry";
+import {Entry} from "../Entry";
 
 type TableProps = {
     songList: Entry[]
@@ -16,12 +16,12 @@ export default function Table({songList}: TableProps) {
             </tr>
             </thead>
             <tbody>
-            {songList?.map((entry: Entry, index) => (<tr key={index}>
-
-                <td>{entry.title}</td>
-                <td>{entry.artist}</td>
-                <td>{entry.location}</td>
-            </tr>))}
+            {songList?.map((entry: Entry, index) => (
+                <tr key={index}>
+                    <td>{entry.title}</td>
+                    <td>{entry.artist}</td>
+                    <td>{entry.location}</td>
+                </tr>))}
             </tbody>
         </table>
     </div>)

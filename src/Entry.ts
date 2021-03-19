@@ -1,6 +1,6 @@
 export class Entry {
-    id!: number;
-    location!: string;
-    title!: string;
-    artist!: string;
+    constructor(
+        public location: string,
+        public title: string,
+        public artist: string) {}
 }

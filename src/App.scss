@@ -1,34 +1,36 @@
 @import "scss/fonts";
 
-.App {
-  text-align: center;
+body {
+  background-color: #1e359c;
+}
 
+.App {
   padding: 0 0.5rem 0.5rem 0.5rem;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
     padding: 0 2rem 2rem 2rem;
   }
 }
 
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
-}
-
-.App-header {
+.logo-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   margin: 2rem 0;
+
+  .logo {
+    height: 30vmin;
+    pointer-events: none;
+  }
+
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-body {
-  background-color: #1e359c;
+input {
+  width: 80vmin;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .table-container {
@@ -59,9 +61,5 @@ table, th, td {
   padding: 4px;
 }
 
-input {
-  margin-bottom: 2rem;
-  width: 80vmin;
-  padding: 0.5rem;
-}
+
 
