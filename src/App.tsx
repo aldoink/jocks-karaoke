@@ -1,5 +1,5 @@
 import React, {FormEvent} from 'react';
-import logo from './assets/Jock\'s_FC-min.png';
+import logo from './assets/JocksKaraoke.jpeg';
 import './App.scss';
 import entries from "./assets/entries.json"
 import Table from "./components/Table";
