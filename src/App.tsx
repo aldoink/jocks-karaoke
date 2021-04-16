@@ -10,7 +10,7 @@ function App() {
 
     const [songList, setSongList] = useState(entries);
     const [searchTerm, setSearchTerm] = useState("");
-    const debouncedSearchTerm = useDebounce(searchTerm, 200);
+    const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
     useEffect(() => {
         const songList = entries.filter((entry) => {
