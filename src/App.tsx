@@ -1,49 +1,30 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent, useEffect, useRef, useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
 import './App.scss';
 import entries from "./assets/entries.json"
 import Table from "./components/Table";
+import useDebounce from "./hooks";
 
-class App extends React.Component<any, any> {
-    private searchInputRef: React.RefObject<HTMLInputElement>;
+function App() {
+    const searchInputRef: React.RefObject<HTMLInputElement> = useRef(null)
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            songList: entries
-        }
-        this.searchInputRef = React.createRef();
-    }
+    const [songList, setSongList] = useState(entries);
+    const [searchTerm, setSearchTerm] = useState("");
+    const debouncedSearchTerm = useDebounce(searchTerm, 200);
 
-    handleChange = (event: FormEvent<HTMLInputElement>) => {
-        const searchTerm = event.currentTarget.value.toLowerCase();
+    useEffect(() => {
         const songList = entries.filter((entry) => {
-            return entry.title.toLowerCase().includes(searchTerm)
-                || entry.artist.toLowerCase().includes(searchTerm)
-                || entry.location.toLowerCase().includes(searchTerm)
+            return entry.title.toLowerCase().includes(debouncedSearchTerm)
+                || entry.artist.toLowerCase().includes(debouncedSearchTerm)
+                || entry.location.toLowerCase().includes(debouncedSearchTerm)
         })
-        this.setState({...this.state, songList})
-    }
+        setSongList(songList);
+    }, [debouncedSearchTerm])
 
-    render() {
-        return (
-            <div className="App">
-                <header className="logo-container">
-                    <img src={logo} className="logo" alt="logo"/>
-                </header>
-                <input type="text"
-                       placeholder="Search"
-                       onFocusCapture={this.scrollToTop}
-                       onChange={this.handleChange}
-                       ref={this.searchInputRef}/>
-                <Table songList={this.state.songList}/>
-            </div>
-        );
-    }
 
-    scrollToTop = () => {
-        if (this.searchInputRef.current != null) {
-            const elementPosition = this.searchInputRef.current.offsetTop
+    const scrollToTop = () => {
+        if (searchInputRef.current != null) {
+            const elementPosition = searchInputRef.current.offsetTop
             const offsetPosition = elementPosition - 20;
             window.scrollTo({
                 top: offsetPosition,
@@ -51,6 +32,21 @@ class App extends React.Component<any, any> {
             })
         }
     }
+
+    return (
+        <div className="App">
+            <header className="logo-container">
+                <img src={logo} className="logo" alt="logo"/>
+            </header>
+            <input type="text"
+                   placeholder="Search"
+                   onFocusCapture={scrollToTop}
+                   onChange={event => setSearchTerm(event?.currentTarget?.value.toLowerCase())}
+                   ref={searchInputRef}/>
+            <Table songList={songList}/>
+        </div>
+    );
+
 }
 
 export default App;
