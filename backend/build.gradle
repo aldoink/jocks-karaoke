@@ -19,5 +19,5 @@ dependencies {
 }
 
 application {
-    mainClassName('MainApplication.kt')
+    mainClass = 'com.jockskaraoke.main.MainApplicationKt'
 }

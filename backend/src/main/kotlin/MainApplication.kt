@@ -1,3 +1,5 @@
+package com.jockskaraoke.main;
+
 import io.javalin.Javalin
 
 fun main(args: Array<String>) {
