@@ -1,0 +1,19 @@
+# https://taskfile.dev
+
+version: '3'
+
+silent: true
+
+#vars:
+#  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  start-backend:
+    desc: Start the backend
+    dir: backend
+    cmds:
+      - ./gradlew run
