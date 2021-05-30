@@ -12,22 +12,14 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - ./data:/var/lib/mysql/
-    networks:
-      - host
-      - jocks-karaoke
-  pma:
-    container_name: phpMyAdmin
-    image: library/phpmyadmin:latest
+
+  phpmyadmin:
+    container_name: php-my-admin
+    image: phpmyadmin
     ports:
       - "8080:80"
-    networks:
-      - jocks-karaoke
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-
-networks:
-  app-network:
-    driver: bridge
 
 volumes:
   dbdata:
