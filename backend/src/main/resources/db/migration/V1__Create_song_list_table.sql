@@ -1,4 +1,4 @@
-CREATE TABLE SONGS (
+CREATE TABLE IF NOT EXISTS SONGS (
     LOCATION VARCHAR(30) NOT NULL,
     ARTIST VARCHAR(200) NOT NULL,
     TITLE VARCHAR(200) NOT NULL
@@ -152,8 +152,7 @@ INSERT INTO SONGS VALUES ("BP-0146","The Verve","The Drugs Don't Work");
 INSERT INTO SONGS VALUES ("BP-0147","Westlife","Flying Without Wings");
 INSERT INTO SONGS VALUES ("BP-0148","Whitney Houston","I Will Always Love You");
 INSERT INTO SONGS VALUES ("BP-0149","Whitney Houston","Greatest Love Of All");
-INSERT INTO SONGS VALUES ("BP-0150","Years & Years ","King"}
-,
+INSERT INTO SONGS VALUES ("BP-0150","Years & Years","King");
 INSERT INTO SONGS VALUES ("BP-0151","Alicia Keys","Fallin'");
 INSERT INTO SONGS VALUES ("BP-0152","Blu Cantrell","Hit Em Up");
 INSERT INTO SONGS VALUES ("BP-0153","Blue","If You Come Back");
@@ -189,8 +188,7 @@ INSERT INTO SONGS VALUES ("BP-0182","Kylie Minogue","Love at First Sight");
 INSERT INTO SONGS VALUES ("BP-0183","N Sync & Nelly","Girlfriend");
 INSERT INTO SONGS VALUES ("BP-0184","Pink ","Don't Let Me Get Me");
 INSERT INTO SONGS VALUES ("BP-0185","Ronan Keating ","If Tomorrow Never Comes");
-INSERT INTO SONGS VALUES ("BP-0186","Sugababes ","Freak like Me"}
-,
+INSERT INTO SONGS VALUES ("BP-0186","Sugababes ","Freak like Me");
 INSERT INTO SONGS VALUES ("BP-0187","Westlife","Bop Bop Baby");
 INSERT INTO SONGS VALUES ("BP-0188","Will Young","Light My Fire");
 INSERT INTO SONGS VALUES ("BP-0189","X Press 2 & David Byrne","Lazy");
@@ -1017,8 +1015,7 @@ INSERT INTO SONGS VALUES ("GP-0075","Duran Duran","Girls On Film");
 INSERT INTO SONGS VALUES ("GP-0076","Eddy Grant","I Don't Wanna Dance");
 INSERT INTO SONGS VALUES ("GP-0077","Eric Carmen","Hungry Eyes");
 INSERT INTO SONGS VALUES ("GP-0078","Jam","Going Underground");
-INSERT INTO SONGS VALUES ("GP-0079","Joan Jett & The Blackhearts","I Love Rock N Roll"}
-,
+INSERT INTO SONGS VALUES ("GP-0079","Joan Jett & The Blackhearts","I Love Rock N Roll");
 INSERT INTO SONGS VALUES ("GP-0080","Joe Cocker & Jennifer Warnes","Up Where We Belong");
 INSERT INTO SONGS VALUES ("GP-0081","John Lennon","Jealous Guy");
 INSERT INTO SONGS VALUES ("GP-0082","Journey","Don't Stop Believin'");
@@ -1101,8 +1098,7 @@ INSERT INTO SONGS VALUES ("GP-0169","Irene Cara","Flashdance (What a Feeling)");
 INSERT INTO SONGS VALUES ("GP-0170","Jam","A Town Called Malice");
 INSERT INTO SONGS VALUES ("GP-0171","Aladdin","A Whole New World ");
 INSERT INTO SONGS VALUES ("GP-0172","Beauty & The Beast","Beauty & The Beast ");
-INSERT INTO SONGS VALUES ("GP-0173","Cars ","Life Is A Highway "}
-,
+INSERT INTO SONGS VALUES ("GP-0173","Cars ","Life Is A Highway ");
 INSERT INTO SONGS VALUES ("GP-0174","Cinderella","A Dream Is A Wish Your Heart Makes ");
 INSERT INTO SONGS VALUES ("GP-0175","Dumbo","When I See An Elephant Fly ");
 INSERT INTO SONGS VALUES ("GP-0181","Jungle Book","Bare Necessities");
@@ -1110,19 +1106,15 @@ INSERT INTO SONGS VALUES ("GP-0186","Lion King","The Circle Of Life ");
 INSERT INTO SONGS VALUES ("GP-0188","Moana","How Far I'll Go ");
 INSERT INTO SONGS VALUES ("GP-0190","Pocahontas","Colors Of The Wind ");
 INSERT INTO SONGS VALUES ("GP-0191","An American Tale","Somewhere Out There ");
-INSERT INTO SONGS VALUES ("GP-0192","Boss Baby ","Blackbird "}
-,
+INSERT INTO SONGS VALUES ("GP-0192","Boss Baby ","Blackbird ");
 INSERT INTO SONGS VALUES ("GP-0194","Cloudy With A Chance Of Meatballs","Sunshine, Lollipops and Rainbows");
 INSERT INTO SONGS VALUES ("GP-0196","Finding Dory","Unforgettable ");
 INSERT INTO SONGS VALUES ("GP-0197","Lego Movie","Everything Is Awesome ");
-INSERT INTO SONGS VALUES ("GP-0198","Minions ","Happy Together "}
-,
+INSERT INTO SONGS VALUES ("GP-0198","Minions ","Happy Together ");
 INSERT INTO SONGS VALUES ("GP-0199","Oliver","Consider Yourself ");
-INSERT INTO SONGS VALUES ("GP-0200","Pitch Perfect ","Cups "}
-,
+INSERT INTO SONGS VALUES ("GP-0200","Pitch Perfect ","Cups ");
 INSERT INTO SONGS VALUES ("GP-0201","Pokemon","Pokemon Theme  ");
-INSERT INTO SONGS VALUES ("GP-0203","Shrek 2 ","Accidentally In Love "}
-,
+INSERT INTO SONGS VALUES ("GP-0203","Shrek 2 ","Accidentally In Love ");
 INSERT INTO SONGS VALUES ("GP-0204","Song Of The South","Zip I De Doo Dah ");
 INSERT INTO SONGS VALUES ("GP-0205","Spirit Stallion of the Cimarron","Here I Am ");
 INSERT INTO SONGS VALUES ("GP-0206","Spongebob Squarepants","The Best Day Ever ");
@@ -1169,8 +1161,7 @@ INSERT INTO SONGS VALUES ("GP-0251","Ed Sheeran & Justin Bieber","Don't Care ");
 INSERT INTO SONGS VALUES ("GP-0252","Ellie Goulding","Sixteen ");
 INSERT INTO SONGS VALUES ("GP-0253","Lewis Capaldi","Hold Me While You Wait ");
 INSERT INTO SONGS VALUES ("GP-0254","Shawn Mendes","If I Can't Have You ");
-INSERT INTO SONGS VALUES ("GP-0255","Taylor Swift ft. Brendon Urie ","ME!  "}
-,
+INSERT INTO SONGS VALUES ("GP-0255","Taylor Swift ft. Brendon Urie ","ME!  ");
 INSERT INTO SONGS VALUES ("GP-0256","Zara Larsson","Don't Worry Bout Me ");
 INSERT INTO SONGS VALUES ("GP-0257","Ariana Grande","7 Rings ");
 INSERT INTO SONGS VALUES ("GP-0258","Ariana Grande","Break Up With Your Girlfriend, I'm Bored");
@@ -1180,8 +1171,7 @@ INSERT INTO SONGS VALUES ("GP-0261","Ed Sheeran ft. Skrillex","Way To Break My H
 INSERT INTO SONGS VALUES ("GP-0262","Ed Sheeran ft. Stormzy","Take Me Back To London ");
 INSERT INTO SONGS VALUES ("GP-0263","James Arthur","Empty Space ");
 INSERT INTO SONGS VALUES ("GP-0264","Little Mix ft. Ty Dolla $ign","Think About Us ");
-INSERT INTO SONGS VALUES ("GP-0265","Sam Smith ","Fire On Fire "}
-,
+INSERT INTO SONGS VALUES ("GP-0265","Sam Smith ","Fire On Fire ");
 INSERT INTO SONGS VALUES ("GP-0266","Taylor Swift","Lover ");
 INSERT INTO SONGS VALUES ("GP-0267","Tom Walker","Just You And I ");
 INSERT INTO SONGS VALUES ("GP-0268","Marshmello ft. CHVRCHES","Here With Me ");
@@ -1199,8 +1189,7 @@ INSERT INTO SONGS VALUES ("GP-0282","James Arthur","Falling Like The Stars");
 INSERT INTO SONGS VALUES ("GP-0283","James Bay ft. Julia Michaels","Peer Pressure ");
 INSERT INTO SONGS VALUES ("GP-0284","Mabel","Don't Call Me Up");
 INSERT INTO SONGS VALUES ("GP-0285","Mabel","Mad Love");
-INSERT INTO SONGS VALUES ("GP-0286","Zara Larsson","All The Time  "}
-,
+INSERT INTO SONGS VALUES ("GP-0286","Zara Larsson","All The Time  ");
 INSERT INTO SONGS VALUES ("GP-0287","Lil Nas X ft. Billy Ray Cyrus","Old Town Road");
 INSERT INTO SONGS VALUES ("GP-0288","Mark Ronson ft. Miley Cyrus","Nothing Breaks Like A Heart ");
 INSERT INTO SONGS VALUES ("GP-0289","Meduza ft. Goodboys","Piece Of Your Heart ");
@@ -1241,8 +1230,7 @@ INSERT INTO SONGS VALUES ("GP-0324","NSG","Options ");
 INSERT INTO SONGS VALUES ("GP-0325","Pink","Walk Me Home ");
 INSERT INTO SONGS VALUES ("GP-0326","Pink ft. Wrabel","90 Days ");
 INSERT INTO SONGS VALUES ("GP-0327","Sam Smith & Normani","Dancing With A Stranger ");
-INSERT INTO SONGS VALUES ("GP-0328","Shawn Mendes & Camila Cabello","Señorita "}
-,
+INSERT INTO SONGS VALUES ("GP-0328","Shawn Mendes & Camila Cabello","Señorita ");
 INSERT INTO SONGS VALUES ("GP-0329","Billie Eilish","I Wish You Were Gay ");
 INSERT INTO SONGS VALUES ("GP-0330","The 1975","Sincerity Is Scary ");
 INSERT INTO SONGS VALUES ("GP-0331","Chainsmokers ft. 5 Seconds Of Summer","Who Do You love ");
@@ -1250,286 +1238,152 @@ INSERT INTO SONGS VALUES ("GP-0332","Lady Gaga & Bradley Cooper","Shallow ");
 INSERT INTO SONGS VALUES ("GP-0333","George Ezra","Shotgun ");
 INSERT INTO SONGS VALUES ("GP-0334","Ariana Grande & Social House","Boyfriend ");
 INSERT INTO SONGS VALUES ("GP-0335","Taylor Swift","The Man ");
-INSERT INTO SONGS VALUES ("GP-0336","A Great Big World ft. \nChristina Aguilera ","Say Something"}
-,
-INSERT INTO SONGS VALUES ("GP-0337","ABBA ","Money Money Money"}
-,
-INSERT INTO SONGS VALUES ("GP-0339","Aladdin ","Never Had A Friend Like Me"}
-,
+INSERT INTO SONGS VALUES ("GP-0336","A Great Big World ft. \nChristina Aguilera ","Say Something");
+INSERT INTO SONGS VALUES ("GP-0337","ABBA ","Money Money Money");
+INSERT INTO SONGS VALUES ("GP-0339","Aladdin ","Never Had A Friend Like Me");
 INSERT INTO SONGS VALUES ("GP-0340","Alicia Keys","No One");
-INSERT INTO SONGS VALUES ("GP-0342","Anastacia ","I'm Outta Love"}
-,
-INSERT INTO SONGS VALUES ("GP-0343","Anne-Marie ","2002"}
-,
-INSERT INTO SONGS VALUES ("GP-0344","Aqua ","Barbie Girl"}
-,
-INSERT INTO SONGS VALUES ("GP-0346","Ariana Grande ","Thank U, Next"}
-,
-INSERT INTO SONGS VALUES ("GP-0347","Ava Max ","Sweet But Psycho"}
-,
+INSERT INTO SONGS VALUES ("GP-0342","Anastacia ","I'm Outta Love");
+INSERT INTO SONGS VALUES ("GP-0343","Anne-Marie ","2002");
+INSERT INTO SONGS VALUES ("GP-0344","Aqua ","Barbie Girl");
+INSERT INTO SONGS VALUES ("GP-0346","Ariana Grande ","Thank U, Next");
+INSERT INTO SONGS VALUES ("GP-0347","Ava Max ","Sweet But Psycho");
 INSERT INTO SONGS VALUES ("GP-0350","The Beatles","Hard Days Night");
 INSERT INTO SONGS VALUES ("GP-0352","The Beatles","Twist and Shout");
-INSERT INTO SONGS VALUES ("GP-0353","Bee Gees ","Stayin' Alive"}
-,
-INSERT INTO SONGS VALUES ("GP-0354","Bellamy Brothers ","Let Your Love Flow"}
-,
-INSERT INTO SONGS VALUES ("GP-0357","Bill Haley & The Comets ","Rock Around The Clock"}
-,
-INSERT INTO SONGS VALUES ("GP-0359","Bill Withers ","Lean On Me"}
-,
+INSERT INTO SONGS VALUES ("GP-0353","Bee Gees ","Stayin' Alive");
+INSERT INTO SONGS VALUES ("GP-0354","Bellamy Brothers ","Let Your Love Flow");
+INSERT INTO SONGS VALUES ("GP-0357","Bill Haley & The Comets ","Rock Around The Clock");
+INSERT INTO SONGS VALUES ("GP-0359","Bill Withers ","Lean On Me");
 INSERT INTO SONGS VALUES ("GP-0360","Billie Eilish","Bad Guy");
-INSERT INTO SONGS VALUES ("GP-0361","Birdy ","Skinny Love"}
-,
-INSERT INTO SONGS VALUES ("GP-0362","Blues Brothers ","Shake A Tail Feather"}
-,
-INSERT INTO SONGS VALUES ("GP-0363","Bob Marley ","One Love"}
-,
-INSERT INTO SONGS VALUES ("GP-0364","Bon Jovi ","Always"}
-,
-INSERT INTO SONGS VALUES ("GP-0365","Boyzone ","Words"}
-,
-INSERT INTO SONGS VALUES ("GP-0366","Bruno Mars ","Locked Out Of Heaven"}
-,
-INSERT INTO SONGS VALUES ("GP-0367","Bruno Mars ","That's What I Like"}
-,
-INSERT INTO SONGS VALUES ("GP-0369","Buddy Holly ","Peggy Sue"}
-,
-INSERT INTO SONGS VALUES ("GP-0370","Buddy Holly ","True Love Ways"}
-,
-INSERT INTO SONGS VALUES ("GP-0371","Calvin Harris & Sam Smith ","Promises"}
-,
-INSERT INTO SONGS VALUES ("GP-0372","Carly Simon ","You're So Vain"}
-,
-INSERT INTO SONGS VALUES ("GP-0373","Carpenters ","We've Only Just Begun"}
-,
+INSERT INTO SONGS VALUES ("GP-0361","Birdy ","Skinny Love");
+INSERT INTO SONGS VALUES ("GP-0362","Blues Brothers ","Shake A Tail Feather");
+INSERT INTO SONGS VALUES ("GP-0363","Bob Marley ","One Love");
+INSERT INTO SONGS VALUES ("GP-0364","Bon Jovi ","Always");
+INSERT INTO SONGS VALUES ("GP-0365","Boyzone ","Words");
+INSERT INTO SONGS VALUES ("GP-0366","Bruno Mars ","Locked Out Of Heaven");
+INSERT INTO SONGS VALUES ("GP-0367","Bruno Mars ","That's What I Like");
+INSERT INTO SONGS VALUES ("GP-0369","Buddy Holly ","Peggy Sue");
+INSERT INTO SONGS VALUES ("GP-0370","Buddy Holly ","True Love Ways");
+INSERT INTO SONGS VALUES ("GP-0371","Calvin Harris & Sam Smith ","Promises");
+INSERT INTO SONGS VALUES ("GP-0372","Carly Simon ","You're So Vain");
+INSERT INTO SONGS VALUES ("GP-0373","Carpenters ","We've Only Just Begun");
 INSERT INTO SONGS VALUES ("GP-0376","Charlie & The Chocolate Factory","Oompa Loompa");
-INSERT INTO SONGS VALUES ("GP-0377","Charlie Puth ","Dangerously"}
-,
-INSERT INTO SONGS VALUES ("GP-0378","Chas & Dave ","Ain't No Pleasing You"}
-,
-INSERT INTO SONGS VALUES ("GP-0380","Chess ","I Know Him So Well"}
-,
-INSERT INTO SONGS VALUES ("GP-0383","Christina Perri ","Jar Of Hearts"}
-,
-INSERT INTO SONGS VALUES ("GP-0384","Christmas ","Silent Night"}
-,
-INSERT INTO SONGS VALUES ("GP-0385","Chuck Berry ","No Particular Place To Go"}
-,
-INSERT INTO SONGS VALUES ("GP-0386","Commodores ","Easy"}
-,
-INSERT INTO SONGS VALUES ("GP-0387","Creedence Clearwater Revival ","Bad Moon Rising"}
-,
-INSERT INTO SONGS VALUES ("GP-0389","David Bowie ","Space Oddity"}
-,
-INSERT INTO SONGS VALUES ("GP-0390","David Guetta ft. Sia ","Titanium"}
-,
-INSERT INTO SONGS VALUES ("GP-0391","Deacon Blue ","Dignity"}
-,
-INSERT INTO SONGS VALUES ("GP-0392","Dean Martin ","Little Ole Wine Drinker Me"}
-,
-INSERT INTO SONGS VALUES ("GP-0394","Disciples ","On My Mind"}
-,
-INSERT INTO SONGS VALUES ("GP-0395","Dolly Parton ","Jolene"}
-,
-INSERT INTO SONGS VALUES ("GP-0396","Donna Summer ","Hot Stuff"}
-,
-INSERT INTO SONGS VALUES ("GP-0397","Dua Lipa ","Swan Song"}
-,
-INSERT INTO SONGS VALUES ("GP-0399","Eagles ","Lyin' Eyes"}
-,
-INSERT INTO SONGS VALUES ("GP-0403","Elle King ","Ex's and Oh's"}
-,
-INSERT INTO SONGS VALUES ("GP-0404","Elvis Presley ","Always On My Mind"}
-,
-INSERT INTO SONGS VALUES ("GP-0405","Elvis Presley ","I Just Can't Help Believing"}
-,
-INSERT INTO SONGS VALUES ("GP-0406","Elvis Presley ","The Wonder Of You"}
-,
-INSERT INTO SONGS VALUES ("GP-0410","Fleetwood Mac ","Dreams"}
-,
-INSERT INTO SONGS VALUES ("GP-0411","Frank Sinatra ","Come Fly With Me"}
-,
-INSERT INTO SONGS VALUES ("GP-0412","Frank Sinatra ","That's Life"}
-,
-INSERT INTO SONGS VALUES ("GP-0413","Frozen ","In Summer"}
-,
-INSERT INTO SONGS VALUES ("GP-0414","Gabriella Cilmi ","Sweet About Me"}
-,
-INSERT INTO SONGS VALUES ("GP-0416","Girls Aloud ","Love Machine"}
-,
-INSERT INTO SONGS VALUES ("GP-0417","Glen Campbell ","Rhinestone Cowboy"}
-,
-INSERT INTO SONGS VALUES ("GP-0418","Goo Goo Dolls ","Iris"}
-,
+INSERT INTO SONGS VALUES ("GP-0377","Charlie Puth ","Dangerously");
+INSERT INTO SONGS VALUES ("GP-0378","Chas & Dave ","Ain't No Pleasing You");
+INSERT INTO SONGS VALUES ("GP-0380","Chess ","I Know Him So Well");
+INSERT INTO SONGS VALUES ("GP-0383","Christina Perri ","Jar Of Hearts");
+INSERT INTO SONGS VALUES ("GP-0384","Christmas ","Silent Night");
+INSERT INTO SONGS VALUES ("GP-0385","Chuck Berry ","No Particular Place To Go");
+INSERT INTO SONGS VALUES ("GP-0386","Commodores ","Easy");
+INSERT INTO SONGS VALUES ("GP-0387","Creedence Clearwater Revival ","Bad Moon Rising");
+INSERT INTO SONGS VALUES ("GP-0389","David Bowie ","Space Oddity");
+INSERT INTO SONGS VALUES ("GP-0390","David Guetta ft. Sia ","Titanium");
+INSERT INTO SONGS VALUES ("GP-0391","Deacon Blue ","Dignity");
+INSERT INTO SONGS VALUES ("GP-0392","Dean Martin ","Little Ole Wine Drinker Me");
+INSERT INTO SONGS VALUES ("GP-0394","Disciples ","On My Mind");
+INSERT INTO SONGS VALUES ("GP-0395","Dolly Parton ","Jolene");
+INSERT INTO SONGS VALUES ("GP-0396","Donna Summer ","Hot Stuff");
+INSERT INTO SONGS VALUES ("GP-0397","Dua Lipa ","Swan Song");
+INSERT INTO SONGS VALUES ("GP-0399","Eagles ","Lyin' Eyes");
+INSERT INTO SONGS VALUES ("GP-0403","Elle King ","Ex's and Oh's");
+INSERT INTO SONGS VALUES ("GP-0404","Elvis Presley ","Always On My Mind");
+INSERT INTO SONGS VALUES ("GP-0405","Elvis Presley ","I Just Can't Help Believing");
+INSERT INTO SONGS VALUES ("GP-0406","Elvis Presley ","The Wonder Of You");
+INSERT INTO SONGS VALUES ("GP-0410","Fleetwood Mac ","Dreams");
+INSERT INTO SONGS VALUES ("GP-0411","Frank Sinatra ","Come Fly With Me");
+INSERT INTO SONGS VALUES ("GP-0412","Frank Sinatra ","That's Life");
+INSERT INTO SONGS VALUES ("GP-0413","Frozen ","In Summer");
+INSERT INTO SONGS VALUES ("GP-0414","Gabriella Cilmi ","Sweet About Me");
+INSERT INTO SONGS VALUES ("GP-0416","Girls Aloud ","Love Machine");
+INSERT INTO SONGS VALUES ("GP-0417","Glen Campbell ","Rhinestone Cowboy");
+INSERT INTO SONGS VALUES ("GP-0418","Goo Goo Dolls ","Iris");
 INSERT INTO SONGS VALUES ("GP-0419","John Travolta ","Greased Lightning");
-INSERT INTO SONGS VALUES ("GP-0420","Greatest Showman ","The Other Side"}
-,
-INSERT INTO SONGS VALUES ("GP-0421","Ike & Tina Turner ","River Deep Mountain High"}
-,
-INSERT INTO SONGS VALUES ("GP-0423","Jackson 5 ","Blame It On The Boogie"}
-,
-INSERT INTO SONGS VALUES ("GP-0424","James Arthur ","Impossible"}
-,
-INSERT INTO SONGS VALUES ("GP-0425","James Blunt ","You're Beautiful"}
-,
-INSERT INTO SONGS VALUES ("GP-0426","Jason Derulo ","Colors"}
-,
-INSERT INTO SONGS VALUES ("GP-0427","Jason Donovan ","Any Dream Will Do"}
-,
-INSERT INTO SONGS VALUES ("GP-0428","Jess Glynne ","Hold My Hand"}
-,
-INSERT INTO SONGS VALUES ("GP-0430","John Denver ","Annie's Song"}
-,
-INSERT INTO SONGS VALUES ("GP-0431","John Newman ","Love Me Again"}
-,
-INSERT INTO SONGS VALUES ("GP-0432","Johnny Cash ","I Walk The Line"}
-,
-INSERT INTO SONGS VALUES ("GP-0434","JP Cooper ","September Song"}
-,
-INSERT INTO SONGS VALUES ("GP-0435","Justin Bieber ","Boyfriend"}
-,
-INSERT INTO SONGS VALUES ("GP-0436","Kaiser Chiefs ","I Predict A Riot"}
-,
-INSERT INTO SONGS VALUES ("GP-0442","Khalid ","Better"}
-,
-INSERT INTO SONGS VALUES ("GP-0443","Kinks ","All Day and All Of The Night"}
-,
-INSERT INTO SONGS VALUES ("GP-0446","Lady Antebellum ","Need You Now"}
-,
-INSERT INTO SONGS VALUES ("GP-0447","Lady Gaga ","Poker Face"}
-,
-INSERT INTO SONGS VALUES ("GP-0448","Lady Gaga (A Star Is Born) ","Always Remember Us This Way"}
-,
-INSERT INTO SONGS VALUES ("GP-0449","Lana Del Rey ","Video Games"}
-,
+INSERT INTO SONGS VALUES ("GP-0420","Greatest Showman ","The Other Side");
+INSERT INTO SONGS VALUES ("GP-0421","Ike & Tina Turner ","River Deep Mountain High");
+INSERT INTO SONGS VALUES ("GP-0423","Jackson 5 ","Blame It On The Boogie");
+INSERT INTO SONGS VALUES ("GP-0424","James Arthur ","Impossible");
+INSERT INTO SONGS VALUES ("GP-0425","James Blunt ","You're Beautiful");
+INSERT INTO SONGS VALUES ("GP-0426","Jason Derulo ","Colors");
+INSERT INTO SONGS VALUES ("GP-0427","Jason Donovan ","Any Dream Will Do");
+INSERT INTO SONGS VALUES ("GP-0428","Jess Glynne ","Hold My Hand");
+INSERT INTO SONGS VALUES ("GP-0430","John Denver ","Annie's Song");
+INSERT INTO SONGS VALUES ("GP-0431","John Newman ","Love Me Again");
+INSERT INTO SONGS VALUES ("GP-0432","Johnny Cash ","I Walk The Line");
+INSERT INTO SONGS VALUES ("GP-0434","JP Cooper ","September Song");
+INSERT INTO SONGS VALUES ("GP-0435","Justin Bieber ","Boyfriend");
+INSERT INTO SONGS VALUES ("GP-0436","Kaiser Chiefs ","I Predict A Riot");
+INSERT INTO SONGS VALUES ("GP-0442","Khalid ","Better");
+INSERT INTO SONGS VALUES ("GP-0443","Kinks ","All Day and All Of The Night");
+INSERT INTO SONGS VALUES ("GP-0446","Lady Antebellum ","Need You Now");
+INSERT INTO SONGS VALUES ("GP-0447","Lady Gaga ","Poker Face");
+INSERT INTO SONGS VALUES ("GP-0448","Lady Gaga (A Star Is Born) ","Always Remember Us This Way");
+INSERT INTO SONGS VALUES ("GP-0449","Lana Del Rey ","Video Games");
 INSERT INTO SONGS VALUES ("GP-0450","Les Miserables","Bring Him Home");
-INSERT INTO SONGS VALUES ("GP-0451","Lewis Capaldi ","Someone You Loved"}
-,
-INSERT INTO SONGS VALUES ("GP-0452","Lil Dicky ft. Chris Brown ","Freaky Friday"}
-,
-INSERT INTO SONGS VALUES ("GP-0453","Lily Allen ","Not Fair"}
-,
-INSERT INTO SONGS VALUES ("GP-0456","Little Mix ft. Nicki Minaj ","Woman Like Me"}
-,
-INSERT INTO SONGS VALUES ("GP-0457","Little Richard ","Tutti Frutti"}
-,
-INSERT INTO SONGS VALUES ("GP-0458","Lizzo ","Truth Hurts"}
-,
-INSERT INTO SONGS VALUES ("GP-0459","Lorde ","Green Light"}
-,
-INSERT INTO SONGS VALUES ("GP-0460","Louis Tomlinson ","Two Of Us"}
-,
-INSERT INTO SONGS VALUES ("GP-0461","Luther Vandross ","Dance With My Father"}
-,
-INSERT INTO SONGS VALUES ("GP-0462","Lynyrd Skynyrd ","Sweet Home Alabama"}
-,
-INSERT INTO SONGS VALUES ("GP-0463","Machine Gun Kelly ft. Camila Cabello ","Bad Things"}
-,
-INSERT INTO SONGS VALUES ("GP-0465","Madonna ","Santa Baby"}
-,
-INSERT INTO SONGS VALUES ("GP-0466","Maroon 5 ft. Cardi B ","Girls Like You"}
-,
-INSERT INTO SONGS VALUES ("GP-0467","Marshmello & Anne-Marie ","FRIENDS"}
-,
-INSERT INTO SONGS VALUES ("GP-0468","Mary Poppins ","Supercalifragilisticexpialidocious"}
-,
+INSERT INTO SONGS VALUES ("GP-0451","Lewis Capaldi ","Someone You Loved");
+INSERT INTO SONGS VALUES ("GP-0452","Lil Dicky ft. Chris Brown ","Freaky Friday");
+INSERT INTO SONGS VALUES ("GP-0453","Lily Allen ","Not Fair");
+INSERT INTO SONGS VALUES ("GP-0456","Little Mix ft. Nicki Minaj ","Woman Like Me");
+INSERT INTO SONGS VALUES ("GP-0457","Little Richard ","Tutti Frutti");
+INSERT INTO SONGS VALUES ("GP-0458","Lizzo ","Truth Hurts");
+INSERT INTO SONGS VALUES ("GP-0459","Lorde ","Green Light");
+INSERT INTO SONGS VALUES ("GP-0460","Louis Tomlinson ","Two Of Us");
+INSERT INTO SONGS VALUES ("GP-0461","Luther Vandross ","Dance With My Father");
+INSERT INTO SONGS VALUES ("GP-0462","Lynyrd Skynyrd ","Sweet Home Alabama");
+INSERT INTO SONGS VALUES ("GP-0463","Machine Gun Kelly ft. Camila Cabello ","Bad Things");
+INSERT INTO SONGS VALUES ("GP-0465","Madonna ","Santa Baby");
+INSERT INTO SONGS VALUES ("GP-0466","Maroon 5 ft. Cardi B ","Girls Like You");
+INSERT INTO SONGS VALUES ("GP-0467","Marshmello & Anne-Marie ","FRIENDS");
+INSERT INTO SONGS VALUES ("GP-0468","Mary Poppins ","Supercalifragilisticexpialidocious");
 INSERT INTO SONGS VALUES ("GP-0469","McFly","5 Colours In Her Hair");
-INSERT INTO SONGS VALUES ("GP-0470","Meghan Trainor ","Lips Are Movin'"}
-,
-INSERT INTO SONGS VALUES ("GP-0471","Michael Buble ","Home"}
-,
-INSERT INTO SONGS VALUES ("GP-0473","MK ","17"}
-,
-INSERT INTO SONGS VALUES ("GP-0476","Nirvana ","Smells Like Teen Spirit"}
-,
-INSERT INTO SONGS VALUES ("GP-0478","Olly Murs ","Dance With Me Tonight"}
-,
-INSERT INTO SONGS VALUES ("GP-0481","Outkast ","Hey Ya"}
-,
-INSERT INTO SONGS VALUES ("GP-0482","Paramore ","Hard Times"}
-,
-INSERT INTO SONGS VALUES ("GP-0484","Pink ","Video Games"}
-,
+INSERT INTO SONGS VALUES ("GP-0470","Meghan Trainor ","Lips Are Movin'");
+INSERT INTO SONGS VALUES ("GP-0471","Michael Buble ","Home");
+INSERT INTO SONGS VALUES ("GP-0473","MK ","17");
+INSERT INTO SONGS VALUES ("GP-0476","Nirvana ","Smells Like Teen Spirit");
+INSERT INTO SONGS VALUES ("GP-0478","Olly Murs ","Dance With Me Tonight");
+INSERT INTO SONGS VALUES ("GP-0481","Outkast ","Hey Ya");
+INSERT INTO SONGS VALUES ("GP-0482","Paramore ","Hard Times");
+INSERT INTO SONGS VALUES ("GP-0484","Pink ","Video Games");
 INSERT INTO SONGS VALUES ("GP-0485","Pink ft. Nate Ruess ","Just Give Me A Reason");
-INSERT INTO SONGS VALUES ("GP-0486","Pinocchio ","When You Wish Upon A Star"}
-,
-INSERT INTO SONGS VALUES ("GP-0487","Professor Green & Emeli Sande ","Read All About It"}
-,
-INSERT INTO SONGS VALUES ("GP-0488","Rak-Su ft. Wyclef Jean & Naughty Boy ","Dimelo"}
-,
-INSERT INTO SONGS VALUES ("GP-0489","Ray Parker Junior ","Ghostbusters"}
-,
-INSERT INTO SONGS VALUES ("GP-0491","Right Said Fred ","I'm Too Sexy"}
-,
-INSERT INTO SONGS VALUES ("GP-0492","Rihanna ","Only Girl (In The World)"}
-,
-INSERT INTO SONGS VALUES ("GP-0493","Rihanna ft. Calvin Harris ","We Found Love"}
-,
-INSERT INTO SONGS VALUES ("GP-0494","Rita Ora ","Let You Love Me"}
-,
-INSERT INTO SONGS VALUES ("GP-0495","Robbie Williams ","Mr Bojangles"}
-,
-INSERT INTO SONGS VALUES ("GP-0496","Rod Stewart ","You Wear It Well"}
-,
-INSERT INTO SONGS VALUES ("GP-0498","Roy Orbison ","Only The Lonely"}
-,
-INSERT INTO SONGS VALUES ("GP-0499","S Club 7 ","Reach"}
-,
-INSERT INTO SONGS VALUES ("GP-0500","Sandi Thom ","I Wish I Was A Punk Rocker"}
-,
-INSERT INTO SONGS VALUES ("GP-0501","Script ","The Man Who Can't Be Moved"}
-,
-INSERT INTO SONGS VALUES ("GP-0502","Seal ","Kiss From A Rose"}
-,
-INSERT INTO SONGS VALUES ("GP-0503","Selena Gomez & Marshmello ","Wolves"}
-,
+INSERT INTO SONGS VALUES ("GP-0486","Pinocchio ","When You Wish Upon A Star");
+INSERT INTO SONGS VALUES ("GP-0487","Professor Green & Emeli Sande ","Read All About It");
+INSERT INTO SONGS VALUES ("GP-0488","Rak-Su ft. Wyclef Jean & Naughty Boy ","Dimelo");
+INSERT INTO SONGS VALUES ("GP-0489","Ray Parker Junior ","Ghostbusters");
+INSERT INTO SONGS VALUES ("GP-0491","Right Said Fred ","I'm Too Sexy");
+INSERT INTO SONGS VALUES ("GP-0492","Rihanna ","Only Girl (In The World)");
+INSERT INTO SONGS VALUES ("GP-0493","Rihanna ft. Calvin Harris ","We Found Love");
+INSERT INTO SONGS VALUES ("GP-0494","Rita Ora ","Let You Love Me");
+INSERT INTO SONGS VALUES ("GP-0495","Robbie Williams ","Mr Bojangles");
+INSERT INTO SONGS VALUES ("GP-0496","Rod Stewart ","You Wear It Well");
+INSERT INTO SONGS VALUES ("GP-0498","Roy Orbison ","Only The Lonely");
+INSERT INTO SONGS VALUES ("GP-0499","S Club 7 ","Reach");
+INSERT INTO SONGS VALUES ("GP-0500","Sandi Thom ","I Wish I Was A Punk Rocker");
+INSERT INTO SONGS VALUES ("GP-0501","Script ","The Man Who Can't Be Moved");
+INSERT INTO SONGS VALUES ("GP-0502","Seal ","Kiss From A Rose");
+INSERT INTO SONGS VALUES ("GP-0503","Selena Gomez & Marshmello ","Wolves");
 INSERT INTO SONGS VALUES ("GP-0504","Shakin' Stevens ","Merry Christmas Everyone");
-INSERT INTO SONGS VALUES ("GP-0505","Shawn Mendes ","In My Blood"}
-,
-INSERT INTO SONGS VALUES ("GP-0507","Sia ","Chandelier"}
-,
-INSERT INTO SONGS VALUES ("GP-0508","Sam Smith ","Money On My Mind"}
-,
-INSERT INTO SONGS VALUES ("GP-0509","Slade ","Merry Xmas Everybody"}
-,
-INSERT INTO SONGS VALUES ("GP-0510","Spandau Ballet ","True"}
-,
-INSERT INTO SONGS VALUES ("GP-0512","Steps ","Tragedy"}
-,
-INSERT INTO SONGS VALUES ("GP-0513","Starley ","Call On Me"}
-,
-INSERT INTO SONGS VALUES ("GP-0514","Stevie Wonder ","Superstition"}
-,
-INSERT INTO SONGS VALUES ("GP-0515","Sugababes ","About You Now"}
-,
-INSERT INTO SONGS VALUES ("GP-0517","Take That ","Greatest Day"}
-,
-INSERT INTO SONGS VALUES ("GP-0518","Take That ","Shine"}
-,
-INSERT INTO SONGS VALUES ("GP-0519","Taylor Swift ","Love Story"}
-,
-INSERT INTO SONGS VALUES ("GP-0521","Tom Jones ","Sex Bomb"}
-,
-INSERT INTO SONGS VALUES ("GP-0522","Tom Jones & Cerys Matthews ","Baby It's Cold Outside"}
-,
-INSERT INTO SONGS VALUES ("GP-0523","Tom Walker ","Leave A Light On"}
-,
-INSERT INTO SONGS VALUES ("GP-0524","Traditional ","Happy Birthday"}
-,
-INSERT INTO SONGS VALUES ("GP-0525","Train ","Play That Song"}
-,
-INSERT INTO SONGS VALUES ("GP-0526","UB40 ","Kingston Town"}
-,
+INSERT INTO SONGS VALUES ("GP-0505","Shawn Mendes ","In My Blood");
+INSERT INTO SONGS VALUES ("GP-0507","Sia ","Chandelier");
+INSERT INTO SONGS VALUES ("GP-0508","Sam Smith ","Money On My Mind");
+INSERT INTO SONGS VALUES ("GP-0509","Slade ","Merry Xmas Everybody");
+INSERT INTO SONGS VALUES ("GP-0510","Spandau Ballet ","True");
+INSERT INTO SONGS VALUES ("GP-0512","Steps ","Tragedy");
+INSERT INTO SONGS VALUES ("GP-0513","Starley ","Call On Me");
+INSERT INTO SONGS VALUES ("GP-0514","Stevie Wonder ","Superstition");
+INSERT INTO SONGS VALUES ("GP-0515","Sugababes ","About You Now");
+INSERT INTO SONGS VALUES ("GP-0517","Take That ","Greatest Day");
+INSERT INTO SONGS VALUES ("GP-0518","Take That ","Shine");
+INSERT INTO SONGS VALUES ("GP-0519","Taylor Swift ","Love Story");
+INSERT INTO SONGS VALUES ("GP-0521","Tom Jones ","Sex Bomb");
+INSERT INTO SONGS VALUES ("GP-0522","Tom Jones & Cerys Matthews ","Baby It's Cold Outside");
+INSERT INTO SONGS VALUES ("GP-0523","Tom Walker ","Leave A Light On");
+INSERT INTO SONGS VALUES ("GP-0524","Traditional ","Happy Birthday");
+INSERT INTO SONGS VALUES ("GP-0525","Train ","Play That Song");
+INSERT INTO SONGS VALUES ("GP-0526","UB40 ","Kingston Town");
 INSERT INTO SONGS VALUES ("GP-0528","Vanilla Ice","Ice Ice Baby");
-INSERT INTO SONGS VALUES ("GP-0529","Wet Wet Wet ","Love Is All Around"}
-,
+INSERT INTO SONGS VALUES ("GP-0529","Wet Wet Wet ","Love Is All Around");
 INSERT INTO SONGS VALUES ("GP-0530","Wham! ","Last Christmas");
-INSERT INTO SONGS VALUES ("GP-0533","Wizard Of Oz ","We're Off To See The Wizard"}
-,
-INSERT INTO SONGS VALUES ("GP-0534","Years & Years ","Sanctify"}
-,
-INSERT INTO SONGS VALUES ("GP-0535","Zayn & Taylor Swift","I Don’t Wanna Live Forever"}
-,
+INSERT INTO SONGS VALUES ("GP-0533","Wizard Of Oz ","We're Off To See The Wizard");
+INSERT INTO SONGS VALUES ("GP-0534","Years & Years ","Sanctify");
+INSERT INTO SONGS VALUES ("GP-0535","Zayn & Taylor Swift","I Don’t Wanna Live Forever");
 INSERT INTO SONGS VALUES ("GP-0536","Mental As Anything","Live It Up");
 INSERT INTO SONGS VALUES ("GP-0537","Baccara","Yes Sir, I can Boogie");
 INSERT INTO SONGS VALUES ("GP-0538","Billy Ocean","Red Light Spells Danger");
@@ -1794,13 +1648,11 @@ INSERT INTO SONGS VALUES ("RP-0399","Shania Twain ","Man! I Feel Like A Woman");
 INSERT INTO SONGS VALUES ("RP-0400","Shania Twain ","You're Still The One");
 INSERT INTO SONGS VALUES ("RP-0401","Shirley Bassey ","Big Spender");
 INSERT INTO SONGS VALUES ("RP-0402","Showaddywaddy ","Under The Moon Of Love");
-INSERT INTO SONGS VALUES ("RP-0404","Simon & Garfunkel","Bridge Over Troubled Water"}
-,
+INSERT INTO SONGS VALUES ("RP-0404","Simon & Garfunkel","Bridge Over Troubled Water");
 INSERT INTO SONGS VALUES ("RP-0405","Sinead O'Connor ","Nothing Compares 2 U");
 INSERT INTO SONGS VALUES ("RP-0408","Smokie ","Living Next Door To Alice");
 INSERT INTO SONGS VALUES ("RP-0410","Snow Patrol ","Run");
-INSERT INTO SONGS VALUES ("RP-0412","Sonny & Cher","I Got You Babe"}
-,
+INSERT INTO SONGS VALUES ("RP-0412","Sonny & Cher","I Got You Babe");
 INSERT INTO SONGS VALUES ("RP-0413","Sound Of Music","Do-Re-Mi");
 INSERT INTO SONGS VALUES ("RP-0415","Spandau Ballet ","Through The Barricades");
 INSERT INTO SONGS VALUES ("RP-0417","Spice Girls ","Spice Up Your Life");
@@ -1853,25 +1705,20 @@ INSERT INTO SONGS VALUES ("RP-0494","Anna Nalick","Breathe (2am)");
 INSERT INTO SONGS VALUES ("RP-0496","Kelly Clarkson","Because Of You");
 INSERT INTO SONGS VALUES ("RP-0498","Howie Day","Collide");
 INSERT INTO SONGS VALUES ("RP-0499","Black Eyed Peas","My Humps");
-INSERT INTO SONGS VALUES ("RP-0500","Alan Jackson & \nJimmy Buffett","It's Five O'Clock Somewhere"}
-,
+INSERT INTO SONGS VALUES ("RP-0500","Alan Jackson & \nJimmy Buffett","It's Five O'Clock Somewhere");
 INSERT INTO SONGS VALUES ("RP-0501","Brad Paisley","Alcohol");
 INSERT INTO SONGS VALUES ("RP-0502","Gretchen Wilson","Here For The Party");
 INSERT INTO SONGS VALUES ("RP-0503","Gretchen Wilson","Redneck Woman");
 INSERT INTO SONGS VALUES ("RP-0504","Gretchen Wilson","All Jacked Up");
 INSERT INTO SONGS VALUES ("RP-0505","Dixie Chicks","Goodbye Earl");
-INSERT INTO SONGS VALUES ("RP-0506","Hank Williams Jr & Friends","That's How They Do It In Dixie"}
-,
-INSERT INTO SONGS VALUES ("RP-0507","Big & Rich","Save A Horse (Ride A Cowboy)"}
-,
+INSERT INTO SONGS VALUES ("RP-0506","Hank Williams Jr & Friends","That's How They Do It In Dixie");
+INSERT INTO SONGS VALUES ("RP-0507","Big & Rich","Save A Horse (Ride A Cowboy)");
 INSERT INTO SONGS VALUES ("RP-0508","Toby Keith","Get Drunk And Be Somebody");
 INSERT INTO SONGS VALUES ("RP-0509","Toby Keith","As Good As I Once Was");
-INSERT INTO SONGS VALUES ("RP-0510","Toby Keith & Willie Nelson","Beer For My Horses"}
-,
+INSERT INTO SONGS VALUES ("RP-0510","Toby Keith & Willie Nelson","Beer For My Horses");
 INSERT INTO SONGS VALUES ("RP-0511","Garth Brooks","Two Pina Coladas");
 INSERT INTO SONGS VALUES ("RP-0512","Garth Brooks","Friends In Low Places");
-INSERT INTO SONGS VALUES ("RP-0513","Bon Jovi & Jennifer Nettles","Who Says You Can't Go Home"}
-,
+INSERT INTO SONGS VALUES ("RP-0513","Bon Jovi & Jennifer Nettles","Who Says You Can't Go Home");
 INSERT INTO SONGS VALUES ("RP-0514","Toby Keith","A Little Too Late");
 INSERT INTO SONGS VALUES ("RP-0515","Shania Twain","That Don't Impress Me Much");
 INSERT INTO SONGS VALUES ("RP-0518","Willie Nelson","On The Road Again");
@@ -1896,14 +1743,11 @@ INSERT INTO SONGS VALUES ("RP-0538","Kelly Clarkson","Breakaway");
 INSERT INTO SONGS VALUES ("RP-0539","Kelly Clarkson","A Moment Like This");
 INSERT INTO SONGS VALUES ("RP-0540","Gwen Stefani","Hollaback Girl");
 INSERT INTO SONGS VALUES ("RP-0543","Alicia Keys","If I Ain't Got You");
-INSERT INTO SONGS VALUES ("RP-0544","Seether & Amy Lee","Broken"}
-,
+INSERT INTO SONGS VALUES ("RP-0544","Seether & Amy Lee","Broken");
 INSERT INTO SONGS VALUES ("RP-0546","Evanescence","My Immortal");
-INSERT INTO SONGS VALUES ("RP-0547","Kid Rock & Sheryl Crow","Picture"}
-,
+INSERT INTO SONGS VALUES ("RP-0547","Kid Rock & Sheryl Crow","Picture");
 INSERT INTO SONGS VALUES ("RP-0548","Christina Aguilera","I Turn To You");
-INSERT INTO SONGS VALUES ("RP-0549","Christina Aguilera, Lil' Kim, Mya & Pink","Lady Marmalade"}
-,
+INSERT INTO SONGS VALUES ("RP-0549","Christina Aguilera, Lil' Kim, Mya & Pink","Lady Marmalade");
 INSERT INTO SONGS VALUES ("RP-0550","Sheryl Crow","First Cut Is The Deepest");
 INSERT INTO SONGS VALUES ("RP-0551","Dido","Thank You");
 INSERT INTO SONGS VALUES ("RP-0552","Dido","Here With Me");
@@ -1922,8 +1766,7 @@ INSERT INTO SONGS VALUES ("RP-0565","Creed","Higher");
 INSERT INTO SONGS VALUES ("RP-0566","Kid Rock","Only God Knows Why");
 INSERT INTO SONGS VALUES ("RP-0567","Train","Drops Of Jupiter");
 INSERT INTO SONGS VALUES ("RP-0568","3 Doors Down","Kryptonite");
-INSERT INTO SONGS VALUES ("RP-0569","Santana & Rob Thomas","Smooth"}
-,
+INSERT INTO SONGS VALUES ("RP-0569","Santana & Rob Thomas","Smooth");
 INSERT INTO SONGS VALUES ("RP-0570","Big Bad Voodoo Daddy","Zoot Suit Riot");
 INSERT INTO SONGS VALUES ("RP-0571","Heartland","I Loved Her First");
 INSERT INTO SONGS VALUES ("RP-0572","Carrie Underwood","Jesus, Take The Wheel");
@@ -1966,8 +1809,7 @@ INSERT INTO SONGS VALUES ("RP-0623","Doobie Brothers","Black Water");
 INSERT INTO SONGS VALUES ("RP-0630","David Lee Roth","Just A Gigolo");
 INSERT INTO SONGS VALUES ("RP-0632","Billy Joel","It's Still Rock And Roll To Me");
 INSERT INTO SONGS VALUES ("RP-0633","Pat Benatar","Hit Me With Your Best Shot");
-INSERT INTO SONGS VALUES ("RP-0634","Stevie Nicks & Tom Petty","Stop Draggin' My Heart Around"}
-,
+INSERT INTO SONGS VALUES ("RP-0634","Stevie Nicks & Tom Petty","Stop Draggin' My Heart Around");
 INSERT INTO SONGS VALUES ("RP-0635","James Ingram","Just Once");
 INSERT INTO SONGS VALUES ("RP-0638","Sylvia","Nobody");
 INSERT INTO SONGS VALUES ("RP-0639","Larry Graham","One In A Million You");
@@ -1975,21 +1817,16 @@ INSERT INTO SONGS VALUES ("RP-0640","Juice Newton","Break It To Me Gently");
 INSERT INTO SONGS VALUES ("RP-0641","Juice Newton","The Sweetest Thing");
 INSERT INTO SONGS VALUES ("RP-0644","Oleta Adams","Get Here");
 INSERT INTO SONGS VALUES ("RP-0651","Bangles","Manic Monday");
-INSERT INTO SONGS VALUES ("RP-0652","Billy Vera & The Beaters","At This Moment"}
-,
+INSERT INTO SONGS VALUES ("RP-0652","Billy Vera & The Beaters","At This Moment");
 INSERT INTO SONGS VALUES ("RP-0654","Bonnie Raitt","Something To Talk About");
 INSERT INTO SONGS VALUES ("RP-0657","Atlantic Starr","Always");
-INSERT INTO SONGS VALUES ("RP-0663","Kool & The Gang","Celebration"}
-,
+INSERT INTO SONGS VALUES ("RP-0663","Kool & The Gang","Celebration");
 INSERT INTO SONGS VALUES ("RP-0665","Linda Ronstadt","When Will I Be Loved");
-INSERT INTO SONGS VALUES ("RP-0666","Captain & Tenille","Love Will Keep Us Together"}
-,
-INSERT INTO SONGS VALUES ("RP-0667","Bob Seger & The Silver Bullet Band","Old Time Rock 'n' Roll"}
-,
+INSERT INTO SONGS VALUES ("RP-0666","Captain & Tenille","Love Will Keep Us Together");
+INSERT INTO SONGS VALUES ("RP-0667","Bob Seger & The Silver Bullet Band","Old Time Rock 'n' Roll");
 INSERT INTO SONGS VALUES ("RP-0669","Fleetwood Mac","Silver Springs");
 INSERT INTO SONGS VALUES ("RP-0670","Joe Cocker","You Are So Beautiful");
-INSERT INTO SONGS VALUES ("RP-0672","Johnny Mathis & Deniece Williams","Too Much, Too Little, Too Late"}
-,
+INSERT INTO SONGS VALUES ("RP-0672","Johnny Mathis & Deniece Williams","Too Much, Too Little, Too Late");
 INSERT INTO SONGS VALUES ("RP-0677","Looking Glass","Brandy");
 INSERT INTO SONGS VALUES ("RP-0678","Partridge Family","I Think I Love You");
 INSERT INTO SONGS VALUES ("RP-0681","Frank Sinatra","Summer Wind");
@@ -2007,24 +1844,20 @@ INSERT INTO SONGS VALUES ("RP-0698","Kenny Rogers","Through The Years");
 INSERT INTO SONGS VALUES ("RP-0699","Anne Murray","Could I Have This Dance");
 INSERT INTO SONGS VALUES ("RP-0702","Janis Joplin","Me And Bobby McGee");
 INSERT INTO SONGS VALUES ("RP-0705","Jefferson Airplane","White Rabbit");
-INSERT INTO SONGS VALUES ("RP-0710","Simon & Garfunkel","The Boxer"}
-,
+INSERT INTO SONGS VALUES ("RP-0710","Simon & Garfunkel","The Boxer");
 INSERT INTO SONGS VALUES ("RP-0713","Supremes","Stop In The Name Of Love");
 INSERT INTO SONGS VALUES ("RP-0715","Troggs","Wild Thing");
-INSERT INTO SONGS VALUES ("RP-0717","Sam & Dave","Soul Man"}
-,
+INSERT INTO SONGS VALUES ("RP-0717","Sam & Dave","Soul Man");
 INSERT INTO SONGS VALUES ("RP-0718","Grass Roots","Midnight Confessions");
 INSERT INTO SONGS VALUES ("RP-0719","Johnny Rivers","Secret Agent Man");
 INSERT INTO SONGS VALUES ("RP-0721","Dion","The Wanderer");
-INSERT INTO SONGS VALUES ("RP-0722","Dion & The Belmonts","A Teenager In Love"}
-,
+INSERT INTO SONGS VALUES ("RP-0722","Dion & The Belmonts","A Teenager In Love");
 INSERT INTO SONGS VALUES ("RP-0726","Lesley Gore","It's My Party");
 INSERT INTO SONGS VALUES ("RP-0727","Everly Brothers","All I Have To Do Is Dream");
 INSERT INTO SONGS VALUES ("RP-0728","Everly Brothers","Bye Bye Love");
 INSERT INTO SONGS VALUES ("RP-0731","Roy Orbison","Crying");
 INSERT INTO SONGS VALUES ("RP-0732","Richie Valens","La Bamba");
-INSERT INTO SONGS VALUES ("RP-0733","Martha Reeves & The Vandellas","Dancing In The Street"}
-,
+INSERT INTO SONGS VALUES ("RP-0733","Martha Reeves & The Vandellas","Dancing In The Street");
 INSERT INTO SONGS VALUES ("RP-0734","Crests","Sixteen Candles");
 INSERT INTO SONGS VALUES ("RP-0735","Shelley Fabares","Johnny Angel");
 INSERT INTO SONGS VALUES ("RP-0736","The Beatles","I Saw Her Standing There");
@@ -2054,8 +1887,7 @@ INSERT INTO SONGS VALUES ("RP-0761","Sugarland","Settlin'");
 INSERT INTO SONGS VALUES ("RP-0762","Carrie Underwood","I'll Stand By You");
 INSERT INTO SONGS VALUES ("RP-0763","Carrie Underwood","Wasted");
 INSERT INTO SONGS VALUES ("RP-0764","Toby Keith","High Maintenance Woman");
-INSERT INTO SONGS VALUES ("RP-0765","Big & Rich","Lost In This Moment"}
-,
+INSERT INTO SONGS VALUES ("RP-0765","Big & Rich","Lost In This Moment");
 INSERT INTO SONGS VALUES ("RP-0766","Kenny Chesney","Beer In Mexico");
 INSERT INTO SONGS VALUES ("RP-0767","Luke Bryan","All My Friends Say");
 INSERT INTO SONGS VALUES ("RP-0768","Garth Brooks","More Than A Memory");
@@ -2065,5 +1897,4 @@ INSERT INTO SONGS VALUES ("RP-0771","Miranda Lambert","Crazy Ex-Girlfriend");
 INSERT INTO SONGS VALUES ("RP-0772","Miranda Lambert","Famous In A Small Town");
 INSERT INTO SONGS VALUES ("RP-0773","Rascal Flatts","What Hurts The Most");
 INSERT INTO SONGS VALUES ("RP-0774","Brad Paisley","Ticks");
-INSERT INTO SONGS VALUES ("RP-0775","Carrie Underwood","So Small"}
-]
+INSERT INTO SONGS VALUES ("RP-0775","Carrie Underwood","So Small");
