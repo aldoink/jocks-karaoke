@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
 import './App.scss';
 import entries from "./assets/entries.json"
