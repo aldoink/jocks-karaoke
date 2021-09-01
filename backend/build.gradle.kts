@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.5.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("groovy")
     kotlin("jvm") version "1.5.10"
     kotlin("plugin.spring") version "1.5.10"
     kotlin("plugin.jpa") version "1.5.10"
@@ -30,12 +31,20 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.flywaydb:flyway-core:7.10.0")
-    compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("mysql:mysql-connector-java")
-    annotationProcessor("org.projectlombok:lombok")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.spockframework:spock-core:2.0-groovy-3.0")
+    testImplementation("org.spockframework:spock-spring:2.0-groovy-3.0")
+    testImplementation("org.codehaus.groovy:groovy-all:3.0.8")
+
+    compileOnly("org.projectlombok:lombok")
+
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    runtimeOnly("mysql:mysql-connector-java")
+
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.withType<KotlinCompile> {
