@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.jocks-karaoke"
-version = "0.0.1"
+version = "backend"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
@@ -56,4 +56,14 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+task("buildDockerImage", Exec::class) {
+    workingDir(".")
+    commandLine("docker", "build", ".", "-t", "aldoink/${project.name}:${project.version}")
+}
+
+task("pushDockerImage", Exec::class) {
+    dependsOn("buildDockerImage")
+    commandLine("docker", "push", "aldoink/${project.name}:${project.version}")
 }
