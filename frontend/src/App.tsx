@@ -1,25 +1,38 @@
 import React, {useEffect, useRef, useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
 import './App.scss';
-import entries from "./assets/entries.json"
 import Table from "./components/Table";
-import useDebounce from "./hooks";
+import useDebounce from "./UseDebounce";
+import {SongService} from "./services/SongService";
 
-function App() {
+interface Song {
+    artist: string,
+    location: string,
+    title: string
+}
+
+interface AppProps {
+    songService: SongService
+}
+
+function App({songService}: AppProps) {
     const searchInputRef: React.RefObject<HTMLInputElement> = useRef(null)
 
-    const [songList, setSongList] = useState(entries);
+    const [songList, setSongList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const debouncedSearchTerm = useDebounce(searchTerm, 300);
+    const debouncedSearchTerm: string = useDebounce(searchTerm, 300);
 
     useEffect(() => {
-        const songList = entries.filter((entry) => {
-            return entry.title.toLowerCase().includes(debouncedSearchTerm)
-                || entry.artist.toLowerCase().includes(debouncedSearchTerm)
-                || entry.location.toLowerCase().includes(debouncedSearchTerm)
-        })
-        setSongList(songList);
-    }, [debouncedSearchTerm])
+        const search = async () => {
+            const songList = await songService.search(debouncedSearchTerm);
+            setSongList(songList.filter((entry: Song) => {
+                return entry.title.toLowerCase().includes(debouncedSearchTerm)
+                    || entry.artist.toLowerCase().includes(debouncedSearchTerm)
+                    || entry.location.toLowerCase().includes(debouncedSearchTerm)
+            }))
+        }
+        search();
+    }, [debouncedSearchTerm, songService]);
 
 
     const scrollToTop = () => {

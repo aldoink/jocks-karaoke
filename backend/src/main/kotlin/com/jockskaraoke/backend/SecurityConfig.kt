@@ -27,7 +27,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 }
 
 @Configuration
-class RequestLoggingFilterConfig  {
+class RequestLoggingFilterConfig {
 
     @Bean
     fun logFilter(): CommonsRequestLoggingFilter {

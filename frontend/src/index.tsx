@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {SongService} from "./services/SongService";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App songService={new SongService()}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
