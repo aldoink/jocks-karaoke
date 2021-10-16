@@ -1,1 +1,1 @@
-rootProject.name = "jocks-karaoke"
+rootProject.name = "aldoink/jocks-karaoke"
