@@ -59,6 +59,7 @@ tasks.withType<Test> {
 }
 
 task("buildDockerImage", Exec::class) {
+    dependsOn("build", "test")
     workingDir(".")
     commandLine("docker", "build", ".", "-t", "aldoink/${project.name}:${project.version}")
 }

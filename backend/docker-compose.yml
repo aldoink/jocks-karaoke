@@ -28,6 +28,11 @@ services:
     network_mode: host
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+  frontend:
+    image: aldoink/jocks-karaoke:frontend_1.0.0
+    container_name: frontend
+    restart: always
+    network_mode: host
 
 volumes:
   db-data:

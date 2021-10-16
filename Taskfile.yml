@@ -4,9 +4,6 @@ version: '3'
 
 silent: true
 
-#vars:
-#  GREETING: Hello, World!
-
 tasks:
   default:
     cmds:
@@ -17,3 +14,21 @@ tasks:
     dir: backend
     cmds:
       - ./gradlew run
+
+  start:
+    desc: Start backend, frontend and DB
+    dir: backend
+    cmds:
+      - docker-compose up -d
+
+  stop:
+    desc: Stop backend, frontend and DB
+    dir: backend
+    cmds:
+      - docker-compose down
+
+  build-backend:
+    desc: Builds the backend and generates a new docker image
+    dir: backend
+    cmds:
+      - ./gradlew buildDockerImage
