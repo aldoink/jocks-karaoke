@@ -13,16 +13,6 @@ services:
       MYSQL_DATABASE: jocks-karaoke
     volumes:
       - db-data:/var/lib/sql
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: phpMyAdmin
-    restart: always
-    ports:
-      - 8080:80
-    environment:
-      - PMA_ARBITRARY=1
-    depends_on:
-      - db
   backend:
     image: aldoink/jocks-karaoke:backend_1.0.0
     container_name: backend
@@ -36,7 +26,8 @@ services:
     image: aldoink/jocks-karaoke:frontend_1.0.0
     container_name: frontend
     restart: always
-    network_mode: host
+    ports:
+      - 4000:3000
     depends_on:
       - backend
 
