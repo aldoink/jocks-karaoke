@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.jocks-karaoke"
-version = "1.0.0"
+version = "backend_1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
