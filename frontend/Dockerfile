@@ -1,13 +1,14 @@
-FROM node:latest
-
+FROM node:latest as build
 WORKDIR /app
+COPY package*.json /app/
+COPY yarn.lock /app/
+RUN yarn --silent
+COPY . /app/
+RUN yarn build
 
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
+FROM nginx:1.17.8-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
 EXPOSE 3000
-
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
