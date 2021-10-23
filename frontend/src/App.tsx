@@ -25,7 +25,7 @@ function App({songService}: AppProps) {
     useEffect(() => {
         const search = async () => {
             const songList = await songService.search(debouncedSearchTerm);
-            setSongList(songList.filter((entry: Song) => {
+            setSongList(songList?.filter((entry: Song) => {
                 return entry.title.toLowerCase().includes(debouncedSearchTerm)
                     || entry.artist.toLowerCase().includes(debouncedSearchTerm)
                     || entry.location.toLowerCase().includes(debouncedSearchTerm)

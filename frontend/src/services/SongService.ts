@@ -9,6 +9,6 @@ export class SongService {
             requestUrl += `?searchTerm=${searchTerm}`;
         }
         const response = await axios.get(requestUrl);
-        return response.data;
+        return response?.data;
     }
 }
