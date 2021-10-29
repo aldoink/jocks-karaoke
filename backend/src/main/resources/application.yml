@@ -18,3 +18,8 @@ logging:
 
 server:
   port: 9090
+
+
+jwt:
+  secret: WeAreThePeople
+  expirationMs: 86400000

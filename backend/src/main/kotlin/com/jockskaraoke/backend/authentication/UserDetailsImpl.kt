@@ -1,0 +1,71 @@
+package com.jockskaraoke.backend.authentication
+
+import com.fasterxml.jackson.annotation.JsonIgnore
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+import java.util.stream.Collectors
+
+
+class UserDetailsImpl(
+    val id: Long,
+    private val username: String,
+    val email: String,
+    @JsonIgnore private val password: String,
+    private val authorities: Collection<GrantedAuthority>
+) : UserDetails {
+
+    override fun getAuthorities(): Collection<GrantedAuthority> {
+        return authorities
+    }
+
+    override fun getPassword(): String {
+        return password
+    }
+
+    override fun getUsername(): String {
+        return username
+    }
+
+    override fun isAccountNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isAccountNonLocked(): Boolean {
+        return true
+    }
+
+    override fun isCredentialsNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isEnabled(): Boolean {
+        return true
+    }
+
+    override fun equals(user: Any?): Boolean {
+        if (this === user) return true
+        if (user == null || javaClass != user.javaClass) return false
+        return id == (user as UserDetailsImpl).id
+    }
+
+    companion object {
+        private const val serialVersionUID = 1L
+        fun build(user: User): UserDetailsImpl {
+            val authorities: List<GrantedAuthority> = user.roles.stream()
+                .map { role: RoleEntity ->
+                    SimpleGrantedAuthority(
+                        role.name.name
+                    )
+                }
+                .collect(Collectors.toList())
+            return UserDetailsImpl(
+                user.id,
+                user.username,
+                user.email,
+                user.password,
+                authorities
+            )
+        }
+    }
+}
