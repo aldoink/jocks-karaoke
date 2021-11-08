@@ -13,9 +13,7 @@ import spock.lang.Unroll
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-@AutoConfigureMockMvc
-@SpringBootTest
-class SongControllerTest extends Specification {
+class SongControllerTest extends IntegrationTest {
 
     @Autowired
     SongController songController

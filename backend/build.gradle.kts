@@ -39,6 +39,8 @@ dependencies {
     testImplementation("org.spockframework:spock-core:2.0-groovy-3.0")
     testImplementation("org.spockframework:spock-spring:2.0-groovy-3.0")
     testImplementation("org.codehaus.groovy:groovy-all:3.0.8")
+    testImplementation("org.testcontainers:mysql:1.16.2")
+    testImplementation("org.testcontainers:spock:1.16.2")
 
     compileOnly("org.projectlombok:lombok")
 
