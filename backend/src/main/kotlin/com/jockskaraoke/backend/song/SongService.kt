@@ -1,4 +1,4 @@
-package com.jockskaraoke.backend
+package com.jockskaraoke.backend.song
 
 import org.springframework.data.jpa.domain.Specification.where
 import org.springframework.stereotype.Service

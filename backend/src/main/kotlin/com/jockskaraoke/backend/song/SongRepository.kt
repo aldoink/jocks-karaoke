@@ -1,4 +1,4 @@
-package com.jockskaraoke.backend
+package com.jockskaraoke.backend.song
 
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.repository.JpaRepository

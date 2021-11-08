@@ -1,25 +1,14 @@
-package com.jockskaraoke.backend
-
+package com.jockskaraoke.backend.song
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.web.servlet.MockMvc
+import com.jockskaraoke.backend.IntegrationTest
 import org.springframework.test.web.servlet.MvcResult
-import spock.lang.Specification
 import spock.lang.Unroll
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 class SongControllerTest extends IntegrationTest {
-
-    @Autowired
-    SongController songController
-
-    @Autowired
-    MockMvc mockMvc
 
     def "/songs - should return a list of all songs in the DB"() {
         when:

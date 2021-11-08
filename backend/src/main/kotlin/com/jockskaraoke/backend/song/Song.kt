@@ -1,4 +1,4 @@
-package com.jockskaraoke.backend
+package com.jockskaraoke.backend.song
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

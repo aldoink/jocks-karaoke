@@ -1,4 +1,4 @@
-package com.jockskaraoke.backend
+package com.jockskaraoke.backend.song
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
