@@ -13,7 +13,7 @@ tasks:
     desc: Start the backend
     dir: backend
     cmds:
-      - ./gradlew run
+      - ./gradlew :backend:run
 
   start:
     desc: Start backend, frontend and DB
@@ -31,4 +31,9 @@ tasks:
     desc: Builds the backend and generates a new docker image
     dir: backend
     cmds:
-      - ./gradlew buildDockerImage
+      - ./gradlew :backend:buildDockerImage
+
+  test-backend:
+    desc: Builds the backend and runs the tests
+    cmds:
+      - ./gradlew :backend:test

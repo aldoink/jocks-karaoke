@@ -1,5 +1,6 @@
 package com.jockskaraoke.backend.authentication
 
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -47,7 +48,10 @@ class AuthController(
     }
 
     @PostMapping("/register")
-    fun registerUser(@RequestBody registerRequest: RegisterRequest): ResponseEntity<Any> {
+    fun registerUser(
+        @RequestBody registerRequest: RegisterRequest,
+        @RequestHeader(name = "Authorization", required = false) token: String?,
+    ): ResponseEntity<Any> {
         if (userRepository.existsByUsername(registerRequest.username)) {
             return ResponseEntity.badRequest().body(MessageResponse("Error: Username is already taken!"))
         }
@@ -77,8 +81,17 @@ class AuthController(
                         roles.add(userRole)
                     }
                     Role.ROLE_ADMIN -> {
-                        val adminRole = roleRepository.findByName(role).orElseThrow { roleNotFoundException }
-                        roles.add(adminRole)
+                        val adminUser = SecurityContextHolder.getContext()
+                            .authentication
+                            .authorities
+                            .any { it.authority.equals(Role.ROLE_ADMIN.name) }
+                        if (adminUser) {
+                            val adminRole = roleRepository.findByName(role).orElseThrow { roleNotFoundException }
+                            roles.add(adminRole)
+                        } else {
+                            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                                .body(MessageResponse("Only Admin users can create new Admins"))
+                        }
                     }
                 }
             }
