@@ -1,7 +1,8 @@
 @import "scss/fonts";
 
+$rangers-blue: #1e359c;
 body {
-  background-color: #1e359c;
+  background-color: $rangers-blue;
 }
 
 .App {
@@ -48,7 +49,7 @@ table {
   text-align: left;
   border-collapse: collapse;
   box-sizing: border-box;
-  font-family: Gilroy, sans-serif;
+  font-family: Roboto, sans-serif;
   word-break: break-word;
 
   td:last-child {

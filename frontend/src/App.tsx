@@ -34,7 +34,6 @@ function App({songService}: AppProps) {
         search();
     }, [debouncedSearchTerm, songService]);
 
-
     const scrollToTop = () => {
         if (searchInputRef.current != null) {
             const elementPosition = searchInputRef.current.offsetTop

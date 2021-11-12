@@ -1,4 +1,4 @@
-export class Entry {
+export class Song {
     constructor(
         public location: string,
         public title: string,

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App loads songs and displays them in the table 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <header
+      class="logo-container"
+    >
+      <img
+        alt="logo"
+        class="logo"
+        src="JocksKaraoke.jpeg"
+      />
+    </header>
+    <input
+      placeholder="Search"
+      type="text"
+    />
+    <div
+      class="table-container"
+    >
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Song Title
+            </th>
+            <th>
+              Artist
+            </th>
+            <th>
+              Location
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Immigrant Song
+            </td>
+            <td>
+              Led Zeppelin
+            </td>
+            <td>
+              GP001
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Don't stop me now
+            </td>
+            <td>
+              Queen
+            </td>
+            <td>
+              GP002
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Damn it feels good to be a gangster
+            </td>
+            <td>
+              Geto Boys
+            </td>
+            <td>
+              GP003
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -10,13 +10,16 @@ tasks:
       - task --list
 
   start-backend:
-    desc: Start the backend
+    desc: Start the backend locally with gradle
     dir: backend
     cmds:
       - ./gradlew :backend:run
 
+  start-frontend:
+    desc: Start the frontend locally with yarn
+
   start:
-    desc: Start backend, frontend and DB
+    desc: Start backend, frontend and DB using docker containers
     dir: backend
     cmds:
       - docker-compose up -d
@@ -33,7 +36,19 @@ tasks:
     cmds:
       - ./gradlew :backend:buildDockerImage
 
+  build-frontend:
+    desc: Builds the frontend and generates a new docker image
+    dir: frontend
+    cmds:
+      - yarn run docker:build
+
   test-backend:
     desc: Builds the backend and runs the tests
     cmds:
       - ./gradlew :backend:test
+
+  test-frontend:
+    desc: Runs all yarn tests for the frontend
+    dir: frontend
+    cmds:
+      - yarn test

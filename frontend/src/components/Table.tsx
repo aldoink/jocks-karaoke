@@ -1,8 +1,8 @@
 import React from "react";
-import {Entry} from "../Entry";
+import {Song} from "../Song";
 
 type TableProps = {
-    songList: Entry[]
+    songList: Song[]
 }
 
 export default function Table({songList}: TableProps) {
@@ -16,7 +16,7 @@ export default function Table({songList}: TableProps) {
             </tr>
             </thead>
             <tbody>
-            {songList?.map((entry: Entry, index) => (
+            {songList?.map((entry: Song, index) => (
                 <tr key={index}>
                     <td>{entry.title}</td>
                     <td>{entry.artist}</td>
