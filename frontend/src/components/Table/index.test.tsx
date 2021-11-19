@@ -1,7 +1,7 @@
 import React from 'react';
-import Table from "./Table";
-import {Song} from "../Song";
 import renderer from 'react-test-renderer'
+import {Song} from "../../Song";
+import {Table} from "./index";
 
 const entries = [
     new Song("BP1", "A Title", "A Test Artist"),

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders table entries 1`] = `
+<div
+  className="table-container"
+>
+  <div
+    className="table-cell bold"
+  >
+    Song Title
+  </div>
+  <div
+    className="table-cell bold"
+  >
+    Artist
+  </div>
+  <div
+    className="table-cell bold"
+  >
+    Location
+  </div>
+  <div
+    className="table-cell"
+  >
+    A Title
+  </div>
+  <div
+    className="table-cell"
+  >
+    A Test Artist
+  </div>
+  <div
+    className="table-cell"
+  >
+    BP1
+  </div>
+  <div
+    className="table-cell"
+  >
+    B Title
+  </div>
+  <div
+    className="table-cell"
+  >
+    B Test Artist
+  </div>
+  <div
+    className="table-cell"
+  >
+    BP2
+  </div>
+  <div
+    className="table-cell"
+  >
+    C Title
+  </div>
+  <div
+    className="table-cell"
+  >
+    C Test Artist
+  </div>
+  <div
+    className="table-cell"
+  >
+    BP3
+  </div>
+</div>
+`;
