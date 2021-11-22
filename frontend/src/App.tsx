@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
 import './App.scss';
-import useDebounce from "./UseDebounce";
+import useDebounce from "./hooks/UseDebounce";
 import {SongService} from "./services/SongService";
 import {ReactComponent as SearchIcon} from './assets/search-icon.svg'
 import {HamburgerMenu} from "./components/HamburgerMenu";
