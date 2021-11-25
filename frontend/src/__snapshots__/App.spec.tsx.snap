@@ -50,7 +50,9 @@ exports[`App loads songs and displays them in the table 1`] = `
         <div
           class="menu-item"
         >
-          Login
+          <div>
+            Login
+          </div>
         </div>
       </div>
     </div>

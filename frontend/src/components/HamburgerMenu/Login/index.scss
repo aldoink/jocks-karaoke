@@ -7,7 +7,7 @@
     color: $rangers-dark-blue;
   }
 
-  form {
+  .form-container {
     display: flex;
     flex-direction: column;
     padding: 1rem 2rem;
@@ -39,8 +39,13 @@
       border: 1px solid $rangers-dark-blue;
       border-radius: 4px;
       background-color: transparent;
-      font-size: 14px;
+      font-size: 24px;
       align-self: center;
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
     }
   }
 }

@@ -14,9 +14,9 @@ class UserDetailsServiceImpl : UserDetailsService {
     @Autowired
     lateinit var userRepository: UserRepository
 
-    override fun loadUserByUsername(username: String): UserDetails {
-        val user = userRepository.findByUsername(username)
-            .orElseThrow { UsernameNotFoundException("User not found with username: $username") }
+    override fun loadUserByUsername(email: String): UserDetails {
+        val user = userRepository.findByEmail(email)
+            .orElseThrow { UsernameNotFoundException("User not found with e-mail: $email") }
         return UserDetailsImpl.build(user)
     }
 }
