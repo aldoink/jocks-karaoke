@@ -1,0 +1,15 @@
+https://www.jocks-karaoke.com, jocks-karaoke.com {
+	reverse_proxy localhost:4000
+}
+
+portainer.jocks-karaoke.com {
+	reverse_proxy localhost:9000
+}
+
+dev.jocks-karaoke.com {
+	reverse_proxy localhost:3000
+}
+
+https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
+	reverse_proxy localhost:9090
+}
