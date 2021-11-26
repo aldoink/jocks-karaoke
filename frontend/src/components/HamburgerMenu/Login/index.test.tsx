@@ -1,15 +1,13 @@
 import {Login} from "./index";
-import {act, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {AuthService} from "../../../services/AuthService";
-import {AuthContext} from "../../../contexts/AuthContext";
-import {flushPromises} from "../../../testUtils";
+import {LoginStatus, useLogin} from "./hooks/useLogin";
 
+jest.mock("./hooks/useLogin");
 
 describe('Login', () => {
-    let mockedAuthService = {} as AuthService;
     beforeEach(() => {
-        mockedAuthService.login = jest.fn();
+        (useLogin as any).mockReturnValue({status: LoginStatus.READY, login: jest.fn()});
         jest.useFakeTimers();
     });
 
@@ -31,29 +29,24 @@ describe('Login', () => {
         expect(screen.getByTestId("login-modal")).toBeInTheDocument();
     });
 
-    it('calls the auth service when the submit button is clicked', async () => {
+    it('shows a success icon when login is successful', async () => {
         //given
-        mockedAuthService.login = jest.fn().mockResolvedValue(undefined);
-        const email = "some@email.com";
-        const password = "password";
-        render(
-            <AuthContext.Provider value={{authService: mockedAuthService}}>
-                <Login/>
-            </AuthContext.Provider>
-        );
-        userEvent.click(screen.getByText("Login"));
+        (useLogin as any).mockReturnValue({status: LoginStatus.SUCCESS})
+        render(<Login/>);
 
         //when
-        userEvent.type(screen.getByTestId("email-input"), email);
-        userEvent.type(screen.getByTestId('password-input'), password);
-        userEvent.click(screen.getByText('Submit'));
+        userEvent.click(screen.getByText("Login"));
 
         //then
-        await act(async () => {
-            await flushPromises()
-        });
-        expect(mockedAuthService.login).toHaveBeenCalledWith(email, password);
-        expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
         expect(screen.getByTestId("success-checkmark")).toBeInTheDocument();
+    });
+
+    it('shows an error message when login is unsuccessful', async () => {
+        (useLogin as any).mockReturnValue({status: LoginStatus.FAILURE})
+        render(<Login/>);
+        userEvent.click(screen.getByText("Login"));
+
+        //then
+        expect(screen.getByText("Username or password is incorrect")).toBeInTheDocument();
     });
 });

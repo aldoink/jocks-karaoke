@@ -14,10 +14,13 @@ logging:
       springframework:
         web:
           filter:
-            CommonsRequestLoggingFilter: DEBUG
+            CommonsRequestLoggingFilter: INFO
 
 server:
   port: 9090
+  error:
+    include-stacktrace: never
+    include-message: never
 
 
 jwt:
