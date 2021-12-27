@@ -57,7 +57,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers(HttpMethod.GET, "/songs").permitAll().and()
+            .authorizeRequests().antMatchers(HttpMethod.GET, "/songs", "/highscores/**").permitAll().and()
             .authorizeRequests().antMatchers(HttpMethod.POST, "/auth/**").permitAll()
             .antMatchers("/test/**").permitAll()
             .anyRequest().authenticated()
