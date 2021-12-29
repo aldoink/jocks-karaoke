@@ -7,4 +7,8 @@ export class AuthService {
         const response = await axios.post(`${BACKEND_URL}/auth/login`, {email, password});
         localStorage.setItem("token", response?.data?.token);
     }
+
+    getToken() {
+        return localStorage.getItem("token")
+    }
 }

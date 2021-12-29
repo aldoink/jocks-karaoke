@@ -89,9 +89,7 @@ describe('useLogin', () => {
             rerender({email: "other@user.com", password: 'weakpassword'});
 
             //then (2)
-            await act(async () => {
-                await flushPromises();
-            })
+            await flushPromises();
             expect(result.current.status).toBe(LoginStatus.READY);
         });
 
@@ -109,9 +107,7 @@ describe('useLogin', () => {
             rerender({email: "test@user.com", password: 'Str0ngP4sSword!'});
 
             //then (2)
-            await act(async () => {
-                await flushPromises();
-            })
+            await flushPromises();
             expect(result.current.status).toBe(LoginStatus.READY);
         })
     });

@@ -1,4 +1,4 @@
-import {act, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import {AuthContext} from "../../../contexts/AuthContext";
 import {AuthService} from "../../../services/AuthService";
 import {Login} from "./index";
@@ -29,9 +29,7 @@ describe('Login', () => {
         userEvent.click(screen.getByText('Submit'))
 
         //then
-        await act(async () => {
-            await flushPromises()
-        })
+        await flushPromises();
         expect(screen.getByTestId('success-checkmark')).toBeInTheDocument();
         expect(mockedAuthService.login).toHaveBeenCalledWith(email, password);
     });

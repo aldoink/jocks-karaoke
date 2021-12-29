@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighScoreList loads the high scores for the selected song 1`] = `
+<DocumentFragment>
+  <div
+    id="high-score-list"
+  >
+    <div
+      class="title-container"
+    >
+      <h2>
+        Title
+      </h2>
+      <h3>
+        Artist
+      </h3>
+      <h4>
+        BP-0001
+      </h4>
+    </div>
+    <h2>
+      Doesn't look like anyone's set a high score yet!
+    </h2>
+  </div>
+</DocumentFragment>
+`;

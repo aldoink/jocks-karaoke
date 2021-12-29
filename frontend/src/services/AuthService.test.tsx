@@ -6,7 +6,7 @@ jest.mock("axios")
 
 describe('AuthService', () => {
 
-    it('calls login using the provided email and password', async () => {
+    it('login - calls login using the provided email and password', async () => {
         //given
         const email = "test@importr.com";
         const password = "insecurepassword";
@@ -30,7 +30,7 @@ describe('AuthService', () => {
         const service = new AuthService();
 
         //when
-        service.login(email, password);
+        await service.login(email, password);
 
         //then
         expect(axios.post).toHaveBeenCalledWith(expectedUrl, {email, password});

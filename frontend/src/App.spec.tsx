@@ -1,7 +1,7 @@
 import {render, screen, waitFor} from "@testing-library/react";
 import App from "./App";
 import {SongService} from "./services/SongService";
-import {Song} from "./Song";
+import {Song} from "./models/Song";
 
 describe('App', () => {
 

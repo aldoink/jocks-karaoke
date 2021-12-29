@@ -21,46 +21,55 @@ exports[`renders table entries 1`] = `
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     A Title
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     A Test Artist
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     BP1
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     B Title
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     B Test Artist
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     BP2
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     C Title
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     C Test Artist
   </div>
   <div
     className="table-cell"
+    onClick={[Function]}
   >
     BP3
   </div>
