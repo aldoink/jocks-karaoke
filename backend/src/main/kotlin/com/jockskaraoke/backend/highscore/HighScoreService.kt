@@ -1,6 +1,5 @@
 package com.jockskaraoke.backend.highscore
 
-import com.jockskaraoke.backend.song.Song
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 
@@ -11,5 +10,13 @@ class HighScoreService(
 ) {
     fun findHighscores(songId: Int): List<HighScore> {
         return highScoreRepository.findAllBySongId(songId)
+    }
+
+    fun saveHighScore(name: String, score: Int, songId: Int) {
+        highScoreRepository.save(HighScore(0, name, score, songId))
+    }
+
+    fun deleteHighScore(highScoreId: Int) {
+        highScoreRepository.deleteById(highScoreId)
     }
 }

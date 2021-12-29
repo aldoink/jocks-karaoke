@@ -1,15 +1,12 @@
 package com.jockskaraoke.backend.song
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "SONGS")
 data class Song(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int,
     val location: String,
     val artist: String,

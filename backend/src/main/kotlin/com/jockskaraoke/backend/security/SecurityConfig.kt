@@ -58,6 +58,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers(HttpMethod.GET, "/songs", "/highscores/**").permitAll().and()
+            .authorizeRequests().antMatchers(HttpMethod.DELETE, "/highscores/**").hasRole("USER").and()
+            .authorizeRequests().antMatchers(HttpMethod.PUT, "/highscores/**").hasRole("USER").and()
             .authorizeRequests().antMatchers(HttpMethod.POST, "/auth/**").permitAll()
             .antMatchers("/test/**").permitAll()
             .anyRequest().authenticated()
