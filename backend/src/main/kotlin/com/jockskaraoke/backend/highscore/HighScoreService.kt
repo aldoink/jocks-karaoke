@@ -8,8 +8,8 @@ import javax.transaction.Transactional
 class HighScoreService(
     private val highScoreRepository: HighScoreRepository
 ) {
-    fun findHighscores(songId: Int): List<HighScore> {
-        return highScoreRepository.findAllBySongId(songId)
+    fun findHighscores(songId: Int): List<HighScoreDTO> {
+        return highScoreRepository.findAllBySongId(songId).map { HighScoreDTO(it) }
     }
 
     fun saveHighScore(name: String, score: Int, songId: Int) {

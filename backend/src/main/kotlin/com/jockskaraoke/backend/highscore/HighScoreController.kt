@@ -4,12 +4,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/highscores")
-@CrossOrigin
+@CrossOrigin(origins = ["*"])
 class HighScoreController(private val highScoreService: HighScoreService) {
 
     @GetMapping("/{songId}")
     @ResponseBody
-    fun findHighscores(@PathVariable songId: Int): List<HighScore> {
+    fun findHighscores(@PathVariable songId: Int): List<HighScoreDTO> {
         return highScoreService.findHighscores(songId)
     }
 
