@@ -11,9 +11,8 @@ tasks:
 
   start-backend:
     desc: Start the backend locally with gradle
-    dir: backend
     cmds:
-      - ./gradlew :backend:run
+      - ./gradlew :backend:bootRun
 
   start-frontend:
     desc: Start the frontend locally with yarn
@@ -52,3 +51,16 @@ tasks:
     dir: frontend
     cmds:
       - yarn test
+
+  start-DB:
+    desc: Starts the MYSQL database
+    dir: backend
+    cmds:
+      - docker-compose run -d --name mysql --service-ports db
+
+  stop-DB:
+    desc: Stops the MYSQL database
+    dir: backend
+    cmds:
+      - docker stop mysql
+      - docker rm mysql
