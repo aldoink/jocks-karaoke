@@ -11,9 +11,17 @@ export class HighScoreService {
     constructor(private authService: AuthService) {
     }
 
-    public async getHighScores(songId: number): Promise<HighScore[]> {
+    public async findAll(songId: number): Promise<HighScore[]> {
         const response = await axios.get(`${BACKEND_URL}/highscores/${songId}`, this.getAxiosConfig());
         return response?.data;
+    }
+
+    public async save(entry: HighScore) {
+        return await axios.put(
+            `${BACKEND_URL}/highscores`,
+            entry,
+            this.getAxiosConfig()
+        )
     }
 
     private getAxiosConfig(): AxiosRequestConfig {

@@ -36,7 +36,7 @@ export const Table: React.FC<TableProps> = ({songList}) => {
                 ))}
             </div>
             <Modal isOpen={showModal} closeFn={() => setShowModal(false)}>
-                <HighScoreList song={selectedSong}/>
+                {selectedSong && <HighScoreList song={selectedSong}/>}
             </Modal>
         </>
     )

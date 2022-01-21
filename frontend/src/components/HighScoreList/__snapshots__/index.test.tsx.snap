@@ -18,9 +18,14 @@ exports[`HighScoreList loads the high scores for the selected song 1`] = `
         BP-0001
       </h4>
     </div>
-    <h2>
-      Doesn't look like anyone's set a high score yet!
-    </h2>
+    <div>
+      <h2>
+        Doesn't look like anyone's set a high score yet!
+      </h2>
+      <button>
+        Add high score
+      </button>
+    </div>
   </div>
 </DocumentFragment>
 `;

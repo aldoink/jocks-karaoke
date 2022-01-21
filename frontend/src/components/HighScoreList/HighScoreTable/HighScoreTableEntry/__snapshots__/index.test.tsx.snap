@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighScoreTableEntry renders correctly when editMode = false 1`] = `
+<DocumentFragment>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          class="table-cell"
+        >
+          Test
+        </td>
+        <td
+          class="table-cell"
+        >
+          99
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`HighScoreTableEntry renders correctly when editMode = true 1`] = `
+<DocumentFragment>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          class="table-cell"
+        >
+          <input
+            data-testid="name-input"
+            type="text"
+            value="Test"
+          />
+        </td>
+        <td
+          class="table-cell"
+        >
+          <input
+            data-testid="score-input"
+            type="number"
+            value="99"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button>
+            Save
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;

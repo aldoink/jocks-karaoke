@@ -6,6 +6,7 @@ import {HighScore, HighScoreService} from "../../services/HighScoreService";
 import {waitFor} from "@testing-library/dom";
 import React from "react";
 import {flushPromises} from "../../testUtils";
+import userEvent from "@testing-library/user-event";
 
 describe('HighScoreList', () => {
     const defaultSong = new Song(1, "BP-0001", "Title", "Artist");
@@ -25,7 +26,7 @@ describe('HighScoreList', () => {
 
     it('loads the high scores for the selected song', async () => {
         //given
-        mockedHighScoreService.getHighScores = jest.fn().mockResolvedValue([
+        mockedHighScoreService.findAll = jest.fn().mockResolvedValue([
             {name: 'Ally', score: 99, songId: 1} as HighScore,
             {name: 'Jenny', score: 98, songId: 1} as HighScore,
             {name: 'Johnny', score: 97, songId: 1} as HighScore,
@@ -34,14 +35,14 @@ describe('HighScoreList', () => {
         const component = renderHighScoreList();
 
         //then
-        await waitFor(() => expect(mockedHighScoreService.getHighScores).toHaveBeenCalledTimes(1))
-        expect(mockedHighScoreService.getHighScores).toHaveBeenCalledWith(defaultSong.id);
+        await waitFor(() => expect(mockedHighScoreService.findAll).toHaveBeenCalledTimes(1))
+        expect(mockedHighScoreService.findAll).toHaveBeenCalledWith(defaultSong.id);
         expect(component.asFragment()).toMatchSnapshot();
     });
 
     it("shows an error message when high scores couldn't be loaded", async () => {
         //given
-        mockedHighScoreService.getHighScores = jest.fn().mockRejectedValue(new Error("Oops!"));
+        mockedHighScoreService.findAll = jest.fn().mockRejectedValue(new Error("Oops!"));
         renderHighScoreList();
 
         //then
@@ -51,7 +52,7 @@ describe('HighScoreList', () => {
 
     it('shows a message when no high scores are found', () => {
         //given
-        mockedHighScoreService.getHighScores = jest.fn().mockResolvedValue([]);
+        mockedHighScoreService.findAll = jest.fn().mockResolvedValue([]);
         renderHighScoreList();
 
         //then

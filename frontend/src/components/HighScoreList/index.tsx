@@ -3,21 +3,23 @@ import {Song} from "../../models/Song";
 import {ServiceContext} from "../../contexts/ServiceContext";
 import {HighScore} from "../../services/HighScoreService";
 import "./index.scss";
+import {HighScoreTable} from "./HighScoreTable";
 
 export interface HighScoreProps {
-    readonly song?: Song;
+    readonly song: Song;
 }
 
 export const HighScoreList: React.FC<HighScoreProps> = ({song}) => {
-    const [highScores, setHighScores] = useState<HighScore[] | undefined>(undefined);
+    const [highScores, setHighScores] = useState<HighScore[]>([]);
     const [hasError, setHasError] = useState<boolean>(false);
     const {highScoreService} = useContext(ServiceContext);
 
     useEffect(() => {
         const getHighScores = async () => {
             try {
-                const highScores: HighScore[] = await highScoreService.getHighScores(song!.id);
+                const highScores: HighScore[] = await highScoreService.findAll(song.id);
                 setHighScores(highScores);
+                setHighScores([{name: 'Test', score: 99} as HighScore, {name: 'Test2', score: 98} as HighScore])
             } catch (e) {
                 setHasError(true);
             }
@@ -25,27 +27,16 @@ export const HighScoreList: React.FC<HighScoreProps> = ({song}) => {
         getHighScores();
     }, [highScoreService, song])
 
-    const HighScoreTable = () => <>{highScores!.map((entry: HighScore, index: number) => (
-        <React.Fragment key={`highScore-${index}`}>
-            <div className="table-cell">{entry.name}</div>
-            <div className="table-cell">{entry.score}</div>
-        </React.Fragment>
-    ))
-    }</>
-
-    return (
-        <>
-            {hasError && <p className="failure">Something went wrong... try again later.</p>}
-            {!hasError && <div id="high-score-list">
+    return <>{
+        hasError
+            ? <p className="failure">Something went wrong... try again later.</p>
+            : <div id="high-score-list">
                 <div className="title-container">
                     <h2>{song?.title}</h2>
                     <h3>{song?.artist}</h3>
                     <h4>{song?.location}</h4>
                 </div>
-                {highScores && highScores.length > 0
-                    ? <HighScoreTable/>
-                    : <h2>Doesn't look like anyone's set a high score yet!</h2>}
-            </div>}
-        </>
-    )
+                <HighScoreTable songId={song.id} highScores={highScores}/>
+            </div>
+    }</>
 }
