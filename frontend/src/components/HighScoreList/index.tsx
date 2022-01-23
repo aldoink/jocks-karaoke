@@ -19,7 +19,6 @@ export const HighScoreList: React.FC<HighScoreProps> = ({song}) => {
             try {
                 const highScores: HighScore[] = await highScoreService.findAll(song.id);
                 setHighScores(highScores);
-                setHighScores([{name: 'Test', score: 99} as HighScore, {name: 'Test2', score: 98} as HighScore])
             } catch (e) {
                 setHasError(true);
             }

@@ -1,11 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {HighScore} from "../../../services/HighScoreService";
 import {HighScoreTableEntry} from "./HighScoreTableEntry";
+import styled from 'styled-components';
+import "./index.scss";
 
 interface IHighScoreTableProps {
     readonly highScores: HighScore[];
     readonly songId: number;
 }
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`
 
 export const HighScoreTable: React.FC<IHighScoreTableProps> = ({highScores, songId}) => {
 
@@ -13,25 +20,25 @@ export const HighScoreTable: React.FC<IHighScoreTableProps> = ({highScores, song
 
     useEffect(() => {
         setTableEntries(highScores?.map((entry: HighScore, index: number) => (
-            <HighScoreTableEntry index={index} entry={entry}/>
+            <HighScoreTableEntry key={'highScoreTableEntry' + index} entry={entry}/>
         )))
     }, [highScores]);
 
     const HighScores = () => {
-        return <table>
+        return <Table id={'high-score-table'}>
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Score</th>
+                <th className={'name-column'}>Name</th>
+                <th className={'score-column'}>Score</th>
             </tr>
             </thead>
             <tbody>{tableEntries}</tbody>
-        </table>
+        </Table>
     }
 
     const addNewHighScore = () => {
         const newTableEntries = [...tableEntries];
-        newTableEntries.push(<HighScoreTableEntry index={highScores.length}
+        newTableEntries.push(<HighScoreTableEntry key={'highScoreTableEntry' + tableEntries.length}
                                                   entry={{name: '', score: 0, songId: songId}}
                                                   editMode={true}/>)
         setTableEntries(newTableEntries);

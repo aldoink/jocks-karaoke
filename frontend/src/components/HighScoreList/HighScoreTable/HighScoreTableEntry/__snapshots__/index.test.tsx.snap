@@ -6,12 +6,12 @@ exports[`HighScoreTableEntry renders correctly when editMode = false 1`] = `
     <tbody>
       <tr>
         <td
-          class="table-cell"
+          class="table-cell name-column"
         >
           Test
         </td>
         <td
-          class="table-cell"
+          class="table-cell score-column"
         >
           99
         </td>
@@ -27,7 +27,7 @@ exports[`HighScoreTableEntry renders correctly when editMode = true 1`] = `
     <tbody>
       <tr>
         <td
-          class="table-cell"
+          class="table-cell name-column"
         >
           <input
             data-testid="name-input"
@@ -36,7 +36,7 @@ exports[`HighScoreTableEntry renders correctly when editMode = true 1`] = `
           />
         </td>
         <td
-          class="table-cell"
+          class="table-cell score-column"
         >
           <input
             data-testid="score-input"

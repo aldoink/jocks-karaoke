@@ -14,6 +14,9 @@ export const Modal: React.FC<IModalProps> = (props) => {
 
     return <>
         {props.isOpen &&
+        <div data-testid="background"
+             className="full-screen background"/>}
+        {props.isOpen &&
         <div data-testid="foreground"
              className="full-screen center">
             <div className="content-container" ref={contentRef}>
@@ -22,8 +25,5 @@ export const Modal: React.FC<IModalProps> = (props) => {
             </div>
         </div>
         }
-        {props.isOpen &&
-        <div data-testid="background"
-             className="full-screen background"/>}
     </>
 }

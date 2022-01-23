@@ -60,7 +60,6 @@ function App({songService}: AppProps) {
             </div>
         </ServiceContext.Provider>
     );
-
 }
 
 export default App;
