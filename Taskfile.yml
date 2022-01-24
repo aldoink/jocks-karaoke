@@ -29,11 +29,15 @@ tasks:
     cmds:
       - docker-compose down
 
-  build-backend:
+  build-backend-image:
     desc: Builds the backend and generates a new docker image
-    dir: backend
     cmds:
       - ./gradlew :backend:buildDockerImage
+
+  push-backend-image:
+    desc: Uploads the backend image to dockerhub
+    cmds:
+      - ./gradlew :backend:pushDockerImage
 
   build-frontend:
     desc: Builds the frontend and generates a new docker image
