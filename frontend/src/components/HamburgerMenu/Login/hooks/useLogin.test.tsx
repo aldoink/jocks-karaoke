@@ -3,7 +3,6 @@ import {AuthContext} from "../../../../contexts/AuthContext";
 import {AuthService} from "../../../../services/AuthService";
 import {act, renderHook} from "@testing-library/react-hooks";
 import React from "react";
-import {flushPromises} from "../../../../testUtils";
 
 describe('useLogin', () => {
 
@@ -62,17 +61,18 @@ describe('useLogin', () => {
             expect(result.current.status).toBe(LoginStatus.FAILURE);
         });
 
-        it('sets LOADING status while waiting on a response from auth service', async () => {
+        it('sets LOADING status while waiting on a response from auth service', (done) => {
             //given
-            const {result, waitForNextUpdate} = renderUseLogin('test@user.com', 'weakpassword');
+            const {result} = renderUseLogin('test@user.com', 'weakpassword');
 
             //when
-            act(() => result.current.login());
+            act(() => result.current.login()).then(() => {
+                expect(result.current.status).toBe(LoginStatus.SUCCESS);
+                done();
+            });
 
             //then
             expect(result.current.status).toBe(LoginStatus.LOADING);
-            await waitForNextUpdate();
-            expect(result.current.status).toBe(LoginStatus.SUCCESS);
         });
 
         it('sets status to READY when email is changed', async () => {
@@ -89,7 +89,6 @@ describe('useLogin', () => {
             rerender({email: "other@user.com", password: 'weakpassword'});
 
             //then (2)
-            await flushPromises();
             expect(result.current.status).toBe(LoginStatus.READY);
         });
 
@@ -107,7 +106,6 @@ describe('useLogin', () => {
             rerender({email: "test@user.com", password: 'Str0ngP4sSword!'});
 
             //then (2)
-            await flushPromises();
             expect(result.current.status).toBe(LoginStatus.READY);
         })
     });

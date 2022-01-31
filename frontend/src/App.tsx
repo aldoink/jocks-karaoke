@@ -2,21 +2,14 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
 import './App.scss';
 import useDebounce from "./hooks/UseDebounce";
-import {SongService} from "./services/SongService";
 import {ReactComponent as SearchIcon} from './assets/search-icon.svg'
 import {HamburgerMenu} from "./components/HamburgerMenu";
 import {Table} from "./components/Table";
 import {Song} from "./models/Song";
-import {AuthContext} from "./contexts/AuthContext";
-import {HighScoreService} from "./services/HighScoreService";
 import {ServiceContext} from "./contexts/ServiceContext";
 
-interface AppProps {
-    songService: SongService
-}
-
-function App({songService}: AppProps) {
-    const {authService} = useContext(AuthContext)
+function App() {
+    const {songService} = useContext(ServiceContext);
     const [songList, setSongList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const debouncedSearchTerm: string = useDebounce(searchTerm, 300);
@@ -37,28 +30,26 @@ function App({songService}: AppProps) {
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(event?.currentTarget?.value.toLowerCase())
 
     return (
-        <ServiceContext.Provider value={{highScoreService: new HighScoreService(authService)}}>
-            <div className="app-container">
-                <div id="nav">
-                    <div className="search-field-container">
-                        <div className="search-field">
-                            <input type="text"
-                                   placeholder="Search"
-                                   onChange={handleSearch}
-                                   ref={searchInputRef}/>
-                            <SearchIcon/>
-                        </div>
+        <div className="app-container">
+            <div id="nav">
+                <div className="search-field-container">
+                    <div className="search-field">
+                        <input type="text"
+                               placeholder="Search"
+                               onChange={handleSearch}
+                               ref={searchInputRef}/>
+                        <SearchIcon/>
                     </div>
-                    <HamburgerMenu/>
                 </div>
-                <div className="content-container">
-                    <header className="logo-container">
-                        <img src={logo} className="logo" alt="logo"/>
-                    </header>
-                    <Table songList={songList}/>
-                </div>
+                <HamburgerMenu/>
             </div>
-        </ServiceContext.Provider>
+            <div className="content-container">
+                <header className="logo-container">
+                    <img src={logo} className="logo" alt="logo"/>
+                </header>
+                <Table songList={songList}/>
+            </div>
+        </div>
     );
 }
 

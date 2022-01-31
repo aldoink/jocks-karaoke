@@ -1,20 +1,19 @@
 import {HighScoreTableEntry} from "./index";
 import {HighScore, HighScoreService} from "../../../../services/HighScoreService";
-import {fireEvent, render} from "@testing-library/react";
-import {screen, waitFor} from "@testing-library/dom";
-import {ServiceContext} from "../../../../contexts/ServiceContext";
+import {render} from "@testing-library/react";
+import {screen} from "@testing-library/dom";
+import {IServiceContext, ServiceContext} from "../../../../contexts/ServiceContext";
 import userEvent from "@testing-library/user-event";
-import {flushPromises} from "../../../../testUtils";
 
 describe('HighScoreTableEntry', () => {
     const defaultHighScore: HighScore = {name: 'Test', score: 99, songId: 123};
     const mockedHighScoreService = {} as HighScoreService;
 
     const renderHighScoreTableEntry = (entry: HighScore = defaultHighScore, editMode: boolean = false) => render(
-        <ServiceContext.Provider value={{highScoreService: mockedHighScoreService}}>
+        <ServiceContext.Provider value={{highScoreService: mockedHighScoreService} as IServiceContext}>
             <table>
                 <tbody>
-                <HighScoreTableEntry index={0} entry={entry} editMode={editMode}/>
+                <HighScoreTableEntry entry={entry} editMode={editMode}/>
                 </tbody>
             </table>
         </ServiceContext.Provider>

@@ -2,14 +2,11 @@ import {render, screen, waitFor} from "@testing-library/react";
 import App from "./App";
 import {SongService} from "./services/SongService";
 import {Song} from "./models/Song";
+import {IServiceContext, ServiceContext} from "./contexts/ServiceContext";
 
 describe('App', () => {
 
-    const mockedSongService = {} as any as SongService
-
-    beforeEach(() => {
-        mockedSongService.search = jest.fn();
-    });
+    const mockedSongService = {} as SongService;
 
     it('loads songs and displays them in the table', async () => {
         //given
@@ -21,10 +18,15 @@ describe('App', () => {
         mockedSongService.search = jest.fn().mockResolvedValue(songs)
 
         //when
-        const {asFragment} = render(<App songService={mockedSongService}/>)
+        const {asFragment} = render(
+            <ServiceContext.Provider
+                value={{songService: mockedSongService} as IServiceContext}>
+                <App/>
+            </ServiceContext.Provider>
+        );
 
         //then
-        await waitFor(() => expect(screen.getByText(songs[0].title)).toBeInTheDocument())
+        expect(await screen.findByText(songs[0].title)).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
         expect(mockedSongService.search).toHaveBeenCalledTimes(1);
         expect(mockedSongService.search).toHaveBeenCalledWith("");
