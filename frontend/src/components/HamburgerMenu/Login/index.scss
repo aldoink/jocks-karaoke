@@ -1,55 +1,26 @@
 @import "src/scss/variables";
 
-.login-form {
-  position: relative;
+h2 {
+  color: $rangers-dark-blue;
+}
 
-  h2 {
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
     color: $rangers-dark-blue;
+    border: 1px solid $rangers-dark-blue;
+    border-radius: 4px;
+    background-color: transparent;
+    font-size: 20px;
+    align-self: center;
   }
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 2rem;
-
-    input {
-      padding: 0.5rem;
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid $rangers-dark-blue;
-      color: $rangers-dark-blue;
-      font-size: 16px;
-      caret-color: $rangers-dark-blue;
-      margin-bottom: 2rem;
-
-      &:focus {
-        outline: none;
-      }
-
-      &::placeholder {
-        color: $rangers-dark-blue;
-        opacity: 1;
-      }
-    }
-
-    button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      color: $rangers-dark-blue;
-      border: 1px solid $rangers-dark-blue;
-      border-radius: 4px;
-      background-color: transparent;
-      font-size: 20px;
-      align-self: center;
-    }
-
-    input.failure {
-      border-color: red;
-    }
-
-    p.failure {
-      color: red;
-    }
+  p.failure {
+    color: red;
   }
 }
 
