@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-gKclnd AvBtB"
+  >
+    <div
+      class="sc-eCImPb fomVRN"
+    >
+      <input
+        class="sc-bdvvtL sc-jRQBWg ZGYqN dZbDpU"
+        placeholder="Search"
+        type="text"
+      />
+      <svg>
+        search-icon.svg
+      </svg>
+    </div>
+    <div
+      class=""
+      data-testid="hamburger-container"
+      id="hamburger-container"
+    >
+      <button
+        class="hamburger hamburger--squeeze "
+        data-testid="hamburger-button"
+        type="button"
+      >
+        <span
+          class="hamburger-box"
+        >
+          <span
+            class="hamburger-inner"
+          />
+        </span>
+      </button>
+    </div>
+    <div
+      class="menu-drawer"
+      data-testid="menu-drawer"
+      style="max-height: 0px; visibility: hidden;"
+    >
+      <div
+        class="menu-item"
+      >
+        <div>
+          Login
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,56 +1,67 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
-import './App.scss';
-import useDebounce from "./hooks/UseDebounce";
-import {ReactComponent as SearchIcon} from './assets/search-icon.svg'
-import {HamburgerMenu} from "./components/HamburgerMenu";
 import {Table} from "./components/Table";
-import {Song} from "./models/Song";
 import {ServiceContext} from "./contexts/ServiceContext";
+import styled, {ThemeProvider} from "styled-components";
+import {NavBar} from "./components/AppBar";
+import {AuthService} from "./services/AuthService";
+import {HighScoreService} from "./services/HighScoreService";
+import {SongService} from "./services/SongService";
+import {SongContext} from './contexts/SongContext';
+
+const theme = {
+    blue: '#1e359c',
+    darkBlue: '#041e42',
+    whiteBorder: '1px solid white'
+}
+
+const authService = new AuthService();
+const highScoreService = new HighScoreService(authService);
+const songService = new SongService();
 
 function App() {
-    const {songService} = useContext(ServiceContext);
-    const [songList, setSongList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const debouncedSearchTerm: string = useDebounce(searchTerm, 300);
-    const searchInputRef: React.RefObject<HTMLInputElement> = useRef(null)
-
-    useEffect(() => {
-        const search = async () => {
-            const songList = await songService.search(debouncedSearchTerm);
-            setSongList(songList?.filter((entry: Song) => {
-                return entry.title.toLowerCase().includes(debouncedSearchTerm)
-                    || entry.artist.toLowerCase().includes(debouncedSearchTerm)
-                    || entry.location.toLowerCase().includes(debouncedSearchTerm)
-            }))
-        }
-        search();
-    }, [debouncedSearchTerm, songService]);
-
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(event?.currentTarget?.value.toLowerCase())
+    const [songs, setSongs] = useState([]);
 
     return (
-        <div className="app-container">
-            <div id="nav">
-                <div className="search-field-container">
-                    <div className="search-field">
-                        <input type="text"
-                               placeholder="Search"
-                               onChange={handleSearch}
-                               ref={searchInputRef}/>
-                        <SearchIcon/>
-                    </div>
-                </div>
-                <HamburgerMenu/>
-            </div>
-            <div className="content-container">
-                <header className="logo-container">
-                    <img src={logo} className="logo" alt="logo"/>
-                </header>
-                <Table songList={songList}/>
-            </div>
-        </div>
+        <ThemeProvider theme={theme}>
+            <ServiceContext.Provider value={{highScoreService}}>
+                <SongContext.Provider value={{songService, songs, setSongs}}>
+                    <AppContainer>
+                        <NavBar/>
+                        <Body>
+                            <Logo><img src={logo} className="logo" alt="logo"/></Logo>
+                            <Table songList={songs}/>
+                        </Body>
+                    </AppContainer>
+                </SongContext.Provider>
+            </ServiceContext.Provider>
+        </ThemeProvider>
     );
 }
 
+const AppContainer = styled.div`
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+`
+
+const Body = styled.div`
+  padding: 0 0.5rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 2rem;
+  }
+`
+
+const Logo = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+
+  img {
+    height: 30vmin;
+    pointer-events: none;
+    justify-self: end;
+  }
+`
 export default App;

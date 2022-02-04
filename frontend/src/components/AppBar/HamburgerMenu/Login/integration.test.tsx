@@ -1,8 +1,8 @@
 import {render, screen} from "@testing-library/react";
-import {AuthContext} from "../../../contexts/AuthContext";
-import {AuthService} from "../../../services/AuthService";
 import {Login} from "./index";
 import userEvent from "@testing-library/user-event";
+import {AuthService} from "../../../../services/AuthService";
+import {AuthContext} from "../../../../contexts/AuthContext";
 
 describe('Login', () => {
     let mockedAuthService = {} as AuthService;

@@ -1,8 +1,8 @@
 import {LoginStatus, useLogin} from "./useLogin";
-import {AuthContext} from "../../../../contexts/AuthContext";
-import {AuthService} from "../../../../services/AuthService";
 import {act, renderHook} from "@testing-library/react-hooks";
 import React from "react";
+import {AuthService} from "../../../../../services/AuthService";
+import { AuthContext } from "../../../../../contexts/AuthContext";
 
 describe('useLogin', () => {
 

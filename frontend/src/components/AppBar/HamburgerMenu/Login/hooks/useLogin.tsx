@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../../../contexts/AuthContext";
+import {AuthContext} from "../../../../../contexts/AuthContext";
 
 export enum LoginStatus {
     LOADING,

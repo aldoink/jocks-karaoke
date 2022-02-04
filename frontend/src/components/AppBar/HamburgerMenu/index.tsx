@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import "./index.scss"
 import {Login} from "./Login";
-import {useClickOutsideListener} from "../../hooks/useClickOutsideListener";
+import {useClickOutsideListener} from "../../../hooks/useClickOutsideListener";
 
 export const HamburgerMenu: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);

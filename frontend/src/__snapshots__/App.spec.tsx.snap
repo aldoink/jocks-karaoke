@@ -1,27 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App loads songs and displays them in the table 1`] = `
+exports[`App renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="app-container"
+    class="sc-furwcr bxpHrP"
   >
     <div
-      id="nav"
+      class="sc-iCfMLu iRSMZc"
     >
       <div
-        class="search-field-container"
+        class="sc-jRQBWg lfEoei"
       >
-        <div
-          class="search-field"
-        >
-          <input
-            placeholder="Search"
-            type="text"
-          />
-          <svg>
-            search-icon.svg
-          </svg>
-        </div>
+        <input
+          class="sc-eCImPb sc-gKclnd hyQEQH bwZpUW"
+          placeholder="Search"
+          type="text"
+        />
+        <svg>
+          search-icon.svg
+        </svg>
       </div>
       <div
         class=""
@@ -85,51 +82,6 @@ exports[`App loads songs and displays them in the table 1`] = `
           class="table-cell bold"
         >
           Location
-        </div>
-        <div
-          class="table-cell"
-        >
-          Immigrant Song
-        </div>
-        <div
-          class="table-cell"
-        >
-          Led Zeppelin
-        </div>
-        <div
-          class="table-cell"
-        >
-          GP001
-        </div>
-        <div
-          class="table-cell"
-        >
-          Don't stop me now
-        </div>
-        <div
-          class="table-cell"
-        >
-          Queen
-        </div>
-        <div
-          class="table-cell"
-        >
-          GP002
-        </div>
-        <div
-          class="table-cell"
-        >
-          Damn it feels good to be a gangster
-        </div>
-        <div
-          class="table-cell"
-        >
-          Geto Boys
-        </div>
-        <div
-          class="table-cell"
-        >
-          GP003
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ describe('Login', () => {
         userEvent.click(screen.getByText("Login"));
 
         //then (2)
-        expect(screen.getByTestId("login-modal")).toBeInTheDocument();
+        expect(screen.getByTestId('email-input')).toBeInTheDocument();
     });
 
     it('shows a success icon when login is successful', async () => {

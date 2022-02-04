@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import "./index.scss";
-import {Modal} from "../../Modal";
-import {SuccessCheckmark} from "../../SuccessCheckmark";
-import {LoadingSpinner} from "../../LoadingSpinner";
 import {LoginStatus, useLogin} from "./hooks/useLogin";
-import {Input} from "../../shared/Input";
+import {SuccessCheckmark} from "../../../SuccessCheckmark";
+import {LoadingSpinner} from "../../../LoadingSpinner";
+import {Input} from "../../../shared/Input";
+import {Modal} from "../../../Modal";
 
 export const Login: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
