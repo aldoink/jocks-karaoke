@@ -5,11 +5,10 @@ import {Input} from "../../shared/Input";
 import {useSongSearch} from "../../../hooks/useSongSearch";
 
 export const SearchBar: React.FC = () => {
-    const {search, searchWithoutDebounce} = useSongSearch();
+    const search: Function = useSongSearch();
 
     useEffect(() => {
-        searchWithoutDebounce("")
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        search('')
     }, []);
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {

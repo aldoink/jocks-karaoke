@@ -3,7 +3,6 @@ import {SongContext} from "../contexts/SongContext";
 import {SongService} from "../services/SongService";
 import {act, renderHook} from "@testing-library/react-hooks";
 import {Song} from "../models/Song";
-import {waitFor} from "@testing-library/react";
 
 describe('useSongSearch', () => {
     const mockedSongService = {} as SongService;
@@ -25,8 +24,8 @@ describe('useSongSearch', () => {
 
     describe('search', () => {
         beforeEach(() => {
-            jest.useFakeTimers();
             mockedSongService.search = jest.fn().mockResolvedValue(songs);
+            jest.useFakeTimers();
         });
 
         afterEach(() => {
@@ -39,18 +38,18 @@ describe('useSongSearch', () => {
             const {result} = renderUseSongSearch();
 
             //when
-            await act(async () => {await result.current.search('test')});
+            act(() => result.current('test'));
 
             //then
             expect(mockedSongService.search).not.toHaveBeenCalled();
 
             //when (2)
-            await act(async () => {jest.advanceTimersByTime(301)});
+            await act(async () => {jest.advanceTimersByTime(501)});
 
             //then (2)
-            await waitFor(() => expect(setSongs).toHaveBeenCalledWith(songs));
             expect(mockedSongService.search).toHaveBeenCalledTimes(1);
             expect(mockedSongService.search).toHaveBeenCalledWith('test');
+            expect(setSongs).toHaveBeenCalledWith(songs);
         });
 
         it('debounces successive searches', async () => {
@@ -59,32 +58,32 @@ describe('useSongSearch', () => {
 
             //when
             act(() => {
-                result.current.search('t');
-                result.current.search('te');
-                result.current.search('tes');
-                result.current.search('test');
+                result.current('t');
+                result.current('te');
+                result.current('tes');
+                result.current('test');
             });
 
             //then
             expect(mockedSongService.search).not.toHaveBeenCalled();
 
             //when (2)
-            act(() => {jest.advanceTimersByTime(300)});
+            await act(async () => {jest.advanceTimersByTime(500)});
 
             //then (2)
             expect(mockedSongService.search).toHaveBeenCalledTimes(1);
             expect(mockedSongService.search).toHaveBeenCalledWith('test');
-            await waitFor(() => expect(setSongs).toHaveBeenCalledWith(songs));
+            expect(setSongs).toHaveBeenCalledWith(songs);
         });
 
-        it('keeps the old song list when songService throws an error', () => {
+        it('keeps the old song list when songService throws an error', async () => {
             //given
             mockedSongService.search = jest.fn().mockRejectedValue(new Error('failed'));
             const {result} = renderUseSongSearch();
 
             //when
-            act(() => result.current.search('test'));
-            act(() => {jest.advanceTimersByTime(300)});
+            act(() => {result.current('test')});
+            await act(async () => {jest.advanceTimersByTime(500)});
 
             //then
             expect(setSongs).not.toHaveBeenCalled();
@@ -95,35 +94,18 @@ describe('useSongSearch', () => {
             const {result} = renderUseSongSearch();
 
             //when
-            act(() => {
-                result.current.search('');
-            });
+            act(() => {result.current('')});
 
             //then
             expect(mockedSongService.search).not.toHaveBeenCalled();
 
             //when (2)
-            act(() => {jest.advanceTimersByTime(300)});
+            await act(async () => {jest.advanceTimersByTime(500)});
 
             //then (2)
             expect(mockedSongService.search).toHaveBeenCalledTimes(1);
             expect(mockedSongService.search).toHaveBeenCalledWith('');
-            await waitFor(() => expect(setSongs).toHaveBeenCalledWith(songs));
-        });
-    });
-
-    describe('searchWithoutDebounce', () => {
-        it('calls songService with no debounce', async () => {
-            //given
-            mockedSongService.search = jest.fn().mockResolvedValue(songs);
-            const {result} = renderUseSongSearch();
-
-            //when
-            await result.current.searchWithoutDebounce('test');
-
-            //then
-            await waitFor(() => expect(mockedSongService.search).toHaveBeenCalledWith('test'));
-            expect(setSongs).toHaveBeenCalledTimes(1);
+            expect(setSongs).toHaveBeenCalledWith(songs);
         });
     });
 });

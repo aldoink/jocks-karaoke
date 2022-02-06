@@ -54,17 +54,17 @@ exports[`App renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="content-container"
+      class="sc-pVTFL dnipjo"
     >
-      <header
-        class="logo-container"
+      <div
+        class="sc-jrQzAO klSOku"
       >
         <img
           alt="logo"
           class="logo"
           src="JocksKaraoke.jpeg"
         />
-      </header>
+      </div>
       <div
         class="table-container"
       >

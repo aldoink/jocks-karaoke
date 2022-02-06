@@ -17,28 +17,17 @@ describe('useDebounce', () => {
         const value = 'test';
         const delay = 500;
         const {result} = renderHook(() => useDebounce(value, delay));
+
+        //when
+        await act(async () => {jest.advanceTimersByTime(delay - 1)});
+
+        //then
         expect(result.current).toBeUndefined();
 
-        //when
-        act(() => {jest.advanceTimersByTime(delay)});
+        //when (2)
+        await act(async () => {jest.advanceTimersByTime(delay)});
 
-        //then
+        //then (2)
         expect(result.current).toBe(value);
-    });
-
-    it('clears timer when unmounted', () => {
-        //given
-        expect(jest.getTimerCount()).toBe(0);
-
-        const value = 'test';
-        const delay = 500;
-        const {unmount} = renderHook(() => useDebounce(value, delay));
-        expect(jest.getTimerCount()).toBe(2); // renderHook uses a timer.
-
-        //when
-        unmount();
-
-        //then
-        expect(jest.getTimerCount()).toBe(1);
     });
 });

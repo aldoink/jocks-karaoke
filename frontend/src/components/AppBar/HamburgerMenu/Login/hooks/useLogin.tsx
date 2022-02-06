@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../../../../contexts/AuthContext";
+import {ServiceContext} from "contexts/ServiceContext";
 
 export enum LoginStatus {
     LOADING,
@@ -10,7 +10,7 @@ export enum LoginStatus {
 
 export function useLogin(email: string, password: string) {
     const [status, setStatus] = useState(LoginStatus.READY);
-    const {authService} = useContext(AuthContext);
+    const {authService} = useContext(ServiceContext);
 
     useEffect(() => {
         setStatus(LoginStatus.READY);

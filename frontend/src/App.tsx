@@ -24,7 +24,7 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <ServiceContext.Provider value={{highScoreService}}>
+            <ServiceContext.Provider value={{highScoreService, authService}}>
                 <SongContext.Provider value={{songService, songs, setSongs}}>
                     <AppContainer>
                         <NavBar/>

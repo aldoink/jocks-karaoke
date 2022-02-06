@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 import {Login} from "./index";
 import userEvent from "@testing-library/user-event";
 import {AuthService} from "../../../../services/AuthService";
-import {AuthContext} from "../../../../contexts/AuthContext";
+import {IServiceContext, ServiceContext} from "../../../../contexts/ServiceContext";
 
 describe('Login', () => {
     let mockedAuthService = {} as AuthService;
@@ -16,9 +16,9 @@ describe('Login', () => {
         const email = 'test@user.com';
         const password = 'password';
         render(
-            <AuthContext.Provider value={{authService: mockedAuthService}}>
+            <ServiceContext.Provider value={{authService: mockedAuthService} as IServiceContext}>
                 <Login/>
-            </AuthContext.Provider>
+            </ServiceContext.Provider>
         )
 
         //when

@@ -11,7 +11,7 @@ describe('SearchBar', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        (useSongSearch as any).mockReturnValue({search: mockedSearchFn, searchWithoutDebounce: jest.fn()})
+        (useSongSearch as any).mockReturnValue(mockedSearchFn);
     });
 
     it('renders correctly', () => {
@@ -35,7 +35,7 @@ describe('SearchBar', () => {
     it('loads all songs on first load', () => {
         //given
         const mockedSearchFn = jest.fn();
-        (useSongSearch as any).mockReturnValue({searchWithoutDebounce: mockedSearchFn});
+        (useSongSearch as any).mockReturnValue(mockedSearchFn);
         render(<SearchBar/>);
 
         //then

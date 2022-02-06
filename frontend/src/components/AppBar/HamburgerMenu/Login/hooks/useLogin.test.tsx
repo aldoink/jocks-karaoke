@@ -1,8 +1,8 @@
 import {LoginStatus, useLogin} from "./useLogin";
 import {act, renderHook} from "@testing-library/react-hooks";
 import React from "react";
-import {AuthService} from "../../../../../services/AuthService";
-import { AuthContext } from "../../../../../contexts/AuthContext";
+import {AuthService} from "services/AuthService";
+import {IServiceContext, ServiceContext} from "contexts/ServiceContext";
 
 describe('useLogin', () => {
 
@@ -10,9 +10,9 @@ describe('useLogin', () => {
 
     const renderUseLogin = (email: string, password: string) => {
         const contextWrapper = (props: any) =>
-            <AuthContext.Provider value={{authService: mockedAuthService}}>
+            <ServiceContext.Provider value={{authService: mockedAuthService} as IServiceContext}>
                 {props.children}
-            </AuthContext.Provider>
+            </ServiceContext.Provider>
 
         return renderHook(({email, password}) => useLogin(email, password),
             {
