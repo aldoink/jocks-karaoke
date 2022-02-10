@@ -1,7 +1,13 @@
 import React from 'react';
-import renderer from 'react-test-renderer'
 import {Song} from "../../models/Song";
 import {SongList} from "./index";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import {HighScoreList} from "../HighScoreList";
+
+jest.mock("../HighScoreList", () => ({
+    HighScoreList: (props: any) => <div data-testid={'HighScoreList'}>{JSON.stringify(props)}</div>
+}))
 
 const entries = [
     new Song(0, "BP1", "A Title", "A Test Artist"),
@@ -10,9 +16,23 @@ const entries = [
 ]
 
 describe('SongList', () => {
+
+    const renderSongList = () => render(<SongList songList={entries}/>);
+
     it('renders table entries', () => {
-        const tree = renderer.create(<SongList songList={entries}/>).toJSON();
-        expect(tree).toMatchSnapshot();
+        expect(renderSongList().asFragment()).toMatchSnapshot();
+    });
+
+    it('clicking on a song opens the high scores', async () => {
+        //given
+        renderSongList();
+
+        //when
+        userEvent.click(screen.getByText(entries[0].title));
+
+        //then
+        expect(await screen.findByTestId('HighScoreList')).toBeInTheDocument();
+        expect(screen.getByTestId('HighScoreList')).toHaveTextContent(JSON.stringify(entries[0]));
     });
 });
 

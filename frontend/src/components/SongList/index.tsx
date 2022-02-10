@@ -23,7 +23,7 @@ export const SongList: React.FC<TableProps> = ({songList}) => {
             <div className="table-container">
                 {
                     songList.map((song) => (
-                        <SongContainer>
+                        <SongContainer key={`song${song.id}`} onClick={() => setSelectedSong(song)}>
                             <TitleArtistContainer>
                                 <h3>{song.title}</h3>
                                 <h4>{song.artist}</h4>

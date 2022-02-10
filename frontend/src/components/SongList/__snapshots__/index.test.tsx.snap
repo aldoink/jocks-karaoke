@@ -1,77 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders table entries 1`] = `
-<div
-  className="table-container"
->
+exports[`SongList renders table entries 1`] = `
+<DocumentFragment>
   <div
-    className="table-cell bold"
+    class="table-container"
   >
-    Song Title
+    <div
+      class="sc-eCImPb iQGAwK"
+    >
+      <div
+        class="sc-jRQBWg bMSYqP"
+      >
+        <h3>
+          A Title
+        </h3>
+        <h4>
+          A Test Artist
+        </h4>
+      </div>
+      <div
+        class="sc-gKclnd cDexyL"
+      >
+        <h4>
+          BP1
+        </h4>
+      </div>
+    </div>
+    <div
+      class="sc-eCImPb iQGAwK"
+    >
+      <div
+        class="sc-jRQBWg bMSYqP"
+      >
+        <h3>
+          B Title
+        </h3>
+        <h4>
+          B Test Artist
+        </h4>
+      </div>
+      <div
+        class="sc-gKclnd cDexyL"
+      >
+        <h4>
+          BP2
+        </h4>
+      </div>
+    </div>
+    <div
+      class="sc-eCImPb iQGAwK"
+    >
+      <div
+        class="sc-jRQBWg bMSYqP"
+      >
+        <h3>
+          C Title
+        </h3>
+        <h4>
+          C Test Artist
+        </h4>
+      </div>
+      <div
+        class="sc-gKclnd cDexyL"
+      >
+        <h4>
+          BP3
+        </h4>
+      </div>
+    </div>
   </div>
-  <div
-    className="table-cell bold"
-  >
-    Artist
-  </div>
-  <div
-    className="table-cell bold"
-  >
-    Location
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    A Title
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    A Test Artist
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    BP1
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    B Title
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    B Test Artist
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    BP2
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    C Title
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    C Test Artist
-  </div>
-  <div
-    className="table-cell"
-    onClick={[Function]}
-  >
-    BP3
-  </div>
-</div>
+</DocumentFragment>
 `;
