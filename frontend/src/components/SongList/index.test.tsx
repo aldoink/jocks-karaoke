@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer'
 import {Song} from "../../models/Song";
-import {Table} from "./index";
+import {SongList} from "./index";
 
 const entries = [
     new Song(0, "BP1", "A Title", "A Test Artist"),
@@ -9,7 +9,10 @@ const entries = [
     new Song(2, "BP3", "C Title", "C Test Artist"),
 ]
 
-it('renders table entries', () => {
-    const tree = renderer.create(<Table songList={entries}/>).toJSON();
-    expect(tree).toMatchSnapshot();
+describe('SongList', () => {
+    it('renders table entries', () => {
+        const tree = renderer.create(<SongList songList={entries}/>).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
+

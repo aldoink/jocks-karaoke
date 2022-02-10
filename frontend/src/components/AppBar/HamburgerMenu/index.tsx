@@ -7,6 +7,7 @@ export const HamburgerMenu: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const menuDrawer = useRef<HTMLDivElement>(null);
     const hamburger = useRef<HTMLDivElement>(null);
+
     useClickOutsideListener(menuDrawer, (event: any) => {
         if (!hamburger?.current?.contains(event.target))
             setIsOpen(false)

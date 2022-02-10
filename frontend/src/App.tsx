@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import logo from './assets/JocksKaraoke.jpeg';
-import {Table} from "./components/Table";
+import {SongList} from "./components/SongList";
 import {ServiceContext} from "./contexts/ServiceContext";
 import styled, {ThemeProvider} from "styled-components";
 import {NavBar} from "./components/AppBar";
@@ -30,7 +30,7 @@ function App() {
                         <NavBar/>
                         <Body>
                             <Logo><img src={logo} className="logo" alt="logo"/></Logo>
-                            <Table songList={songs}/>
+                            <SongList songList={songs}/>
                         </Body>
                     </AppContainer>
                 </SongContext.Provider>
@@ -43,6 +43,13 @@ const AppContainer = styled.div`
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  background-image: linear-gradient(${props => props.theme.blue}, 95%, ${props => props.theme.darkBlue});
 `
 
 const Body = styled.div`
