@@ -2,14 +2,113 @@
 
 exports[`NavBar renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-gKclnd AvBtB"
+  .c2 {
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 16px;
+  caret-color: white;
+}
+
+.c2::-webkit-outer-spin-button,
+.c2::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.c2[type=number] {
+  -moz-appearance: textfield;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2::-webkit-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c2::-moz-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c2:-ms-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c2::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c1 {
+  position: relative;
+  display: inline-block;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 100%;
+  padding: 1rem;
+}
+
+.c1 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  fill: white;
+  height: 20px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  position: absolute;
+  right: 1rem;
+  bottom: 1.5rem;
+}
+
+.c3 {
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-transition: border-bottom-color 0.5s;
+  transition: border-bottom-color 0.5s;
+}
+
+.c3:focus {
+  border-bottom-color: red;
+}
+
+.c0 {
+  position: -webkit-sticky;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@media screen and (min-width:769px) {
+  .c0 {
+    margin: 0 2rem;
+  }
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-eCImPb fomVRN"
+      class="c1"
     >
       <input
-        class="sc-bdvvtL sc-jRQBWg ZGYqN dZbDpU"
+        class="c2 c3"
         placeholder="Search"
         type="text"
       />

@@ -2,11 +2,89 @@
 
 exports[`SearchBar renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-gsDKAQ izYifK"
+  .c1 {
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 16px;
+  caret-color: white;
+}
+
+.c1::-webkit-outer-spin-button,
+.c1::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.c1[type=number] {
+  -moz-appearance: textfield;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1::-webkit-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c1::-moz-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c1:-ms-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c1::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c0 {
+  position: relative;
+  display: inline-block;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 100%;
+  padding: 1rem;
+}
+
+.c0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  fill: white;
+  height: 20px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  position: absolute;
+  right: 1rem;
+  bottom: 1.5rem;
+}
+
+.c2 {
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-transition: border-bottom-color 0.5s;
+  transition: border-bottom-color 0.5s;
+}
+
+.c2:focus {
+  border-bottom-color: red;
+}
+
+<div
+    class="c0"
   >
     <input
-      class="sc-bdvvtL sc-dkPtRN ZGYqN hKcZKM"
+      class="c1 c2"
       placeholder="Search"
       type="text"
     />

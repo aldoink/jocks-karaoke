@@ -19,37 +19,10 @@ const authService = new AuthService();
 const highScoreService = new HighScoreService(authService);
 const songService = new SongService();
 
-function App() {
-    const [songs, setSongs] = useState([]);
-
-    return (
-        <ThemeProvider theme={theme}>
-            <ServiceContext.Provider value={{highScoreService, authService}}>
-                <SongContext.Provider value={{songService, songs, setSongs}}>
-                    <AppContainer>
-                        <NavBar/>
-                        <Body>
-                            <Logo><img src={logo} className="logo" alt="logo"/></Logo>
-                            <SongList songList={songs}/>
-                        </Body>
-                    </AppContainer>
-                </SongContext.Provider>
-            </ServiceContext.Provider>
-        </ThemeProvider>
-    );
-}
-
 const AppContainer = styled.div`
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: auto;
-  background-image: linear-gradient(${props => props.theme.blue}, 95%, ${props => props.theme.darkBlue});
 `
 
 const Body = styled.div`
@@ -71,4 +44,25 @@ const Logo = styled.div`
     justify-self: end;
   }
 `
+
+function App() {
+    const [songs, setSongs] = useState([]);
+
+    return (
+        <ThemeProvider theme={theme}>
+            <ServiceContext.Provider value={{highScoreService, authService}}>
+                <SongContext.Provider value={{songService, songs, setSongs}}>
+                    <AppContainer>
+                        <NavBar/>
+                        <Body>
+                            <Logo><img src={logo} className="logo" alt="logo"/></Logo>
+                            <SongList songList={songs}/>
+                        </Body>
+                    </AppContainer>
+                </SongContext.Provider>
+            </ServiceContext.Provider>
+        </ThemeProvider>
+    );
+}
+
 export default App;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Song} from "../../models/Song";
 import {Modal} from "../Modal";
-import {HighScoreList} from "../HighScoreList";
+import {HighScores} from "../HighScores";
 import styled from "styled-components";
 
 type TableProps = {
@@ -36,7 +36,7 @@ export const SongList: React.FC<TableProps> = ({songList}) => {
                 }
             </div>
             <Modal isOpen={showModal} closeFn={() => setShowModal(false)}>
-                {selectedSong && <HighScoreList song={selectedSong}/>}
+                {selectedSong && <HighScores song={selectedSong}/>}
             </Modal>
         </>
     )

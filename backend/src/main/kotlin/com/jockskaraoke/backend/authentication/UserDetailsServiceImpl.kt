@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 @Transactional
-open class UserDetailsServiceImpl : UserDetailsService {
+class UserDetailsServiceImpl : UserDetailsService {
 
     @Autowired
     lateinit var userRepository: UserRepository

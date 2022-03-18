@@ -1,3 +1,4 @@
+import 'jest-styled-components';
 import {render} from "@testing-library/react";
 import {NavBar} from "./index";
 

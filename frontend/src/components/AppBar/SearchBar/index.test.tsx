@@ -1,3 +1,4 @@
+import 'jest-styled-components';
 import {render, screen} from "@testing-library/react";
 import {SearchBar} from "./index";
 import {useSongSearch} from "../../../hooks/useSongSearch";

@@ -3,10 +3,9 @@ import {Song} from "../../models/Song";
 import {SongList} from "./index";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {HighScoreList} from "../HighScoreList";
 
-jest.mock("../HighScoreList", () => ({
-    HighScoreList: (props: any) => <div data-testid={'HighScoreList'}>{JSON.stringify(props)}</div>
+jest.mock("../HighScores", () => ({
+    HighScores: (props: any) => <div data-testid={'HighScores'}>{JSON.stringify(props)}</div>
 }))
 
 const entries = [
@@ -31,8 +30,8 @@ describe('SongList', () => {
         userEvent.click(screen.getByText(entries[0].title));
 
         //then
-        expect(await screen.findByTestId('HighScoreList')).toBeInTheDocument();
-        expect(screen.getByTestId('HighScoreList')).toHaveTextContent(JSON.stringify(entries[0]));
+        expect(await screen.findByTestId('HighScores')).toBeInTheDocument();
+        expect(screen.getByTestId('HighScores')).toHaveTextContent(JSON.stringify({song: entries[0]}));
     });
 });
 

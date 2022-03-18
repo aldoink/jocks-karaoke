@@ -1,4 +1,5 @@
-import {HighScoreList} from "./index";
+import 'jest-styled-components';
+import {HighScores} from "./index";
 import {Song} from "../../models/Song";
 import {render, screen} from "@testing-library/react";
 import {IServiceContext, ServiceContext} from "../../contexts/ServiceContext";
@@ -12,7 +13,7 @@ describe('HighScoreList', () => {
     function renderHighScoreList(song: Song = defaultSong) {
         return render(
             <ServiceContext.Provider value={{highScoreService: mockedHighScoreService} as IServiceContext}>
-                <HighScoreList song={song}/>
+                <HighScores song={song}/>
             </ServiceContext.Provider>
         )
     }

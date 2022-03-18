@@ -5,6 +5,7 @@ import {SuccessCheckmark} from "../../../SuccessCheckmark";
 import {LoadingSpinner} from "../../../LoadingSpinner";
 import {Input} from "../../../shared/Input";
 import {Modal} from "../../../Modal";
+import {Button} from "../../../shared/Button";
 
 export const Login: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
@@ -42,7 +43,7 @@ export const Login: React.FC = () => {
                        value={password}
                        onChange={handleChangePassword}/>
                 {status === LoginStatus.FAILURE && <p className="failure">Username or password is incorrect</p>}
-                {showSubmitButton && <button type="submit">Submit</button>}
+                {showSubmitButton && <Button type="submit">Submit</Button>}
                 {status === LoginStatus.LOADING && <LoadingSpinner/>}
                 {status === LoginStatus.SUCCESS && <SuccessCheckmark/>}
             </form>

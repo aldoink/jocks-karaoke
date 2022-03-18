@@ -2,9 +2,11 @@ import axios, {AxiosRequestConfig} from "axios";
 import {AuthService, BACKEND_URL} from "./AuthService";
 
 export interface HighScore {
-    readonly name: string;
-    readonly score: number;
-    readonly songId: number;
+    [index: string]: string | number | undefined;
+
+    name?: string;
+    score?: number;
+    songId: number;
 }
 
 export class HighScoreService {
@@ -25,8 +27,6 @@ export class HighScoreService {
     }
 
     private getAxiosConfig(): AxiosRequestConfig {
-        return {
-            headers: {Authorization: "Bearer " + this.authService.getToken()}
-        }
+        return {headers: {Authorization: "Bearer " + this.authService.getToken()}};
     }
 }

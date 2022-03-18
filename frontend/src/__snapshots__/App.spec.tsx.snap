@@ -2,17 +2,154 @@
 
 exports[`App renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-furwcr bxpHrP"
+  .c3 {
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 16px;
+  caret-color: white;
+}
+
+.c3::-webkit-outer-spin-button,
+.c3::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.c3[type=number] {
+  -moz-appearance: textfield;
+}
+
+.c3:focus {
+  outline: none;
+}
+
+.c3::-webkit-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c3::-moz-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c3:-ms-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c3::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.c2 {
+  position: relative;
+  display: inline-block;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 100%;
+  padding: 1rem;
+}
+
+.c2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  fill: white;
+  height: 20px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  position: absolute;
+  right: 1rem;
+  bottom: 1.5rem;
+}
+
+.c4 {
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-transition: border-bottom-color 0.5s;
+  transition: border-bottom-color 0.5s;
+}
+
+.c4:focus {
+  border-bottom-color: red;
+}
+
+.c1 {
+  position: -webkit-sticky;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  background-color: #1e359c;
+}
+
+.c0 {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c5 {
+  padding: 0 0.5rem;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.c6 img {
+  height: 30vmin;
+  pointer-events: none;
+  justify-self: end;
+}
+
+@media screen and (min-width:769px) {
+  .c1 {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    margin: 0 2rem;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .c5 {
+    padding: 0 2rem;
+  }
+}
+
+<div
+    class="c0"
   >
     <div
-      class="sc-iCfMLu iRSMZc"
+      class="c1"
     >
       <div
-        class="sc-jRQBWg lfEoei"
+        class="c2"
       >
         <input
-          class="sc-eCImPb sc-gKclnd hyQEQH bwZpUW"
+          class="c3 c4"
           placeholder="Search"
           type="text"
         />
@@ -54,10 +191,10 @@ exports[`App renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="sc-pVTFL dnipjo"
+      class="c5"
     >
       <div
-        class="sc-jrQzAO klSOku"
+        class="c6"
       >
         <img
           alt="logo"
@@ -67,23 +204,7 @@ exports[`App renders correctly 1`] = `
       </div>
       <div
         class="table-container"
-      >
-        <div
-          class="table-cell bold"
-        >
-          Song Title
-        </div>
-        <div
-          class="table-cell bold"
-        >
-          Artist
-        </div>
-        <div
-          class="table-cell bold"
-        >
-          Location
-        </div>
-      </div>
+      />
     </div>
   </div>
 </DocumentFragment>

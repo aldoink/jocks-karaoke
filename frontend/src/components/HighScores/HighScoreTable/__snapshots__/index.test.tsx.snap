@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighScoreTable renders correctly 1`] = `
+<DocumentFragment>
+  .c0 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+<table
+    class="c0"
+  >
+    <thead>
+      <tr>
+        <th
+          class="name-column"
+        >
+          Name
+        </th>
+        <th
+          class="score-column"
+        >
+          Score
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class=""
+      >
+        <td>
+          Ally
+        </td>
+        <td>
+          99
+        </td>
+      </tr>
+      <tr
+        class=""
+      >
+        <td>
+          Johnny
+        </td>
+        <td>
+          98
+        </td>
+      </tr>
+      <tr
+        class=""
+      >
+        <td>
+          Jenny
+        </td>
+        <td>
+          97
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;

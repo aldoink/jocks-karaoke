@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighScoreList loads the high scores for the selected song 1`] = `
+<DocumentFragment>
+  .c1 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.c3 {
+  margin-top: 1rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid;
+  border-radius: 4px;
+  background-color: transparent;
+  font-size: 18px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c0 {
+  border-bottom: 1px solid red;
+}
+
+.c0 h2,
+.c0 h3 {
+  margin: 0;
+}
+
+.c0 h4 {
+  margin-top: 8px;
+}
+
+<div
+    class=""
+  >
+    <div
+      class="c0"
+    >
+      <h2>
+        Title
+      </h2>
+      <h3>
+        Artist
+      </h3>
+      <h4>
+        BP-0001
+      </h4>
+    </div>
+    <div>
+      <table
+        class="c1"
+      >
+        <thead>
+          <tr>
+            <th
+              class="name-column"
+            >
+              Name
+            </th>
+            <th
+              class="score-column"
+            >
+              Score
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class=""
+          >
+            <td>
+              Ally
+            </td>
+            <td>
+              99
+            </td>
+          </tr>
+          <tr
+            class=""
+          >
+            <td>
+              Jenny
+            </td>
+            <td>
+              98
+            </td>
+          </tr>
+          <tr
+            class=""
+          >
+            <td>
+              Johnny
+            </td>
+            <td>
+              97
+            </td>
+          </tr>
+          <tr
+            class=""
+          >
+            <td>
+              Gemma
+            </td>
+            <td>
+              96
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        class="c2"
+      >
+        <button
+          class="c3"
+        >
+          Add new High Score
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
