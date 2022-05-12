@@ -35,7 +35,7 @@ describe('HighScoreService', () => {
 
     it('saves a new high score', () => {
         //given
-        const highScore: HighScore = {score: 99, songId: 100, name: 'Ally'}
+        const highScore: HighScore = {score: '99', songId: 100, name: 'Ally'};
         const expectedUrl = `${process.env.REACT_APP_BACKEND_URL}/highscores`;
 
         //when

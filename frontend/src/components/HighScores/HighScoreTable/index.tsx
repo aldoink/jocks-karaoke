@@ -12,6 +12,21 @@ const Table = styled.table`
 `
 
 const Row = styled.tr`
+  td {
+    &:first-child {
+      width: 75%;
+      margin-right: 1rem;
+    }
+
+    CenteredColumn {
+      width: 25%;
+    }
+  }
+`
+
+const CenteredColumn = styled.td`
+  display: flex;
+  justify-content: center;
 `
 
 export const HighScoreTable: React.FC<IHighScoreTableProps> = ({highScores}) => {
@@ -28,7 +43,7 @@ export const HighScoreTable: React.FC<IHighScoreTableProps> = ({highScores}) => 
             {highScores?.map((entry: HighScore, index: number) => (
                 <Row key={`high-score-${index}`}>
                     <td>{entry.name}</td>
-                    <td>{entry.score}</td>
+                    <CenteredColumn>{entry.score}</CenteredColumn>
                 </Row>
             ))}
             </tbody>

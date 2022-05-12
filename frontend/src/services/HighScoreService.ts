@@ -5,7 +5,7 @@ export interface HighScore {
     [index: string]: string | number | undefined;
 
     name?: string;
-    score?: number;
+    score?: string;
     songId: number;
 }
 

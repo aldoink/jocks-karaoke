@@ -33,5 +33,28 @@ describe('SongList', () => {
         expect(await screen.findByTestId('HighScores')).toBeInTheDocument();
         expect(screen.getByTestId('HighScores')).toHaveTextContent(JSON.stringify({song: entries[0]}));
     });
+
+    it('closes and reopens the modal', async () => {
+        //given
+        renderSongList();
+
+        //when
+        userEvent.click(screen.getByText(entries[0].title));
+
+        //then
+        expect(await screen.findByTestId('HighScores')).toBeInTheDocument();
+
+        //when(2)
+        userEvent.click(screen.getByTitle('close-icon'));
+
+        //then(2)
+        expect(screen.queryByTestId('HighScores')).not.toBeInTheDocument();
+
+        //when(3)
+        userEvent.click(screen.getByText(entries[0].title));
+
+        //then(3)
+        expect(await screen.findByTestId('HighScores')).toBeInTheDocument();
+    });
 });
 

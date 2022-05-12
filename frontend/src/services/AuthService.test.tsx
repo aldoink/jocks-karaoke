@@ -5,6 +5,9 @@ import {waitFor} from "@testing-library/dom";
 jest.mock("axios")
 
 describe('AuthService', () => {
+    // Token expires 26.11.2021
+    const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTYzNzg0NDc4MCwiZXhwIjoxNjM3OTMxMTgwfQ.dCEG5zkuXZZ-nty2Mu-rfe8CEBD3FskLsbA6uhA8n4o";
+    const authService = new AuthService();
 
     it('login - calls login using the provided email and password', async () => {
         //given
@@ -13,7 +16,7 @@ describe('AuthService', () => {
         const expectedUrl = `${process.env.REACT_APP_BACKEND_URL}/auth/login`
         const response = {
             data: {
-                token: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTYzNzg0NDc4MCwiZXhwIjoxNjM3OTMxMTgwfQ.dCEG5zkuXZZ-nty2Mu-rfe8CEBD3FskLsbA6uhA8n4o",
+                token,
                 id: 1,
                 username: "testuser",
                 email: "testuser@email.com",
@@ -27,14 +30,50 @@ describe('AuthService', () => {
         axios.post = jest.fn().mockResolvedValue(response);
         jest.spyOn(window.localStorage.__proto__, 'setItem');
 
-        const service = new AuthService();
-
         //when
-        await service.login(email, password);
+        await authService.login(email, password);
 
         //then
         expect(axios.post).toHaveBeenCalledWith(expectedUrl, {email, password});
 
-        await waitFor(() => expect(localStorage.setItem).toHaveBeenCalledWith("token", response.data.token));
+        await waitFor(() => expect(localStorage.setItem).toHaveBeenCalledWith("jocks-karaoke-token", response.data.token));
+    });
+
+    describe('isAuthenticated', () => {
+        it('returns true when a valid token exists', () => {
+            // given
+            jest.useFakeTimers('modern').setSystemTime(new Date(2021, 10, 26));
+            window.localStorage.__proto__.getItem = jest.fn().mockReturnValue(token);
+
+            // when
+            const result = authService.isAuthenticated()
+
+            // then
+            expect(result).toBe(true);
+        });
+
+        it('returns false when no token exists', () => {
+            // given
+            jest.useFakeTimers('modern').setSystemTime(new Date(2021, 10, 26));
+            window.localStorage.__proto__.getItem = jest.fn().mockReturnValue(undefined);
+
+            // when
+            const result = authService.isAuthenticated()
+
+            // then
+            expect(result).toBe(false);
+        });
+
+        it('returns false when token has expired', () => {
+            // given
+            jest.useFakeTimers('modern').setSystemTime(new Date(2021, 10, 27));
+            window.localStorage.__proto__.getItem = jest.fn().mockReturnValue(token);
+
+            // when
+            const result = authService.isAuthenticated()
+
+            // then
+            expect(result).toBe(false);
+        });
     });
 });

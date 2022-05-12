@@ -18,6 +18,11 @@ export const SongList: React.FC<TableProps> = ({songList}) => {
         }
     }, [selectedSong])
 
+    const onModalClosed = () => {
+        setShowModal(false);
+        setSelectedSong(undefined);
+    }
+
     return (
         <>
             <div className="table-container">
@@ -35,7 +40,7 @@ export const SongList: React.FC<TableProps> = ({songList}) => {
                     ))
                 }
             </div>
-            <Modal isOpen={showModal} closeFn={() => setShowModal(false)}>
+            <Modal isOpen={showModal} closeFn={onModalClosed}>
                 {selectedSong && <HighScores song={selectedSong}/>}
             </Modal>
         </>

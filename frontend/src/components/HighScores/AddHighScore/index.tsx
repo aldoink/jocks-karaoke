@@ -9,6 +9,7 @@ const InputContainer = styled.div`
   display: flex;
   max-width: 100%;
   box-sizing: content-box;
+  margin-top: 2rem;
 
   input {
     &:first-child {
@@ -32,12 +33,12 @@ interface IAddHighScoreProps {
 }
 
 export const AddHighScore: React.FC<IAddHighScoreProps> = ({songId}) => {
-    const {highScoreService} = useContext(ServiceContext);
+    const {authService, highScoreService} = useContext(ServiceContext);
     const [editMode, setEditMode] = useState(false);
-    const [highScore, setHighScore] = useState<HighScore>({name: '', score: 0, songId})
+    const [highScore, setHighScore] = useState<HighScore>({name: '', score: '', songId})
 
-    const saveHighScore = () => {
-        highScoreService.save(highScore);
+    const saveHighScore = async () => {
+        await highScoreService.save(highScore);
     }
 
     const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,18 +46,21 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({songId}) => {
     }
 
     const handleScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setHighScore({...highScore, score: parseInt(e.currentTarget.value)});
+        const numbersOnly = new RegExp('^[0-9]*$');
+        if (numbersOnly.test(e.currentTarget.value)) {
+            setHighScore({...highScore, score: e.currentTarget.value});
+        }
     }
 
     return <>
         {editMode && <>
             <InputContainer>
                 <Input type="text" placeholder={'Name'} value={highScore.name} onChange={handleNameChange}/>
-                <Input type="number" placeholder={'Score'} value={highScore.score} onChange={handleScoreChange}/>
+                <Input type="text" placeholder={'Score'} value={highScore.score} onChange={handleScoreChange} maxLength={2}/>
             </InputContainer>
             <Center><Button onClick={saveHighScore}>Save</Button></Center>
         </>}
-        {!editMode &&
+        {!editMode && authService.isAuthenticated() &&
             <Center>
                 <Button onClick={() => setEditMode(true)}>Add new High Score</Button>
             </Center>}
