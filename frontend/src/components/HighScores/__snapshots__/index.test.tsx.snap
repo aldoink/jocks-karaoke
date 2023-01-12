@@ -7,7 +7,27 @@ exports[`HighScoreList loads the high scores for the selected song 1`] = `
   border-collapse: collapse;
 }
 
+.c2 td:first-child {
+  width: 75%;
+  margin-right: 1rem;
+}
+
+.c2 td CenteredColumn {
+  width: 25%;
+}
+
 .c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c5 {
   margin-top: 1rem;
   padding: 0.25rem 0.75rem;
   border: 1px solid;
@@ -19,7 +39,7 @@ exports[`HighScoreList loads the high scores for the selected song 1`] = `
   align-self: center;
 }
 
-.c2 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -79,52 +99,60 @@ exports[`HighScoreList loads the high scores for the selected song 1`] = `
         </thead>
         <tbody>
           <tr
-            class=""
+            class="c2"
           >
             <td>
               Ally
             </td>
-            <td>
+            <td
+              class="c3"
+            >
               99
             </td>
           </tr>
           <tr
-            class=""
+            class="c2"
           >
             <td>
               Jenny
             </td>
-            <td>
+            <td
+              class="c3"
+            >
               98
             </td>
           </tr>
           <tr
-            class=""
+            class="c2"
           >
             <td>
               Johnny
             </td>
-            <td>
+            <td
+              class="c3"
+            >
               97
             </td>
           </tr>
           <tr
-            class=""
+            class="c2"
           >
             <td>
               Gemma
             </td>
-            <td>
+            <td
+              class="c3"
+            >
               96
             </td>
           </tr>
         </tbody>
       </table>
       <div
-        class="c2"
+        class="c4"
       >
         <button
-          class="c3"
+          class="c5"
         >
           Add new High Score
         </button>
