@@ -7,6 +7,26 @@ exports[`HighScoreTable renders correctly 1`] = `
   border-collapse: collapse;
 }
 
+.c1 td:first-child {
+  width: 75%;
+  margin-right: 1rem;
+}
+
+.c1 td CenteredColumn {
+  width: 25%;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 <table
     class="c0"
   >
@@ -26,32 +46,38 @@ exports[`HighScoreTable renders correctly 1`] = `
     </thead>
     <tbody>
       <tr
-        class=""
+        class="c1"
       >
         <td>
           Ally
         </td>
-        <td>
+        <td
+          class="c2"
+        >
           99
         </td>
       </tr>
       <tr
-        class=""
+        class="c1"
       >
         <td>
           Johnny
         </td>
-        <td>
+        <td
+          class="c2"
+        >
           98
         </td>
       </tr>
       <tr
-        class=""
+        class="c1"
       >
         <td>
           Jenny
         </td>
-        <td>
+        <td
+          class="c2"
+        >
           97
         </td>
       </tr>
