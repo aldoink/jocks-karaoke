@@ -75,10 +75,10 @@ describe('AddHighScore', () => {
         });
 
         it.each([
-            ['99test99', '9999'],
-            ['test123', '123'],
-            ['123test', '123'],
-            ['te123st', '123']
+            ['9test9', '99'],
+            ['test12', '12'],
+            ['12test', '12'],
+            ['te12st', '12']
         ])('only allows numbers to be entered into the score field', (input, expected) => {
             //given
             renderAddHighScore();
