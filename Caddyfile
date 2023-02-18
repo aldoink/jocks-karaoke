@@ -7,7 +7,7 @@ portainer.jocks-karaoke.com {
 }
 
 dev.jocks-karaoke.com {
-	reverse_proxy localhost:3000
+	reverse_proxy localhost:5000
 }
 
 https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
