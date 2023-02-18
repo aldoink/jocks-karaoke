@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { LoginStatus, useLogin } from "./hooks/useLogin";
 import { SuccessCheckmark } from "../../../SuccessCheckmark";
@@ -15,6 +15,12 @@ export const Login: React.FC = () => {
 
   const showSubmitButton =
     status !== LoginStatus.LOADING && status !== LoginStatus.SUCCESS;
+
+  useEffect(() => {
+    if (status === LoginStatus.SUCCESS) {
+      setTimeout(() => toggleModal(), 1500);
+    }
+  }, [status]);
 
   const toggleModal = () => setShowModal(!showModal);
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) =>
