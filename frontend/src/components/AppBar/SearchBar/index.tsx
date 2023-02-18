@@ -1,30 +1,32 @@
-import React, {useEffect} from "react";
-import {ReactComponent as SearchIcon} from "../../../assets/search-icon.svg";
+import React, { useEffect } from "react";
+import { ReactComponent as SearchIcon } from "../../../assets/search-icon.svg";
 import styled from "styled-components";
-import {Input} from "../../shared/Input";
-import {useSongSearch} from "../../../hooks/useSongSearch";
+import { Input } from "../../shared/Input";
+import { useSongSearch } from "../../../hooks/useSongSearch";
 
 export const SearchBar: React.FC = () => {
-    const search: Function = useSongSearch();
+  const search: Function = useSongSearch();
 
-    useEffect(() => {
-        search('')
-    }, []);
+  useEffect(() => {
+    search("");
+  }, []);
 
-    function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-        search(event.currentTarget?.value.toLowerCase())
-    }
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    search(event.currentTarget?.value.toLowerCase());
+  }
 
-    return (
-        <Container>
-            <SearchInput inverted
-                         type="text"
-                         placeholder="Search"
-                         onChange={handleSearch}/>
-            <SearchIcon/>
-        </Container>
-    )
-}
+  return (
+    <Container>
+      <SearchInput
+        inverted
+        type="text"
+        placeholder="Search"
+        onChange={handleSearch}
+      />
+      <SearchIcon />
+    </Container>
+  );
+};
 
 const Container = styled.div`
   position: relative;
@@ -42,7 +44,7 @@ const Container = styled.div`
     right: 1rem;
     bottom: 1.5rem;
   }
-`
+`;
 
 const SearchInput = styled(Input)`
   box-sizing: border-box;
