@@ -23,7 +23,7 @@ describe("Login", () => {
 
   it("opens the login pop-up when the button is clicked", () => {
     //given
-    render(<Login />);
+    render(<Login closeMenu={jest.fn} />);
 
     //then (1)
     expect(screen.queryByTestId("login-modal")).not.toBeInTheDocument();
@@ -38,7 +38,7 @@ describe("Login", () => {
   it("shows a success icon when login is successful", async () => {
     //given
     (useLogin as any).mockReturnValue({ status: LoginStatus.SUCCESS });
-    render(<Login />);
+    render(<Login closeMenu={jest.fn} />);
 
     //when
     userEvent.click(screen.getByText("Login"));
@@ -49,7 +49,7 @@ describe("Login", () => {
 
   it("shows an error message when login is unsuccessful", async () => {
     (useLogin as any).mockReturnValue({ status: LoginStatus.FAILURE });
-    render(<Login />);
+    render(<Login closeMenu={jest.fn} />);
     userEvent.click(screen.getByText("Login"));
 
     //then
@@ -58,11 +58,12 @@ describe("Login", () => {
     ).toBeInTheDocument();
   });
 
-  it("closes the login modal 1.5 seconds after rendering", async () => {
+  it("closes the login modal and the hamburger menu 1.5 seconds after rendering", async () => {
     //given
     (useLogin as any).mockReturnValueOnce({ status: LoginStatus.READY });
     (useLogin as any).mockReturnValueOnce({ status: LoginStatus.SUCCESS });
-    render(<Login />);
+    const hamburgerMenuCloseFunction = jest.fn();
+    render(<Login closeMenu={hamburgerMenuCloseFunction} />);
 
     //when
     userEvent.click(screen.getByText("Login"));
@@ -76,8 +77,9 @@ describe("Login", () => {
     });
 
     //then (2)
-    await waitFor(() =>
-      expect(screen.queryByTestId("email-input")).not.toBeInTheDocument()
-    );
+    await waitFor(() => {
+      expect(screen.queryByTestId("email-input")).not.toBeInTheDocument();
+      expect(hamburgerMenuCloseFunction).toHaveBeenCalled();
+    });
   });
 });

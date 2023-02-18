@@ -7,7 +7,11 @@ import { Input } from "../../../shared/Input";
 import { Modal } from "../../../Modal";
 import { Button } from "../../../shared/Button";
 
-export const Login: React.FC = () => {
+export interface LoginProps {
+  readonly closeMenu: Function;
+}
+
+export const Login: React.FC<LoginProps> = ({ closeMenu }) => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,9 +22,12 @@ export const Login: React.FC = () => {
 
   useEffect(() => {
     if (status === LoginStatus.SUCCESS) {
-      setTimeout(() => toggleModal(), 1500);
+      setTimeout(() => {
+        toggleModal();
+        closeMenu();
+      }, 1500);
     }
-  }, [status]);
+  }, [status, closeMenu]);
 
   const toggleModal = () => setShowModal(!showModal);
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) =>
