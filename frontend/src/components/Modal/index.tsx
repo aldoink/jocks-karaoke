@@ -1,27 +1,31 @@
-import React, {MouseEventHandler, useRef} from "react";
-import {useClickOutsideListener} from "../../hooks/useClickOutsideListener";
-import {ReactComponent as CloseIcon} from "../../assets/close-icon.svg";
-import styled, {css} from "styled-components";
+import React, { MouseEventHandler, useRef } from "react";
+import { useClickOutsideListener } from "../../hooks/useClickOutsideListener";
+import { ReactComponent as CloseIcon } from "../../assets/close-icon.svg";
+import styled, { css } from "styled-components";
 
 export interface IModalProps {
-    readonly isOpen: boolean;
-    readonly closeFn: MouseEventHandler<any>
+  readonly isOpen: boolean;
+  readonly closeFn: MouseEventHandler<any>;
 }
 
 export const Modal: React.FC<IModalProps> = (props) => {
-    const contentRef = useRef<HTMLDivElement>(null);
-    useClickOutsideListener(contentRef, props.closeFn);
+  const contentRef = useRef<HTMLDivElement>(null);
+  useClickOutsideListener(contentRef, props.closeFn);
 
-    return <>
-        {props.isOpen && <SemiTransparentBackground data-testid='background'/>}
-        {props.isOpen && <Frame>
-            <Inner ref={contentRef}>
-                <CloseIcon title="close-icon" onClick={props.closeFn}/>
-                {props.children}
-            </Inner>
-        </Frame>}
+  return (
+    <>
+      {props.isOpen && <SemiTransparentBackground data-testid="background" />}
+      {props.isOpen && (
+        <Frame>
+          <Inner ref={contentRef}>
+            <CloseIcon title="close-icon" onClick={props.closeFn} />
+            {props.children}
+          </Inner>
+        </Frame>
+      )}
     </>
-}
+  );
+};
 
 const fullScreen = css`
   position: fixed;
@@ -31,14 +35,14 @@ const fullScreen = css`
   left: 0;
   width: 100vw;
   height: 100vh;
-`
+`;
 
 const SemiTransparentBackground = styled.div`
   ${fullScreen};
-  background-color: ${props => props.theme.darkBlue};
+  background-color: ${(props) => props.theme.darkBlue};
   opacity: 70%;
   z-index: 2;
-`
+`;
 
 const Frame = styled.div`
   ${fullScreen};
@@ -47,7 +51,7 @@ const Frame = styled.div`
   align-items: center;
   align-content: center;
   z-index: 3;
-`
+`;
 
 const Inner = styled.div`
   padding: 2rem;
@@ -64,7 +68,7 @@ const Inner = styled.div`
     right: 1rem;
     height: 2rem;
     width: 2rem;
-    fill: ${props => props.theme.darkBlue};
+    fill: ${(props) => props.theme.darkBlue};
     transition: 0.5s;
   }
-`
+`;
