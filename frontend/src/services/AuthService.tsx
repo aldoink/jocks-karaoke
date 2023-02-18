@@ -24,6 +24,14 @@ export class AuthService {
     }
     const claims: JwtPayload = jwtDecode(token);
     const expirationTimeInSeconds = claims.exp ? claims.exp * 1000 : 0;
+    console.log(
+      "isAuthenticated - token - ",
+      Date.now() < expirationTimeInSeconds
+    );
     return Date.now() < expirationTimeInSeconds;
+  }
+
+  logout() {
+    localStorage.removeItem(JWT_TOKEN_KEY);
   }
 }
