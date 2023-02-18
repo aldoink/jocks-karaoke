@@ -6,10 +6,10 @@ exports[`SongList renders table entries 1`] = `
     class="table-container"
   >
     <div
-      class="sc-hKwDye kxkbS"
+      class="sc-hLBbgP lizhbw"
     >
       <div
-        class="sc-eCImPb bUCxDU"
+        class="sc-eDvSVe ispWq"
       >
         <h3>
           A Title
@@ -19,7 +19,7 @@ exports[`SongList renders table entries 1`] = `
         </h4>
       </div>
       <div
-        class="sc-jRQBWg jXPSON"
+        class="sc-jSUZER eGjBoW"
       >
         <h4>
           BP1
@@ -27,10 +27,10 @@ exports[`SongList renders table entries 1`] = `
       </div>
     </div>
     <div
-      class="sc-hKwDye kxkbS"
+      class="sc-hLBbgP lizhbw"
     >
       <div
-        class="sc-eCImPb bUCxDU"
+        class="sc-eDvSVe ispWq"
       >
         <h3>
           B Title
@@ -40,7 +40,7 @@ exports[`SongList renders table entries 1`] = `
         </h4>
       </div>
       <div
-        class="sc-jRQBWg jXPSON"
+        class="sc-jSUZER eGjBoW"
       >
         <h4>
           BP2
@@ -48,10 +48,10 @@ exports[`SongList renders table entries 1`] = `
       </div>
     </div>
     <div
-      class="sc-hKwDye kxkbS"
+      class="sc-hLBbgP lizhbw"
     >
       <div
-        class="sc-eCImPb bUCxDU"
+        class="sc-eDvSVe ispWq"
       >
         <h3>
           C Title
@@ -61,7 +61,7 @@ exports[`SongList renders table entries 1`] = `
         </h4>
       </div>
       <div
-        class="sc-jRQBWg jXPSON"
+        class="sc-jSUZER eGjBoW"
       >
         <h4>
           BP3
