@@ -30,9 +30,13 @@ const Center = styled.div`
 
 interface IAddHighScoreProps {
   readonly songId: number;
+  readonly refreshHighScores: Function;
 }
 
-export const AddHighScore: React.FC<IAddHighScoreProps> = ({ songId }) => {
+export const AddHighScore: React.FC<IAddHighScoreProps> = ({
+  songId,
+  refreshHighScores,
+}) => {
   const { authService, highScoreService } = useContext(ServiceContext);
   const [editMode, setEditMode] = useState(false);
   const [highScore, setHighScore] = useState<HighScore>({
@@ -43,6 +47,8 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({ songId }) => {
 
   const saveHighScore = async () => {
     await highScoreService.save(highScore);
+    setEditMode(false);
+    refreshHighScores();
   };
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,10 +62,15 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({ songId }) => {
     }
   };
 
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    saveHighScore();
+  };
+
   return (
     <>
       {editMode && (
-        <>
+        <form onSubmit={handleSubmit}>
           <InputContainer>
             <Input
               type="text"
@@ -76,9 +87,9 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({ songId }) => {
             />
           </InputContainer>
           <Center>
-            <Button onClick={saveHighScore}>Save</Button>
+            <Button onClick={handleSubmit}>Save</Button>
           </Center>
-        </>
+        </form>
       )}
       {!editMode && authService.isAuthenticated() && (
         <Center>
