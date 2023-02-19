@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
-import logo from './assets/JocksKaraoke.jpeg';
-import {SongList} from "./components/SongList";
-import {ServiceContext} from "./contexts/ServiceContext";
-import styled, {ThemeProvider} from "styled-components";
-import {NavBar} from "./components/AppBar";
-import {AuthService} from "./services/AuthService";
-import {HighScoreService} from "./services/HighScoreService";
-import {SongService} from "./services/SongService";
-import {SongContext} from './contexts/SongContext';
+import React, { useState } from "react";
+import logo from "./assets/JocksKaraoke.jpeg";
+import { SongList } from "./components/SongList";
+import { ServiceContext } from "./contexts/ServiceContext";
+import styled, { ThemeProvider } from "styled-components";
+import { NavBar } from "./components/AppBar";
+import { AuthService } from "./services/AuthService";
+import { HighScoreService } from "./services/HighScoreService";
+import { SongService } from "./services/SongService";
+import { SongContext } from "./contexts/SongContext";
 
 const theme = {
-    blue: '#1e359c',
-    darkBlue: '#041e42',
-    whiteBorder: '1px solid white'
-}
+  blue: "#1e359c",
+  darkBlue: "#041e42",
+  whiteBorder: "1px solid white",
+};
 
 const authService = new AuthService();
 const highScoreService = new HighScoreService(authService);
@@ -23,7 +23,7 @@ const AppContainer = styled.div`
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
-`
+`;
 
 const Body = styled.div`
   padding: 0 0.5rem;
@@ -31,7 +31,7 @@ const Body = styled.div`
   @media screen and (min-width: 768px) {
     padding: 0 2rem;
   }
-`
+`;
 
 const Logo = styled.div`
   display: flex;
@@ -43,26 +43,28 @@ const Logo = styled.div`
     pointer-events: none;
     justify-self: end;
   }
-`
+`;
 
 function App() {
-    const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState([]);
 
-    return (
-        <ThemeProvider theme={theme}>
-            <ServiceContext.Provider value={{highScoreService, authService}}>
-                <SongContext.Provider value={{songService, songs, setSongs}}>
-                    <AppContainer>
-                        <NavBar/>
-                        <Body>
-                            <Logo><img src={logo} className="logo" alt="logo"/></Logo>
-                            <SongList songList={songs}/>
-                        </Body>
-                    </AppContainer>
-                </SongContext.Provider>
-            </ServiceContext.Provider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={theme}>
+      <ServiceContext.Provider value={{ highScoreService, authService }}>
+        <SongContext.Provider value={{ songService, songs, setSongs }}>
+          <AppContainer>
+            <NavBar />
+            <Body>
+              <Logo>
+                <img src={logo} className="logo" alt="logo" />
+              </Logo>
+              <SongList songList={songs} />
+            </Body>
+          </AppContainer>
+        </SongContext.Provider>
+      </ServiceContext.Provider>
+    </ThemeProvider>
+  );
 }
 
 export default App;
