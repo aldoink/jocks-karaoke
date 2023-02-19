@@ -42,7 +42,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predocker:build": "yarn build",
-    "docker:build": "docker image build . -t aldoink/jocks-karaoke:frontend_$npm_package_version"
+    "docker:build": "docker buildx build --platform linux/amd64,linux/arm64 --push . -t aldoink/jocks-karaoke:frontend_$npm_package_version"
   },
   "eslintConfig": {
     "extends": [
