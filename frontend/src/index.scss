@@ -2,7 +2,6 @@
 
 #root {
   margin: 0;
-  background-image: linear-gradient($rangers-blue, 95%, $rangers-dark-blue);
   font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
@@ -14,6 +13,7 @@
   left: 0;
   right: 0;
   overflow: auto;
+  background: transparent;
 }
 
 code {

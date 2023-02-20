@@ -19,6 +19,16 @@ const authService = new AuthService();
 const highScoreService = new HighScoreService(authService);
 const songService = new SongService();
 
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  z-index: -100;
+  background-image: linear-gradient(${(props) => props.theme.blue}, 90%, black);
+`;
+
 const AppContainer = styled.div`
   max-width: 80rem;
   margin-left: auto;
@@ -52,6 +62,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <ServiceContext.Provider value={{ highScoreService, authService }}>
         <SongContext.Provider value={{ songService, songs, setSongs }}>
+          <Background />
           <AppContainer>
             <NavBar />
             <Body>
