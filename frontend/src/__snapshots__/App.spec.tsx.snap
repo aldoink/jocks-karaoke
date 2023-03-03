@@ -118,12 +118,6 @@ exports[`App renders correctly 1`] = `
   background-color: #1e359c;
 }
 
-.c0 {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .c5 {
   padding: 0 0.5rem;
 }
@@ -146,6 +140,12 @@ exports[`App renders correctly 1`] = `
   justify-self: end;
 }
 
+.c0 {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (min-width:769px) {
   .c1 {
     border-left: 1px solid white;
@@ -163,6 +163,70 @@ exports[`App renders correctly 1`] = `
 <div
     class="c0"
   >
+    <div
+      class="c1"
+    >
+      <div
+        class="c2"
+      >
+        <input
+          class="c3 c4"
+          placeholder="Search"
+          type="text"
+        />
+        <svg>
+          search-icon.svg
+        </svg>
+      </div>
+      <div
+        class=""
+        data-testid="hamburger-container"
+        id="hamburger-container"
+      >
+        <button
+          class="hamburger hamburger--squeeze "
+          data-testid="hamburger-button"
+          type="button"
+        >
+          <span
+            class="hamburger-box"
+          >
+            <span
+              class="hamburger-inner"
+            />
+          </span>
+        </button>
+      </div>
+      <div
+        class="menu-drawer"
+        data-testid="menu-drawer"
+        style="max-height: 0px; visibility: hidden;"
+      >
+        <div
+          class="menu-item"
+        >
+          <div>
+            Login
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c5"
+    >
+      <div
+        class="c6"
+      >
+        <img
+          alt="logo"
+          class="logo"
+          src="JocksKaraoke.jpeg"
+        />
+      </div>
+      <div
+        class="table-container"
+      />
+    </div>
     <div
       class="c1"
     >
