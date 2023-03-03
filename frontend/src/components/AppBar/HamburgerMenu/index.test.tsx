@@ -90,13 +90,14 @@ describe("HamburgerMenu", () => {
     expect(screen.queryByText("Login")).not.toBeInTheDocument();
   });
 
-  it("calls the authservice logout function and closes the menu when logout is clicked", () => {
+  it("calls the authservice logout function and closes the menu when logout is clicked", async () => {
     //given
     mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
     mockedAuthService.logout = jest.fn();
     renderHamburgerMenu();
 
     //when
+    screen.getByTestId("hamburger-button").click();
     screen.getByText("Logout").click();
 
     //then

@@ -2,6 +2,27 @@
 
 exports[`App renders correctly 1`] = `
 <DocumentFragment>
+  .c0 {
+  position: fixed;
+  top: 0;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  z-index: -100;
+  background-image: linear-gradient(#1e359c,90%,black);
+}
+
+@media screen and (min-width:769px) {
+
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+<div
+    class="c0"
+  />
   .c3 {
   padding: 0.5rem;
   background-color: transparent;
