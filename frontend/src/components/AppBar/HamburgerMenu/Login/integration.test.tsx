@@ -1,34 +1,41 @@
-import {render, screen} from "@testing-library/react";
-import {Login} from "./index";
+import { render, screen } from "@testing-library/react";
+import { Login } from "./index";
 import userEvent from "@testing-library/user-event";
-import {AuthService} from "../../../../services/AuthService";
-import {IServiceContext, ServiceContext} from "../../../../contexts/ServiceContext";
+import { AuthService } from "../../../../services/AuthService";
+import { AuthContext, IAuthContext } from "../../../../contexts/AuthContext";
 
-describe('Login', () => {
-    let mockedAuthService = {} as AuthService;
+describe("Login", () => {
+  let mockedAuthService = {} as AuthService;
 
-    beforeEach(() => {
-        mockedAuthService.login = jest.fn().mockResolvedValue(undefined);
-    });
+  beforeEach(() => {
+    mockedAuthService.login = jest.fn().mockResolvedValue(undefined);
+  });
 
-    it('calls the AuthService login function with the correct params', async () => {
-        //given
-        const email = 'test@user.com';
-        const password = 'password';
-        render(
-            <ServiceContext.Provider value={{authService: mockedAuthService} as IServiceContext}>
-                <Login/>
-            </ServiceContext.Provider>
-        )
+  it("calls the AuthService login function with the correct params", async () => {
+    //given
+    const email = "test@user.com";
+    const password = "password";
+    render(
+      <AuthContext.Provider
+        value={
+          {
+            authService: mockedAuthService,
+            setIsAuthenticated: jest.fn,
+          } as unknown as IAuthContext
+        }
+      >
+        <Login closeMenu={() => {}} />
+      </AuthContext.Provider>
+    );
 
-        //when
-        userEvent.click(screen.getByText('Login'))
-        userEvent.type(screen.getByTestId('email-input'), email)
-        userEvent.type(screen.getByTestId('password-input'), password)
-        userEvent.click(screen.getByText('Submit'))
+    //when
+    userEvent.click(screen.getByText("Login"));
+    userEvent.type(screen.getByTestId("email-input"), email);
+    userEvent.type(screen.getByTestId("password-input"), password);
+    userEvent.click(screen.getByText("Submit"));
 
-        //then
-        expect(await screen.findByTestId('success-checkmark')).toBeInTheDocument();
-        expect(mockedAuthService.login).toHaveBeenCalledWith(email, password);
-    });
+    //then
+    expect(await screen.findByTestId("success-checkmark")).toBeInTheDocument();
+    expect(mockedAuthService.login).toHaveBeenCalledWith(email, password);
+  });
 });

@@ -2,10 +2,10 @@ import React, { useContext, useRef, useState } from "react";
 import "./index.scss";
 import { Login } from "./Login";
 import { useClickOutsideListener } from "../../../hooks/useClickOutsideListener";
-import { ServiceContext } from "../../../contexts/ServiceContext";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 export const HamburgerMenu: React.FC = () => {
-  const { authService } = useContext(ServiceContext);
+  const { authService } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const menuDrawer = useRef<HTMLDivElement>(null);
   const hamburger = useRef<HTMLDivElement>(null);

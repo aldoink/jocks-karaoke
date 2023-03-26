@@ -2,8 +2,10 @@ import React, { ChangeEvent, useContext, useState } from "react";
 import { Input } from "../../shared/Input";
 import { Button } from "../../shared/Button";
 import styled from "styled-components";
-import { ServiceContext } from "../../../contexts/ServiceContext";
 import { HighScore } from "../../../services/HighScoreService";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { HighScoreContext } from "../../../contexts/HighScoreContext";
+import { Song } from "../../../models/Song";
 
 const InputContainer = styled.div`
   display: flex;
@@ -29,26 +31,23 @@ const Center = styled.div`
 `;
 
 interface IAddHighScoreProps {
-  readonly songId: number;
-  readonly refreshHighScores: Function;
+  readonly song: Song;
 }
 
-export const AddHighScore: React.FC<IAddHighScoreProps> = ({
-  songId,
-  refreshHighScores,
-}) => {
-  const { authService, highScoreService } = useContext(ServiceContext);
+export const AddHighScore: React.FC<IAddHighScoreProps> = ({ song }) => {
+  const { authService } = useContext(AuthContext);
+  const { highScoreService, refreshHighScores } = useContext(HighScoreContext);
   const [editMode, setEditMode] = useState(false);
   const [highScore, setHighScore] = useState<HighScore>({
     name: "",
     score: "",
-    songId,
+    songId: song.id,
   });
 
   const saveHighScore = async () => {
     await highScoreService.save(highScore);
     setEditMode(false);
-    refreshHighScores();
+    refreshHighScores(song);
   };
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,9 +61,9 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    saveHighScore();
+    await saveHighScore();
   };
 
   return (

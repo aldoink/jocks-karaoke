@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import { ServiceContext } from "./contexts/ServiceContext";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { AuthService } from "./services/AuthService";
-import { HighScoreService } from "./services/HighScoreService";
-import { SongService } from "./services/SongService";
-import { SongContext } from "./contexts/SongContext";
 import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -13,10 +8,6 @@ const theme = {
   darkBlue: "#041e42",
   whiteBorder: "1px solid white",
 };
-
-const authService = new AuthService();
-const highScoreService = new HighScoreService(authService);
-const songService = new SongService();
 
 const Background = styled.div`
   position: fixed;
@@ -35,22 +26,16 @@ const AppContainer = styled.div`
 `;
 
 function App() {
-  const [songs, setSongs] = useState([]);
-
   return (
     <ThemeProvider theme={theme}>
-      <ServiceContext.Provider value={{ highScoreService, authService }}>
-        <SongContext.Provider value={{ songService, songs, setSongs }}>
-          <Background />
-          <AppContainer>
-            <BrowserRouter>
-              <Routes>
-                <Route index path="/" element={<Home />}></Route>
-              </Routes>
-            </BrowserRouter>
-          </AppContainer>
-        </SongContext.Provider>
-      </ServiceContext.Provider>
+      <Background />
+      <AppContainer>
+        <BrowserRouter>
+          <Routes>
+            <Route index path="/" element={<Home />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </AppContainer>
     </ThemeProvider>
   );
 }

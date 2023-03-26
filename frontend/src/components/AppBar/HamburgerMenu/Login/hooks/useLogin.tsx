@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ServiceContext } from "contexts/ServiceContext";
+import { AuthContext } from "../../../../../contexts/AuthContext";
 
 export enum LoginStatus {
   LOADING,
@@ -10,7 +10,7 @@ export enum LoginStatus {
 
 export function useLogin(email: string, password: string) {
   const [status, setStatus] = useState(LoginStatus.READY);
-  const { authService } = useContext(ServiceContext);
+  const { authService, setIsAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     setStatus(LoginStatus.READY);
@@ -21,6 +21,7 @@ export function useLogin(email: string, password: string) {
     try {
       await authService.login(email, password);
       setStatus(LoginStatus.SUCCESS);
+      setIsAuthenticated(true);
     } catch (error) {
       setStatus(LoginStatus.FAILURE);
     }

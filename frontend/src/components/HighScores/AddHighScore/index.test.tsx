@@ -2,33 +2,45 @@ import { AddHighScore } from "./index";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
-  IServiceContext,
-  ServiceContext,
-} from "../../../contexts/ServiceContext";
-import {
   HighScore,
   HighScoreService,
 } from "../../../services/HighScoreService";
 import { AuthService } from "../../../services/AuthService";
+import { AuthContext, IAuthContext } from "../../../contexts/AuthContext";
+import {
+  HighScoreContext,
+  IHighScoreContext,
+} from "../../../contexts/HighScoreContext";
+import { Song } from "../../../models/Song";
 
 describe("AddHighScore", () => {
   const addButtonText = "Add new High Score";
-  const defaultSongId = 1;
+  const defaultSong = {
+    id: 123,
+    artist: "Blur",
+    title: "Song 2",
+    location: "location",
+  } as Song;
   const mockedHighScoreService = {} as HighScoreService;
   const mockedAuthService = {} as AuthService;
+  const refreshHighScores = jest.fn();
 
-  function renderAddHighScore(songId: number = defaultSongId) {
+  function renderAddHighScore(song: Song = defaultSong) {
     return render(
-      <ServiceContext.Provider
-        value={
-          {
-            highScoreService: mockedHighScoreService,
-            authService: mockedAuthService,
-          } as IServiceContext
-        }
+      <AuthContext.Provider
+        value={{ authService: mockedAuthService } as IAuthContext}
       >
-        <AddHighScore songId={songId} refreshHighScores={jest.fn} />
-      </ServiceContext.Provider>
+        <HighScoreContext.Provider
+          value={
+            {
+              highScoreService: mockedHighScoreService,
+              refreshHighScores,
+            } as unknown as IHighScoreContext
+          }
+        >
+          <AddHighScore song={song} />
+        </HighScoreContext.Provider>
+      </AuthContext.Provider>
     );
   }
 
@@ -69,14 +81,14 @@ describe("AddHighScore", () => {
       expect(getScoreInput()).toBeInTheDocument();
     });
 
-    it("saves high score when save button is clicked", async () => {
+    it("saves high score and refreshes when save button is clicked", async () => {
       //given
       const expectedHighScore = {
         name: "Johnny",
         score: "99",
         songId: 123,
       } as HighScore;
-      renderAddHighScore(123);
+      renderAddHighScore();
 
       //when
       userEvent.click(screen.getByText(addButtonText));
@@ -93,6 +105,7 @@ describe("AddHighScore", () => {
       );
       expect(screen.queryByPlaceholderText("Name")).not.toBeInTheDocument();
       expect(screen.queryByPlaceholderText("Score")).not.toBeInTheDocument();
+      expect(refreshHighScores).toHaveBeenCalledWith(defaultSong);
     });
 
     it.each([

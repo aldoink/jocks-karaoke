@@ -1,25 +1,26 @@
 import { NavBar } from "../components/AppBar";
 import logo from "../assets/JocksKaraoke.jpeg";
 import { SongList } from "../components/SongList";
-import React from "react";
-import { SongContext } from "../contexts/SongContext";
+import React, { useState } from "react";
+import { SongContext, songService } from "../contexts/SongContext";
 import styled from "styled-components";
+import { Song } from "../models/Song";
 
 function Home() {
+  const [songs, setSongs] = useState<Song[]>([]);
+
   return (
-    <SongContext.Consumer>
-      {({ songs }) => (
-        <>
-          <NavBar />
-          <Body>
-            <Logo>
-              <img src={logo} className="logo" alt="logo" />
-            </Logo>
-            <SongList songList={songs} />
-          </Body>
-        </>
-      )}
-    </SongContext.Consumer>
+    <>
+      <SongContext.Provider value={{ songService, songs, setSongs }}>
+        <NavBar />
+        <Body>
+          <Logo>
+            <img src={logo} className="logo" alt="logo" />
+          </Logo>
+          <SongList />
+        </Body>
+      </SongContext.Provider>
+    </>
   );
 }
 

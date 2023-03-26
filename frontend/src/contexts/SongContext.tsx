@@ -1,17 +1,16 @@
-import {createContext, Dispatch, SetStateAction} from "react";
-import {SongService} from "../services/SongService";
-import {Song} from "../models/Song";
+import { createContext, Dispatch, SetStateAction } from "react";
+import { SongService } from "../services/SongService";
+import { Song } from "../models/Song";
 
-interface ISongContext {
-    readonly songService: SongService;
-    songs: Song[];
-    setSongs: Dispatch<SetStateAction<never[]>>
+export const songService = new SongService();
+export interface ISongContext {
+  readonly songService: SongService;
+  songs: Song[];
+  setSongs: Dispatch<SetStateAction<Song[]>>;
 }
 
-export const SongContext = createContext<ISongContext>(
-    {
-        songService: {} as SongService,
-        songs: [],
-        setSongs: () => {}
-    }
-);
+export const SongContext = createContext<ISongContext>({
+  songService,
+  songs: [],
+  setSongs: () => {},
+});

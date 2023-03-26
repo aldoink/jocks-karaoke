@@ -1,25 +1,22 @@
 import { render, screen } from "@testing-library/react";
 import { HamburgerMenu } from "./index";
 import userEvent from "@testing-library/user-event";
-import {
-  IServiceContext,
-  ServiceContext,
-} from "../../../contexts/ServiceContext";
 import { AuthService } from "../../../services/AuthService";
+import { AuthContext, IAuthContext } from "../../../contexts/AuthContext";
 
 describe("HamburgerMenu", () => {
   const mockedAuthService = {} as AuthService;
   const renderHamburgerMenu = () =>
     render(
-      <ServiceContext.Provider
+      <AuthContext.Provider
         value={
           {
             authService: mockedAuthService,
-          } as IServiceContext
+          } as IAuthContext
         }
       >
         <HamburgerMenu />{" "}
-      </ServiceContext.Provider>
+      </AuthContext.Provider>
     );
 
   beforeEach(() => {
