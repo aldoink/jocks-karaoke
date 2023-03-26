@@ -84,4 +84,71 @@ describe("HighScoreList", () => {
       )
     ).toBeInTheDocument();
   });
+
+  it('shows an "Add High Score" button when the user is authenticated', () => {
+    //given
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
+    renderHighScoreList();
+
+    //then
+    expect(screen.getByText("Add new High Score")).toBeInTheDocument();
+  });
+
+  it('does not show an "Add High Score" button when the user is not authenticated', () => {
+    //given
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(false);
+    renderHighScoreList();
+
+    //then
+    expect(screen.queryByText("Add new High Score")).not.toBeInTheDocument();
+  });
+
+  it('hides the "Add new High Score" button when addMode is enabled', () => {
+    //given
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
+    renderHighScoreList();
+
+    ///when
+    screen.getByText("Add new High Score").click();
+
+    //then
+    expect(screen.queryByText("Add new High Score")).not.toBeInTheDocument();
+  });
+
+  it("shows the AddHighScore component when the Add High Score button is clicked", () => {
+    //given
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
+    renderHighScoreList();
+
+    //when
+    screen.getByText("Add new High Score").click();
+
+    //then
+    expect(screen.getByPlaceholderText("Name")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Score")).toBeInTheDocument();
+  });
+
+  it('does not show the AddHighScore component before the user clicks on the "Add new High Score" button', () => {
+    //given
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
+    renderHighScoreList();
+
+    //then
+    expect(screen.queryByPlaceholderText("Name")).not.toBeInTheDocument();
+    expect(screen.queryByPlaceholderText("Score")).not.toBeInTheDocument();
+  });
+
+  it("hides the AddHighScore component when the user clicks on the 'Cancel' button", () => {
+    //given
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
+    renderHighScoreList();
+
+    //when
+    screen.getByText("Add new High Score").click();
+    screen.getByText("Cancel").click();
+
+    //then
+    expect(screen.queryByPlaceholderText("Name")).not.toBeInTheDocument();
+    expect(screen.queryByPlaceholderText("Score")).not.toBeInTheDocument();
+  });
 });

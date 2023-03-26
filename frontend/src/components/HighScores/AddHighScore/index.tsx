@@ -3,9 +3,9 @@ import { Input } from "../../shared/Input";
 import { Button } from "../../shared/Button";
 import styled from "styled-components";
 import { HighScore } from "../../../services/HighScoreService";
-import { AuthContext } from "../../../contexts/AuthContext";
 import { HighScoreContext } from "../../../contexts/HighScoreContext";
 import { Song } from "../../../models/Song";
+import { ButtonLayout } from "components/shared/styledComponents";
 
 const InputContainer = styled.div`
   display: flex;
@@ -25,19 +25,16 @@ const InputContainer = styled.div`
   }
 `;
 
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 interface IAddHighScoreProps {
   readonly song: Song;
+  readonly closeFn: () => void;
 }
 
-export const AddHighScore: React.FC<IAddHighScoreProps> = ({ song }) => {
-  const { authService } = useContext(AuthContext);
+export const AddHighScore: React.FC<IAddHighScoreProps> = ({
+  song,
+  closeFn,
+}) => {
   const { highScoreService, refreshHighScores } = useContext(HighScoreContext);
-  const [editMode, setEditMode] = useState(false);
   const [highScore, setHighScore] = useState<HighScore>({
     name: "",
     score: "",
@@ -46,8 +43,8 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({ song }) => {
 
   const saveHighScore = async () => {
     await highScoreService.save(highScore);
-    setEditMode(false);
     refreshHighScores(song);
+    closeFn();
   };
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,35 +63,31 @@ export const AddHighScore: React.FC<IAddHighScoreProps> = ({ song }) => {
     await saveHighScore();
   };
 
+  const handleCancelClicked = () => {
+    closeFn();
+    setHighScore({ ...highScore, name: "", score: "" });
+  };
   return (
-    <>
-      {editMode && (
-        <form onSubmit={handleSubmit}>
-          <InputContainer>
-            <Input
-              type="text"
-              placeholder={"Name"}
-              value={highScore.name}
-              onChange={handleNameChange}
-            />
-            <Input
-              type="text"
-              placeholder={"Score"}
-              value={highScore.score}
-              onChange={handleScoreChange}
-              maxLength={2}
-            />
-          </InputContainer>
-          <Center>
-            <Button onClick={handleSubmit}>Save</Button>
-          </Center>
-        </form>
-      )}
-      {!editMode && authService.isAuthenticated() && (
-        <Center>
-          <Button onClick={() => setEditMode(true)}>Add new High Score</Button>
-        </Center>
-      )}
-    </>
+    <form onSubmit={handleSubmit}>
+      <InputContainer>
+        <Input
+          type="text"
+          placeholder={"Name"}
+          value={highScore.name}
+          onChange={handleNameChange}
+        />
+        <Input
+          type="text"
+          placeholder={"Score"}
+          value={highScore.score}
+          onChange={handleScoreChange}
+          maxLength={2}
+        />
+      </InputContainer>
+      <ButtonLayout>
+        <Button onClick={handleSubmit}>Save</Button>
+        <Button onClick={handleCancelClicked}>Cancel</Button>
+      </ButtonLayout>
+    </form>
   );
 };

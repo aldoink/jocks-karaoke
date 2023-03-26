@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Song } from "../../models/Song";
-import { HighScore } from "../../services/HighScoreService";
 import styled from "styled-components";
 import { HighScoreTable } from "./HighScoreTable";
 import { AddHighScore } from "./AddHighScore";
 import { HighScoreContext } from "../../contexts/HighScoreContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { Button } from "../shared/Button";
+import { ButtonLayout } from "../shared/styledComponents";
 
 export interface HighScoreProps {
   readonly song: Song;
@@ -28,12 +30,18 @@ const TitleContainer = styled.div`
 `;
 
 export const HighScores: React.FC<HighScoreProps> = ({ song }) => {
-  const { highScores, refreshHighScores, highScoreService, hasError } =
+  const { refreshHighScores, highScoreService, hasError } =
     useContext(HighScoreContext);
+  const [addMode, setAddMode] = useState(false);
+  const { authService } = useContext(AuthContext);
 
   useEffect(() => {
     refreshHighScores(song);
   }, [highScoreService, song]);
+
+  function handleAddClicked() {
+    setAddMode(true);
+  }
 
   return (
     <>
@@ -48,7 +56,14 @@ export const HighScores: React.FC<HighScoreProps> = ({ song }) => {
           </TitleContainer>
           <div>
             <HighScoreTable />
-            <AddHighScore song={song} />
+            <ButtonLayout>
+              {authService.isAuthenticated() && !addMode && (
+                <Button onClick={handleAddClicked}>Add new High Score</Button>
+              )}
+              {addMode && (
+                <AddHighScore song={song} closeFn={() => setAddMode(false)} />
+              )}
+            </ButtonLayout>
           </div>
         </TableContainer>
       )}

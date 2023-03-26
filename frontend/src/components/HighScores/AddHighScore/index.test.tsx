@@ -14,16 +14,18 @@ import {
 import { Song } from "../../../models/Song";
 
 describe("AddHighScore", () => {
-  const addButtonText = "Add new High Score";
   const defaultSong = {
     id: 123,
     artist: "Blur",
     title: "Song 2",
     location: "location",
   } as Song;
-  const mockedHighScoreService = {} as HighScoreService;
+  const mockedHighScoreService = {
+    save: jest.fn().mockResolvedValue(true),
+  } as unknown as HighScoreService;
   const mockedAuthService = {} as AuthService;
   const refreshHighScores = jest.fn();
+  const close = jest.fn();
 
   function renderAddHighScore(song: Song = defaultSong) {
     return render(
@@ -38,7 +40,7 @@ describe("AddHighScore", () => {
             } as unknown as IHighScoreContext
           }
         >
-          <AddHighScore song={song} />
+          <AddHighScore song={song} closeFn={close} />
         </HighScoreContext.Provider>
       </AuthContext.Provider>
     );
@@ -54,32 +56,7 @@ describe("AddHighScore", () => {
       mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
     });
 
-    it("shows a button to add high score when editMode is false", () => {
-      //given & when
-      renderAddHighScore();
-
-      //then
-      expect(screen.getByText(addButtonText)).toBeInTheDocument();
-      expect(screen.queryByText("Save")).not.toBeInTheDocument();
-      expect(screen.queryByPlaceholderText("Name")).not.toBeInTheDocument();
-      expect(screen.queryByPlaceholderText("Score")).not.toBeInTheDocument();
-    });
-
     const getScoreInput = () => screen.getByPlaceholderText("Score");
-
-    it("hides Add button and shows Inputs and Save button when add button is clicked", () => {
-      //given
-      renderAddHighScore();
-
-      //when
-      userEvent.click(screen.getByText(addButtonText));
-
-      //then
-      expect(screen.queryByText(addButtonText)).not.toBeInTheDocument();
-      expect(screen.getByText("Save")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("Name")).toBeInTheDocument();
-      expect(getScoreInput()).toBeInTheDocument();
-    });
 
     it("saves high score and refreshes when save button is clicked", async () => {
       //given
@@ -91,7 +68,6 @@ describe("AddHighScore", () => {
       renderAddHighScore();
 
       //when
-      userEvent.click(screen.getByText(addButtonText));
       userEvent.type(screen.getByPlaceholderText("Name"), "Johnny");
       userEvent.type(getScoreInput(), "99");
       userEvent.click(screen.getByText("Save"));
@@ -100,11 +76,7 @@ describe("AddHighScore", () => {
       expect(mockedHighScoreService.save).toHaveBeenCalledWith(
         expectedHighScore
       );
-      await waitFor(() =>
-        expect(screen.getByText(addButtonText)).toBeInTheDocument()
-      );
-      expect(screen.queryByPlaceholderText("Name")).not.toBeInTheDocument();
-      expect(screen.queryByPlaceholderText("Score")).not.toBeInTheDocument();
+      await waitFor(() => expect(close).toHaveBeenCalled());
       expect(refreshHighScores).toHaveBeenCalledWith(defaultSong);
     });
 
@@ -120,7 +92,6 @@ describe("AddHighScore", () => {
         renderAddHighScore();
 
         //when
-        userEvent.click(screen.getByText(addButtonText));
         userEvent.type(getScoreInput(), "test");
 
         //then
@@ -146,7 +117,6 @@ describe("AddHighScore", () => {
         renderAddHighScore();
 
         //when
-        userEvent.click(screen.getByText(addButtonText));
         userEvent.type(getScoreInput(), "test");
 
         //then
@@ -161,17 +131,17 @@ describe("AddHighScore", () => {
     );
   });
 
-  it("hides the Add button when the user is not authenticated", () => {
+  it("calls the close function and clears the inputs when the user clicks cancel", () => {
     //given
-    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(false);
-
-    //when
+    mockedAuthService.isAuthenticated = jest.fn().mockReturnValue(true);
     renderAddHighScore();
 
+    //when
+    userEvent.type(screen.getByPlaceholderText("Name"), "Johnny");
+    userEvent.type(screen.getByPlaceholderText("Score"), "99");
+    userEvent.click(screen.getByText("Cancel"));
+
     //then
-    expect(screen.queryByText(addButtonText)).not.toBeInTheDocument();
-    expect(screen.queryByText("Save")).not.toBeInTheDocument();
-    expect(screen.queryByPlaceholderText("Name")).not.toBeInTheDocument();
-    expect(screen.queryByPlaceholderText("Score")).not.toBeInTheDocument();
+    expect(close).toHaveBeenCalled();
   });
 });
