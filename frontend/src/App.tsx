@@ -5,7 +5,7 @@ import { AuthService } from "./services/AuthService";
 import { HighScoreService } from "./services/HighScoreService";
 import { SongService } from "./services/SongService";
 import { SongContext } from "./contexts/SongContext";
-import Home from "./pages";
+import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const theme = {
@@ -45,10 +45,9 @@ function App() {
           <AppContainer>
             <BrowserRouter>
               <Routes>
-                <Route path={"/"} element={<Home />}></Route>
+                <Route index path="/" element={<Home />}></Route>
               </Routes>
             </BrowserRouter>
-            <Home />
           </AppContainer>
         </SongContext.Provider>
       </ServiceContext.Provider>
