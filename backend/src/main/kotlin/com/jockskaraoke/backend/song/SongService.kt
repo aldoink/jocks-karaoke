@@ -11,12 +11,12 @@ class SongService(
 ) {
     fun findSong(searchTerm: String?): List<Song> {
         if (searchTerm == null) {
-            return songRepository.findAll().toList()
+            return songRepository.findAll().toList().sortedBy { it.location }
         }
         return songRepository.findAll(
             where(artistContains(searchTerm))
                 .or(titleContains(searchTerm))
                 .or(locationContains(searchTerm))
-        )
+        ).toList().sortedBy { it.location }
     }
 }
