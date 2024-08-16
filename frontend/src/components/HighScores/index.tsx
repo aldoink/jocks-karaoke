@@ -13,7 +13,7 @@ export interface HighScoreProps {
 }
 
 const TableContainer = styled.div`
-  color: ${(props) => props.theme.darkBlue};
+  color: ${(props) => props.theme.mainDark};
 `;
 
 const TitleContainer = styled.div`

@@ -39,7 +39,7 @@ const fullScreen = css`
 
 const SemiTransparentBackground = styled.div`
   ${fullScreen};
-  background-color: ${(props) => props.theme.darkBlue};
+  background-color: ${(props) => props.theme.mainDark};
   opacity: 70%;
   z-index: 2;
 `;
@@ -68,7 +68,7 @@ const Inner = styled.div`
     right: 1rem;
     height: 2rem;
     width: 2rem;
-    fill: ${(props) => props.theme.darkBlue};
+    fill: ${(props) => props.theme.mainDark};
     transition: 0.5s;
   }
 `;
