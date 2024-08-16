@@ -9,7 +9,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_ROOT_PASSWORD: "Nak4pic.mysql"
       MYSQL_DATABASE: jocks-karaoke
     volumes:
       - db-data:/var/lib/sql
@@ -20,8 +20,8 @@ services:
     network_mode: host
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-    depends_on:
-      - db
+#    depends_on:
+#      - db
   frontend:
     image: aldoink/jocks-karaoke:frontend_1.0.0
     container_name: frontend

@@ -1,5 +1,5 @@
 import { NavBar } from "../components/AppBar";
-import logo from "../assets/JocksKaraoke.jpeg";
+import celticLogo from "../assets/Shona's Celtic FC Logo.png";
 import { SongList } from "../components/SongList";
 import React, { useState } from "react";
 import { SongContext, songService } from "../contexts/SongContext";
@@ -15,7 +15,7 @@ function Home() {
         <NavBar />
         <Body>
           <Logo>
-            <img src={logo} className="logo" alt="logo" />
+            <img src={celticLogo} className="logo" alt="logo" />
           </Logo>
           <SongList />
         </Body>

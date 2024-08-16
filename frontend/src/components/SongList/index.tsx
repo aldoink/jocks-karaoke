@@ -85,7 +85,7 @@ const TitleArtistContainer = styled.div`
   }
 
   h4 {
-    color: red;
+    color: gold;
     margin: 0;
   }
 `;
