@@ -52,6 +52,6 @@ const SearchInput = styled(Input)`
   transition: border-bottom-color 0.5s;
 
   &:focus {
-    border-bottom-color: red;
+    border-bottom-color: gold;
   }
 `;

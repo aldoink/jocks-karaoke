@@ -17,7 +17,7 @@ const TableContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid gold;
 
   h2,
   h3 {
