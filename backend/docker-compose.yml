@@ -23,7 +23,7 @@ services:
 #    depends_on:
 #      - db
   frontend:
-    image: aldoink/jocks-karaoke:frontend_1.0.0
+    image: aldoink/jocks-karaoke:frontend_2.0.0
     container_name: frontend
     restart: always
     ports:
