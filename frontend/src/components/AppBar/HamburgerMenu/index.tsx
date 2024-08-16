@@ -1,8 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
-import "./index.scss";
 import { Login } from "./Login";
 import { useClickOutsideListener } from "../../../hooks/useClickOutsideListener";
 import { AuthContext } from "../../../contexts/AuthContext";
+import Container from "./components/Container";
+import Button from "./components/Button";
+import MenuDrawer from "./components/MenuDrawer";
+import MenuItem from "./components/MenuItem";
 
 export const HamburgerMenu: React.FC = () => {
   const { authService } = useContext(AuthContext);
@@ -23,45 +26,31 @@ export const HamburgerMenu: React.FC = () => {
 
   return (
     <>
-      <div
+      <Container
         id="hamburger-container"
         data-testid="hamburger-container"
-        className={isOpen ? "is-active" : ""}
         ref={hamburger}
+        isOpen={isOpen}
       >
-        <button
-          data-testid="hamburger-button"
-          className={`hamburger hamburger--squeeze ${
-            isOpen ? "is-active" : ""
-          }`}
-          type="button"
-          onClick={toggleMenu}
-        >
-          <span className="hamburger-box">
-            <span className="hamburger-inner" />
-          </span>
-        </button>
-      </div>
-      <div
+        <Button onClick={toggleMenu} isOpen={isOpen} />
+      </Container>
+      <MenuDrawer
         data-testid="menu-drawer"
         className="menu-drawer"
         ref={menuDrawer}
-        style={{
-          maxHeight: `${isOpen ? "80px" : "0px"}`,
-          visibility: `${isOpen ? "visible" : "hidden"}`,
-        }}
+        isOpen={isOpen}
       >
         {!authService.isAuthenticated() && (
-          <div className="menu-item">
+          <MenuItem>
             <Login closeMenu={toggleMenu} />
-          </div>
+          </MenuItem>
         )}
         {authService.isAuthenticated() && (
-          <div className={"menu-item"}>
+          <MenuItem>
             <div onClick={handleLogoutClicked}>Logout</div>
-          </div>
+          </MenuItem>
         )}
-      </div>
+      </MenuDrawer>
     </>
   );
 };
