@@ -1,0 +1,15 @@
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0346', 'Beautiful South', 'Song For Whoever');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0347', 'Haircut 100', 'Love Plus One');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0348', 'Madonna', 'Into The Groove');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0349', 'Farm', 'All Together Now');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0350', 'Patsy Cline', 'Walkin\' After Midnight');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0351', 'Mari Wilson', 'Just What I Always Wanted');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0352', 'Phil Collins', 'Against All Odds (Take A Look At Me Now)');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0353', 'Millie', 'My Boy Lollipop');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0354', 'Hot Chocolate', 'It Started With A Kiss');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0355', 'Sabrina Carpenter', 'Espresso');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0356', 'Sabrina Carpenter', 'Please Please Please');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0357', 'Wicked Soundtrack', 'Popular');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0358', 'Wicked', 'What Is This Feeling');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0359', 'Wicked', 'Defying Gravity');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0360', 'Fine Young Cannibals', 'Good Thing');
