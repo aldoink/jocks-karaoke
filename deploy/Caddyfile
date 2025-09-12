@@ -5,18 +5,36 @@
 # - Proxy root to frontend service
 # - Proxy backend subdomain to backend service
 # - Proxy portainer subdomain to portainer service
+# - Add HSTS and basic security headers; upgrade insecure requests
+# - Normalize site addresses to enable auto HTTPS + redirects
 #
 # @LLM_USAGE Fully LLM generated.
 
-https://www.jocks-karaoke.com, jocks-karaoke.com {
+jocks-karaoke.com, www.jocks-karaoke.com {
+  encode zstd gzip
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Referrer-Policy "no-referrer-when-downgrade"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+    Content-Security-Policy "upgrade-insecure-requests"
+  }
   reverse_proxy frontend:3000
 }
 
-https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
+backend.jocks-karaoke.com, https://backend.jocks-karaoke.com {
+  encode zstd gzip
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  }
   reverse_proxy backend:9090
 }
 
 portainer.jocks-karaoke.com {
+  encode zstd gzip
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  }
   reverse_proxy portainer:9000
 }
 
