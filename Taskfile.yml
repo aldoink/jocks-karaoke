@@ -1,13 +1,5 @@
 # https://taskfile.dev
-#
-# Taskfile for local development and production Docker workflows.
-#
-# Changes made:
-# - Added dev tasks (up/down/logs/rebuild, arm64 rebuild) using base+override compose
-# - Added prod tasks (up/down/restart/pull) using base compose
-# - Updated start/stop to use deploy compose files instead of legacy backend docker-compose
-#
-# @LLM_USAGE File enhanced by LLM: added comprehensive docker compose tasks for dev/prod.
+
 
 version: '3'
 
@@ -53,6 +45,75 @@ tasks:
     dir: frontend
     cmds:
       - yarn run docker:build
+
+  # --- Release (images and remote deploy) ---
+  release:backend-image:
+    desc: "Build and push backend image (tags: aldoink/jocks-karaoke:backend_1.0.0)"
+    cmds:
+      - ./gradlew :backend:clean :backend:buildDockerImage
+      - ./gradlew :backend:pushDockerImage
+
+  release:frontend-image:
+    desc: "Build and push frontend image with backend URL baked in (tag uses package.json version)"
+    vars:
+      BACKEND_URL: '{{.BACKEND_URL | default "https://backend.jocks-karaoke.com"}}'
+    cmds:
+      - |
+        docker buildx create --use >/dev/null 2>&1 || true
+        FRONTEND_VERSION=$(node -p "require('./frontend/package.json').version")
+        docker buildx build --platform linux/amd64 \
+          --build-arg REACT_APP_BACKEND_URL={{.BACKEND_URL}} \
+          -t aldoink/jocks-karaoke:frontend_${FRONTEND_VERSION} ./frontend --push
+
+  release:init-remote-env:
+    desc: "Ensure remote deploy/.env exists with MYSQL_ROOT_PASSWORD and JWT_SECRET"
+    vars:
+      DEPLOY_HOST: '{{.DEPLOY_HOST | default "jocks-karaoke.com"}}'
+      DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
+    cmds:
+      - |
+        ssh {{.DEPLOY_USER}}@{{.DEPLOY_HOST}} 'cd ~/jocks-karaoke/deploy && [ -f .env ] || { \
+          if command -v openssl >/dev/null; then \
+            echo "MYSQL_ROOT_PASSWORD=$(openssl rand -hex 24)" > .env; \
+            echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env; \
+          else \
+            PW1=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d " \n"); \
+            PW2=$(head -c 48 /dev/urandom | od -An -tx1 | tr -d " \n"); \
+            echo "MYSQL_ROOT_PASSWORD=${PW1}" > .env; \
+            echo "JWT_SECRET=${PW2}" >> .env; \
+          fi; \
+        }'
+
+  release:deploy:
+    desc: "Pull images and restart services on the server via SSH"
+    vars:
+      DEPLOY_HOST: '{{.DEPLOY_HOST | default "jocks-karaoke.com"}}'
+      DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
+    cmds:
+      - |
+        ssh {{.DEPLOY_USER}}@{{.DEPLOY_HOST}} 'cd ~/jocks-karaoke/deploy && \
+          docker compose -f docker-compose.yml pull && \
+          docker compose -f docker-compose.yml up -d'
+
+  release:all:
+    desc: "Build and push both images, ensure remote env, and deploy"
+    vars:
+      BACKEND_URL: '{{.BACKEND_URL | default "https://backend.jocks-karaoke.com"}}'
+      DEPLOY_HOST: '{{.DEPLOY_HOST | default "jocks-karaoke.com"}}'
+      DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
+    cmds:
+      - task: release:backend-image
+      - task: release:frontend-image
+        vars:
+          BACKEND_URL: "{{.BACKEND_URL}}"
+      - task: release:init-remote-env
+        vars:
+          DEPLOY_HOST: "{{.DEPLOY_HOST}}"
+          DEPLOY_USER: "{{.DEPLOY_USER}}"
+      - task: release:deploy
+        vars:
+          DEPLOY_HOST: "{{.DEPLOY_HOST}}"
+          DEPLOY_USER: "{{.DEPLOY_USER}}"
 
   # --- Dev Compose Convenience ---
   dev:up:

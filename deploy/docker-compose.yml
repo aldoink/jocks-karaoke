@@ -7,9 +7,11 @@
 # - Wired backend to MySQL via env-var override for datasource URL
 # - Wired frontend behind Caddy
 # - Added Portainer UI proxied by Caddy
+# - Aligned frontend image tag to 2.0.0 to match package.json
 #
 # @LLM_USAGE Fully LLM generated.
 # @LLM_USAGE Compose refined by LLM: base/override model; removed version key.
+# @LLM_USAGE Frontend image tag aligned to 2.0.0 to match package.json.
 
 
 
@@ -53,7 +55,7 @@ services:
       - mysql
 
   frontend:
-    image: aldoink/jocks-karaoke:frontend_3.0.0
+    image: aldoink/jocks-karaoke:frontend_2.0.0
     restart: always
     expose:
       - "3000"
