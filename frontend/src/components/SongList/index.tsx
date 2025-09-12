@@ -1,3 +1,11 @@
+/**
+ * Song list and modal launcher for high scores.
+ *
+ * Changes made:
+ * - Updated artist text color from gold to red per design.
+ *
+ * @LLM_USAGE Replaced yellow/gold artist text with red.
+ */
 import React, { useContext, useEffect, useState } from "react";
 import { Song } from "../../models/Song";
 import { Modal } from "../Modal";
@@ -85,7 +93,7 @@ const TitleArtistContainer = styled.div`
   }
 
   h4 {
-    color: gold;
+    color: red;
     margin: 0;
   }
 `;

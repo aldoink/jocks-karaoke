@@ -1,7 +1,15 @@
 @import "src/scss/variables";
 
+/**
+ * Login form styling for hamburger menu.
+ *
+ * Changes made:
+ * - Updated heading and button colors/border from Celtic green to Rangers dark blue.
+ *
+ * @LLM_USAGE Reverted login styles to Rangers color palette.
+ */
 h2 {
-  color: $celtic-dark-green;
+  color: $rangers-dark-blue;
 }
 
 .form-container {
@@ -11,8 +19,8 @@ h2 {
   button {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    color: $celtic-dark-green;
-    border: 1px solid $celtic-dark-green;
+    color: $rangers-dark-blue;
+    border: 1px solid $rangers-dark-blue;
     border-radius: 4px;
     background-color: transparent;
     font-size: 20px;

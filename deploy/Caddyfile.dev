@@ -1,0 +1,50 @@
+#
+# Local development Caddyfile (HTTP only, high ports)
+#
+# Changes made:
+# - Frontend on :8080, Backend on :8081, Portainer on :8082
+#
+# @LLM_USAGE Fully LLM generated.
+
+
+# Dev: localhost-only, no hosts-file edits, plain HTTP on high ports
+
+:8080 {
+  @api path /api*
+  handle @api {
+    uri strip_prefix /api
+    reverse_proxy backend:9090
+  }
+  handle {
+    reverse_proxy frontend:3000
+  }
+}
+
+:8081 {
+  reverse_proxy backend:9090
+}
+
+:8082 {
+  reverse_proxy portainer:9000
+}
+
+# Also provide prod-like hostnames with local TLS so the FE can call
+# https://backend.jocks-karaoke.com directly during local development.
+# Add to /etc/hosts: 127.0.0.1 jocks-karaoke.com www.jocks-karaoke.com backend.jocks-karaoke.com portainer.jocks-karaoke.com
+
+https://www.jocks-karaoke.com, jocks-karaoke.com {
+  tls internal
+  reverse_proxy frontend:3000
+}
+
+https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
+  tls internal
+  reverse_proxy backend:9090
+}
+
+https://portainer.jocks-karaoke.com, portainer.jocks-karaoke.com {
+  tls internal
+  reverse_proxy portainer:9000
+}
+
+

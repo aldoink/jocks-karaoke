@@ -1,3 +1,11 @@
+/**
+ * High scores view and controls for a selected song.
+ *
+ * Changes made:
+ * - Changed title container bottom border from gold to red.
+ *
+ * @LLM_USAGE Replaced yellow/gold styling with red for borders.
+ */
 import React, { useContext, useEffect, useState } from "react";
 import { Song } from "../../models/Song";
 import styled from "styled-components";
@@ -17,7 +25,7 @@ const TableContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  border-bottom: 1px solid gold;
+  border-bottom: 1px solid red;
 
   h2,
   h3 {

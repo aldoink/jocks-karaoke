@@ -1,4 +1,13 @@
 # https://taskfile.dev
+#
+# Taskfile for local development and production Docker workflows.
+#
+# Changes made:
+# - Added dev tasks (up/down/logs/rebuild, arm64 rebuild) using base+override compose
+# - Added prod tasks (up/down/restart/pull) using base compose
+# - Updated start/stop to use deploy compose files instead of legacy backend docker-compose
+#
+# @LLM_USAGE File enhanced by LLM: added comprehensive docker compose tasks for dev/prod.
 
 version: '3'
 
@@ -18,16 +27,16 @@ tasks:
     desc: Start the frontend locally with yarn
 
   start:
-    desc: Start backend, frontend and DB using docker containers
-    dir: backend
+    desc: Start full stack with Docker (prod base + local override)
+    dir: deploy
     cmds:
-      - docker-compose up -d
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
   stop:
-    desc: Stop backend, frontend and DB
-    dir: backend
+    desc: Stop all containers
+    dir: deploy
     cmds:
-      - docker-compose down
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml down
 
   build-backend-image:
     desc: Builds the backend and generates a new docker image
@@ -44,6 +53,73 @@ tasks:
     dir: frontend
     cmds:
       - yarn run docker:build
+
+  # --- Dev Compose Convenience ---
+  dev:up:
+    desc: Start dev stack (build if needed)
+    dir: deploy
+    cmds:
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
+  dev:down:
+    desc: Stop dev stack and remove containers
+    dir: deploy
+    cmds:
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml down
+
+  dev:logs:
+    desc: Tail logs for a service (var SERVICE)
+    dir: deploy
+    cmds:
+      - |
+        if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service>"; exit 1; fi
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml logs -f ${SERVICE}
+
+  dev:rebuild:
+    desc: Force rebuild a service (var SERVICE)
+    dir: deploy
+    cmds:
+      - |
+        if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service> (frontend|backend)"; exit 1; fi
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml rm -sf ${SERVICE}
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml build --no-cache ${SERVICE}
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${SERVICE}
+
+  dev:rebuild:arm64:
+    desc: Rebuild a service for Apple Silicon (var SERVICE)
+    dir: deploy
+    cmds:
+      - |
+        if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service>"; exit 1; fi
+      - DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 docker compose -f docker-compose.yml -f docker-compose.override.yml build --no-cache ${SERVICE}
+      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${SERVICE}
+
+  # --- Production Compose Convenience ---
+  prod:up:
+    desc: Start production stack (uses images only)
+    dir: deploy
+    cmds:
+      - docker compose -f docker-compose.yml up -d
+
+  prod:down:
+    desc: Stop production stack
+    dir: deploy
+    cmds:
+      - docker compose -f docker-compose.yml down
+
+  prod:restart:
+    desc: Restart a prod service (var SERVICE)
+    dir: deploy
+    cmds:
+      - |
+        if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service>"; exit 1; fi
+      - docker compose -f docker-compose.yml restart ${SERVICE}
+
+  prod:pull:
+    desc: Pull latest prod images
+    dir: deploy
+    cmds:
+      - docker compose -f docker-compose.yml pull
 
   test-backend:
     desc: Builds the backend and runs the tests

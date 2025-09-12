@@ -1,5 +1,13 @@
+/**
+ * Home page rendering navigation, logo, and song list.
+ *
+ * Changes made:
+ * - Replaced Celtic logo with original JocksKaraoke.jpeg (Rangers styling).
+ *
+ * @LLM_USAGE Reverted home logo to original Rangers-themed asset.
+ */
 import { NavBar } from "../components/AppBar";
-import celticLogo from "../assets/Shona's Celtic FC Logo.png";
+import rangersLogo from "../assets/JocksKaraoke.jpeg";
 import { SongList } from "../components/SongList";
 import React, { useState } from "react";
 import { SongContext, songService } from "../contexts/SongContext";
@@ -15,7 +23,7 @@ function Home() {
         <NavBar />
         <Body>
           <Logo>
-            <img src={celticLogo} className="logo" alt="logo" />
+            <img src={rangersLogo} className="logo" alt="logo" />
           </Logo>
           <SongList />
         </Body>

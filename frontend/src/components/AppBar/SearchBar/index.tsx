@@ -1,3 +1,11 @@
+/**
+ * Search bar component for filtering songs.
+ *
+ * Changes made:
+ * - Updated focus border color from gold to red.
+ *
+ * @LLM_USAGE Replaced yellow/gold focus color with red.
+ */
 import React, { useEffect } from "react";
 import { ReactComponent as SearchIcon } from "../../../assets/search-icon.svg";
 import styled from "styled-components";
@@ -52,6 +60,6 @@ const SearchInput = styled(Input)`
   transition: border-bottom-color 0.5s;
 
   &:focus {
-    border-bottom-color: gold;
+    border-bottom-color: red;
   }
 `;

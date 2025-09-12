@@ -1,0 +1,78 @@
+#
+# Local development stack (HTTP only) with Caddy in Docker.
+#
+# Changes made:
+# - Exposes Caddy on high ports so no root perms are required
+# - Uses service names for reverse proxying
+# - Uses local builds of frontend/backend
+#
+# @LLM_USAGE Fully LLM generated.
+# @LLM_USAGE Compose refined by LLM: dev overrides moved to override file; removed version key.
+
+
+
+services:
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+    volumes:
+      - ./Caddyfile.dev:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - frontend
+      - backend
+      - portainer
+
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Nak4pic.mysql
+      MYSQL_DATABASE: jocks-karaoke
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    image: jocks-karaoke/backend:local
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Nak4pic.mysql
+      JWT_SECRET: dev
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jocks-karaoke
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mysql
+
+  frontend:
+    build:
+      context: ../frontend
+      args:
+        REACT_APP_BACKEND_URL: /api
+    image: jocks-karaoke/frontend:local
+    restart: unless-stopped
+    expose:
+      - "3000"
+    depends_on:
+      - backend
+
+  portainer:
+    image: portainer/portainer-ce:2.11.1
+    restart: unless-stopped
+    expose:
+      - "9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+
+volumes:
+  mysql-data:
+  portainer-data:
+
+

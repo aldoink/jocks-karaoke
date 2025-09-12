@@ -1,6 +1,14 @@
 @import "src/scss/variables";
 
 /**
+ * Success checkmark animation styling.
+ *
+ * Changes made:
+ * - Updated border and line colors from Celtic green to Rangers blue variables.
+ *
+ * @LLM_USAGE Reverted success checkmark to Rangers blue palette.
+ */
+/**
  * Extracted from: SweetAlert
  * Modified by: Istiak Tridip
  */
@@ -15,7 +23,7 @@
     position: relative;
     border-radius: 50%;
     box-sizing: content-box;
-    border: 4px solid $celtic-dark-green;
+    border: 4px solid $rangers-dark-blue;
 
     &::before {
       top: 3px;
@@ -44,7 +52,7 @@
 
     .icon-line {
       height: 5px;
-      background-color: $celtic-green;
+      background-color: $rangers-blue;
       display: block;
       border-radius: 2px;
       position: absolute;
@@ -76,7 +84,7 @@
       border-radius: 50%;
       position: absolute;
       box-sizing: content-box;
-      border: 4px solid $celtic-dark-green;
+      border: 4px solid $rangers-dark-blue;
     }
 
     .icon-fix {

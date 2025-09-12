@@ -1,3 +1,11 @@
+/**
+ * App root component that sets up global theme and client-side routing.
+ *
+ * Changes made:
+ * - Switched ThemeProvider to Rangers theme (blue) from Celtic (green).
+ *
+ * @LLM_USAGE Reverted styling to Rangers blue and updated theme provider.
+ */
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Home from "./pages/Home";
@@ -32,7 +40,7 @@ const AppContainer = styled.div`
 
 function App() {
   return (
-    <ThemeProvider theme={celticTheme}>
+    <ThemeProvider theme={rangersTheme}>
       <Background />
       <AppContainer>
         <BrowserRouter>

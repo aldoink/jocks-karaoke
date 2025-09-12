@@ -1,0 +1,23 @@
+#
+# Caddy reverse proxy for production with automatic HTTPS.
+#
+# Changes made:
+# - Proxy root to frontend service
+# - Proxy backend subdomain to backend service
+# - Proxy portainer subdomain to portainer service
+#
+# @LLM_USAGE Fully LLM generated.
+
+https://www.jocks-karaoke.com, jocks-karaoke.com {
+  reverse_proxy frontend:3000
+}
+
+https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
+  reverse_proxy backend:9090
+}
+
+portainer.jocks-karaoke.com {
+  reverse_proxy portainer:9000
+}
+
+

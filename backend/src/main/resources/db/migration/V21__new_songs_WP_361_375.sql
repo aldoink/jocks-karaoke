@@ -1,0 +1,17 @@
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0361', 'Smash Mouth', 'All Star');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0362', 'Oasis', 'Whatever');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0363', 'Sugababes', 'Too Lost In You');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0364', 'Engelbert Humperdinck', 'Release Me');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0365', 'Creedence Clearwater Revival', 'Have You Ever Seen The Rain');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0366', 'Texas', 'Say What You Want');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0367', 'Des''ree', 'Life');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0368', 'Suzi Quatro and Chris Norman', 'Stumblin'' In');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0369', 'Cher', 'Just Like Jesse James');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0370', 'George Michael', 'Father Figure');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0371', 'Soul Asylum', 'Runaway Train');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0372', 'Kid Creole and The Coconuts', 'Annie I''m Not Your Daddy');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0373', 'Rod Stewart', 'Tonight''s The Night (Gonna Be Alright)');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0374', 'Simply Red', 'Fairground');
+INSERT INTO SONGS (LOCATION, ARTIST, TITLE) VALUES ('WP-0375', 'Chappell Roan', 'Pink Pony Club');
+
+
