@@ -8,10 +8,12 @@
 # - Wired frontend behind Caddy
 # - Added Portainer UI proxied by Caddy
 # - Aligned frontend image tag to 2.0.0 to match package.json
+# - Configure MySQL app user; backend uses non-root DB credentials
 #
 # @LLM_USAGE Fully LLM generated.
 # @LLM_USAGE Compose refined by LLM: base/override model; removed version key.
 # @LLM_USAGE Frontend image tag aligned to 2.0.0 to match package.json.
+# @LLM_USAGE MySQL app user added and backend wired to use it.
 
 
 
@@ -37,6 +39,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: jocks-karaoke
+      MYSQL_USER: ${MYSQL_APP_USER}
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD}
     volumes:
       - mysql-data:/var/lib/mysql
     expose:
@@ -49,6 +53,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jocks-karaoke
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_APP_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_APP_PASSWORD}
     expose:
       - "9090"
     depends_on:
