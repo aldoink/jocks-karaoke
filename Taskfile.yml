@@ -57,12 +57,14 @@ tasks:
     desc: "Build and push frontend image with backend URL baked in (tag uses package.json version)"
     vars:
       BACKEND_URL: '{{.BACKEND_URL | default "https://backend.jocks-karaoke.com"}}'
+      PUBLIC_URL: '{{.PUBLIC_URL | default "https://jocks-karaoke.com"}}'
     cmds:
       - |
         docker buildx create --use >/dev/null 2>&1 || true
         FRONTEND_VERSION=$(node -p "require('./frontend/package.json').version")
         docker buildx build --platform linux/amd64 \
           --build-arg REACT_APP_BACKEND_URL={{.BACKEND_URL}} \
+          --build-arg PUBLIC_URL={{.PUBLIC_URL}} \
           -t aldoink/jocks-karaoke:frontend_${FRONTEND_VERSION} ./frontend --push
 
   release:init-remote-env:
@@ -99,6 +101,7 @@ tasks:
     desc: "Build and push both images, ensure remote env, and deploy"
     vars:
       BACKEND_URL: '{{.BACKEND_URL | default "https://backend.jocks-karaoke.com"}}'
+      PUBLIC_URL: '{{.PUBLIC_URL | default "https://jocks-karaoke.com"}}'
       DEPLOY_HOST: '{{.DEPLOY_HOST | default "jocks-karaoke.com"}}'
       DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
     cmds:
@@ -106,6 +109,7 @@ tasks:
       - task: release:frontend-image
         vars:
           BACKEND_URL: "{{.BACKEND_URL}}"
+          PUBLIC_URL: "{{.PUBLIC_URL}}"
       - task: release:init-remote-env
         vars:
           DEPLOY_HOST: "{{.DEPLOY_HOST}}"
