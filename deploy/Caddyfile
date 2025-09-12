@@ -19,7 +19,13 @@ jocks-karaoke.com, www.jocks-karaoke.com {
     X-Frame-Options "DENY"
     Content-Security-Policy "upgrade-insecure-requests"
   }
-  reverse_proxy frontend:3000
+  reverse_proxy frontend:3000 {
+    header_down Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    header_down Referrer-Policy "no-referrer-when-downgrade"
+    header_down X-Content-Type-Options "nosniff"
+    header_down X-Frame-Options "DENY"
+    header_down Content-Security-Policy "upgrade-insecure-requests"
+  }
 }
 
 backend.jocks-karaoke.com, https://backend.jocks-karaoke.com {
@@ -27,7 +33,9 @@ backend.jocks-karaoke.com, https://backend.jocks-karaoke.com {
   header {
     Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   }
-  reverse_proxy backend:9090
+  reverse_proxy backend:9090 {
+    header_down Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  }
 }
 
 portainer.jocks-karaoke.com {
@@ -35,7 +43,9 @@ portainer.jocks-karaoke.com {
   header {
     Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   }
-  reverse_proxy portainer:9000
+  reverse_proxy portainer:9000 {
+    header_down Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  }
 }
 
 
