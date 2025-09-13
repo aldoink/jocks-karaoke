@@ -17,18 +17,20 @@ tasks:
 
   start-frontend:
     desc: Start the frontend locally with yarn
+    # Runs CRA dev server on localhost:3000 for local-only development
+    dir: frontend
+    cmds:
+      - yarn start
 
   start:
-    desc: Start full stack with Docker (prod base + local override)
-    dir: deploy
+    desc: Start full dev stack via Docker (alias to dev:up)
     cmds:
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d
+      - task: dev:up
 
   stop:
-    desc: Stop all containers
-    dir: deploy
+    desc: Stop full dev stack (alias to dev:down)
     cmds:
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml down
+      - task: dev:down
 
   build-backend-image:
     desc: Builds the backend and generates a new docker image
@@ -56,8 +58,9 @@ tasks:
   release:frontend-image:
     desc: "Build and push frontend image with backend URL baked in (tag uses package.json version)"
     vars:
-      BACKEND_URL: '{{.BACKEND_URL | default "https://backend.jocks-karaoke.com"}}'
-      PUBLIC_URL: '{{.PUBLIC_URL | default "https://jocks-karaoke.com"}}'
+      # Defaults align with single-domain model: FE calls /api and assets from /
+      BACKEND_URL: '{{.BACKEND_URL | default "/api"}}'
+      PUBLIC_URL: '{{.PUBLIC_URL | default "/"}}'
     cmds:
       - |
         docker buildx create --use >/dev/null 2>&1 || true
@@ -74,15 +77,28 @@ tasks:
       DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
     cmds:
       - |
-        ssh {{.DEPLOY_USER}}@{{.DEPLOY_HOST}} 'cd ~/jocks-karaoke/deploy && [ -f .env ] || { \
-          if command -v openssl >/dev/null; then \
-            echo "MYSQL_ROOT_PASSWORD=$(openssl rand -hex 24)" > .env; \
-            echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env; \
-          else \
-            PW1=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d " \n"); \
-            PW2=$(head -c 48 /dev/urandom | od -An -tx1 | tr -d " \n"); \
-            echo "MYSQL_ROOT_PASSWORD=${PW1}" > .env; \
-            echo "JWT_SECRET=${PW2}" >> .env; \
+        ssh {{.DEPLOY_USER}}@{{.DEPLOY_HOST}} 'cd ~/jocks-karaoke/deploy && { \
+          # Create .env with core secrets if missing
+          if [ ! -f .env ]; then \
+            if command -v openssl >/dev/null; then \
+              echo "MYSQL_ROOT_PASSWORD=$(openssl rand -hex 24)" > .env; \
+              echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env; \
+            else \
+              PW1=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d " \n"); \
+              PW2=$(head -c 48 /dev/urandom | od -An -tx1 | tr -d " \n"); \
+              echo "MYSQL_ROOT_PASSWORD=${PW1}" > .env; \
+              echo "JWT_SECRET=${PW2}" >> .env; \
+            fi; \
+          fi; \
+          # Ensure app DB user credentials exist
+          grep -q "^MYSQL_APP_USER=" .env || echo "MYSQL_APP_USER=app" >> .env; \
+          if ! grep -q "^MYSQL_APP_PASSWORD=" .env; then \
+            if command -v openssl >/dev/null; then \
+              echo "MYSQL_APP_PASSWORD=$(openssl rand -hex 24)" >> .env; \
+            else \
+              APW=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d " \n"); \
+              echo "MYSQL_APP_PASSWORD=${APW}" >> .env; \
+            fi; \
           fi; \
         }'
 
@@ -100,8 +116,8 @@ tasks:
   release:all:
     desc: "Build and push both images, ensure remote env, and deploy"
     vars:
-      BACKEND_URL: '{{.BACKEND_URL | default "https://backend.jocks-karaoke.com"}}'
-      PUBLIC_URL: '{{.PUBLIC_URL | default "https://jocks-karaoke.com"}}'
+      BACKEND_URL: '{{.BACKEND_URL | default "/api"}}'
+      PUBLIC_URL: '{{.PUBLIC_URL | default "/"}}'
       DEPLOY_HOST: '{{.DEPLOY_HOST | default "jocks-karaoke.com"}}'
       DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
     cmds:
@@ -121,43 +137,43 @@ tasks:
 
   # --- Dev Compose Convenience ---
   dev:up:
-    desc: Start dev stack (build if needed)
+    desc: Start dev stack (build if needed) using docker-compose.dev.yml
     dir: deploy
     cmds:
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d
+      - docker compose -f docker-compose.dev.yml up -d
 
   dev:down:
-    desc: Stop dev stack and remove containers
+    desc: Stop dev stack and remove containers using docker-compose.dev.yml
     dir: deploy
     cmds:
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml down
+      - docker compose -f docker-compose.dev.yml down
 
   dev:logs:
-    desc: Tail logs for a service (var SERVICE)
+    desc: Tail logs for a dev service (var SERVICE)
     dir: deploy
     cmds:
       - |
         if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service>"; exit 1; fi
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml logs -f ${SERVICE}
+      - docker compose -f docker-compose.dev.yml logs -f ${SERVICE}
 
   dev:rebuild:
-    desc: Force rebuild a service (var SERVICE)
+    desc: Force rebuild a dev service (var SERVICE)
     dir: deploy
     cmds:
       - |
         if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service> (frontend|backend)"; exit 1; fi
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml rm -sf ${SERVICE}
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml build --no-cache ${SERVICE}
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${SERVICE}
+      - docker compose -f docker-compose.dev.yml rm -sf ${SERVICE}
+      - docker compose -f docker-compose.dev.yml build --no-cache ${SERVICE}
+      - docker compose -f docker-compose.dev.yml up -d ${SERVICE}
 
   dev:rebuild:arm64:
-    desc: Rebuild a service for Apple Silicon (var SERVICE)
+    desc: Rebuild a dev service for Apple Silicon (var SERVICE)
     dir: deploy
     cmds:
       - |
         if [ -z "${SERVICE}" ]; then echo "Set SERVICE=<service>"; exit 1; fi
-      - DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 docker compose -f docker-compose.yml -f docker-compose.override.yml build --no-cache ${SERVICE}
-      - docker compose -f docker-compose.yml -f docker-compose.override.yml up -d ${SERVICE}
+      - DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 docker compose -f docker-compose.dev.yml build --no-cache ${SERVICE}
+      - docker compose -f docker-compose.dev.yml up -d ${SERVICE}
 
   # --- Production Compose Convenience ---
   prod:up:
@@ -196,16 +212,3 @@ tasks:
     dir: frontend
     cmds:
       - yarn test
-
-  start-DB:
-    desc: Starts the MYSQL database
-    dir: backend
-    cmds:
-      - docker-compose run -d --name mysql --service-ports db
-
-  stop-DB:
-    desc: Stops the MYSQL database
-    dir: backend
-    cmds:
-      - docker stop mysql
-      - docker rm mysql
