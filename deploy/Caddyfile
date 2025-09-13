@@ -1,9 +1,12 @@
 jocks-karaoke.com, www.jocks-karaoke.com {
-  reverse_proxy frontend:3000
-}
-
-backend.jocks-karaoke.com {
-  reverse_proxy backend:9090
+  @api path /api*
+  handle @api {
+    uri strip_prefix /api
+    reverse_proxy backend:9090
+  }
+  handle {
+    reverse_proxy frontend:3000
+  }
 }
 
 portainer.jocks-karaoke.com {
