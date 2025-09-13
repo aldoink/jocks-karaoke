@@ -55,6 +55,7 @@ services:
       context: ../frontend
       args:
         REACT_APP_BACKEND_URL: /api
+        PUBLIC_URL: /
     image: jocks-karaoke/frontend:local
     restart: unless-stopped
     expose:

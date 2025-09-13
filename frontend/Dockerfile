@@ -12,11 +12,11 @@ FROM --platform=linux/amd64 node:16.13.0 as build
 WORKDIR /app
 
 # Provide backend URL at build time for CRA (REACT_APP_*)
-ARG REACT_APP_BACKEND_URL
+ARG REACT_APP_BACKEND_URL=/api
 ENV REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
 
 # Override CRA homepage/public URL if needed (prevents http asset URLs)
-ARG PUBLIC_URL
+ARG PUBLIC_URL=/
 ENV PUBLIC_URL=${PUBLIC_URL}
 
 COPY package*.json /app/
