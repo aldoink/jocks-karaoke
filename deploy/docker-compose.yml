@@ -90,10 +90,10 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD:-wordpress_root_pass}
-      MYSQL_DATABASE: ${WORDPRESS_DB_NAME:-industryplants}
-      MYSQL_USER: ${WORDPRESS_DB_USER:-wpuser}
-      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD:-wpsecurepass}
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
     volumes:
       - wordpress-db-data:/var/lib/mysql
     expose:
@@ -109,9 +109,9 @@ services:
     restart: always
     environment:
       WORDPRESS_DB_HOST: wordpress-db:3306
-      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:-wpuser}
-      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:-wpsecurepass}
-      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:-industryplants}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
     volumes:
       - wordpress-data:/var/www/html
     expose:
