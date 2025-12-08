@@ -12,10 +12,6 @@ portainer.jocks-karaoke.com {
   reverse_proxy portainer:9000
 }
 
-industry-plants.jocks-karaoke.com {
-  reverse_proxy wordpress:80
-}
-
 industryplants.co.uk, www.industryplants.co.uk {
   reverse_proxy wordpress:80
 }
