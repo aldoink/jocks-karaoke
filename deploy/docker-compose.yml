@@ -32,7 +32,7 @@ services:
       - frontend
       - backend
       - portainer
-      - industryplants
+      - wordpress
 
   mysql:
     image: mysql:8.0
@@ -85,16 +85,47 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
 
-  industryplants:
-    image: industryplants/industryplants:frontend_0.0.1
+  wordpress-db:
+    image: mysql:8.0
     restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD:-wordpress_root_pass}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME:-industryplants}
+      MYSQL_USER: ${WORDPRESS_DB_USER:-wpuser}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD:-wpsecurepass}
+    volumes:
+      - wordpress-db-data:/var/lib/mysql
     expose:
-      - "3001"
+      - "3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: wordpress-db:3306
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:-wpuser}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:-wpsecurepass}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:-industryplants}
+    volumes:
+      - wordpress-data:/var/www/html
+    expose:
+      - "80"
+    depends_on:
+      wordpress-db:
+        condition: service_healthy
 
 volumes:
   caddy-data:
   caddy-config:
   mysql-data:
   portainer-data:
+  wordpress-db-data:
+  wordpress-data:
 
 

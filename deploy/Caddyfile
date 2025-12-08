@@ -13,5 +13,5 @@ portainer.jocks-karaoke.com {
 }
 
 industry-plants.jocks-karaoke.com {
-  reverse_proxy industryplants:3001
+  reverse_proxy wordpress:80
 }

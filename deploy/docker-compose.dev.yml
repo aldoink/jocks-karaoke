@@ -25,7 +25,7 @@ services:
       - frontend
       - backend
       - portainer
-      - industryplants
+      - wordpress
 
   mysql:
     image: mysql:8.0
@@ -80,17 +80,43 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
 
-  industryplants:
-    build:
-      context: ../../IndustryPlants
-      dockerfile: Dockerfile
-    image: industry-plants/frontend:local
+  wordpress-db:
+    image: mysql:8.0
     restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress_dev_root
+      MYSQL_DATABASE: industryplants
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wpdevpass
+    volumes:
+      - wordpress-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -pwordpress_dev_root || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: wordpress-db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wpdevpass
+      WORDPRESS_DB_NAME: industryplants
+    volumes:
+      - wordpress-data:/var/www/html
     expose:
-      - "3001"
+      - "80"
+    depends_on:
+      wordpress-db:
+        condition: service_healthy
 
 volumes:
   mysql-data:
   portainer-data:
+  wordpress-db-data:
+  wordpress-data:
 
 
