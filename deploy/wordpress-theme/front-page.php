@@ -1,6 +1,9 @@
 <?php
 /**
  * The front page template file
+ * 
+ * This template simply renders the page content from WordPress,
+ * allowing full editing via the Gutenberg block editor.
  *
  * @package Industry_Plants_Brutalist
  */
@@ -9,31 +12,15 @@ get_header();
 ?>
 
 <main class="site-content">
-    
-    <?php get_template_part('template-parts/hero'); ?>
-    
-    <?php get_template_part('template-parts/ticker'); ?>
-    
-    <?php get_template_part('template-parts/feature-grid'); ?>
-    
-    <?php 
-    // Display page content if exists
-    if (have_posts()) : 
-        while (have_posts()) : the_post();
-            $content = get_the_content();
-            if (!empty($content)) :
-    ?>
-        <div class="container">
-            <div class="content-section">
-                <?php the_content(); ?>
-            </div>
-        </div>
-    <?php 
-            endif;
-        endwhile;
-    endif; 
-    ?>
-    
+    <div class="front-page-content">
+        <?php 
+        if (have_posts()) : 
+            while (have_posts()) : the_post();
+                the_content();
+            endwhile;
+        endif; 
+        ?>
+    </div>
 </main>
 
 <?php

@@ -191,3 +191,111 @@ add_filter('body_class', 'industry_plants_body_classes');
  * Disable Gutenberg widget block editor
  */
 add_filter('use_widgets_block_editor', '__return_false');
+
+/**
+ * Register Block Patterns
+ */
+function industry_plants_register_block_patterns() {
+    // Register pattern category
+    register_block_pattern_category('industry-plants', array(
+        'label' => __('Industry Plants', 'industry-plants-brutalist'),
+    ));
+
+    // Hero Section Pattern
+    register_block_pattern('industry-plants/hero', array(
+        'title'       => __('Hero Section', 'industry-plants-brutalist'),
+        'description' => __('A large hero section with heading, text, and buttons.', 'industry-plants-brutalist'),
+        'categories'  => array('industry-plants'),
+        'content'     => '<!-- wp:group {"className":"hero-section","layout":{"type":"constrained"}} -->
+<div class="wp-block-group hero-section"><!-- wp:group {"className":"hero-content","layout":{"type":"constrained"}} -->
+<div class="wp-block-group hero-content"><!-- wp:heading {"level":1,"className":"hero-title"} -->
+<h1 class="wp-block-heading hero-title">PLANT-BASED FOOD<br><span class="accent">FOR THE SCENE</span></h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"hero-subtitle"} -->
+<p class="hero-subtitle">We cook plant-based food for bands. We interview them. We nourish the Glasgow music scene from the roots up.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"brutal-button brutal-button--primary"} -->
+<div class="wp-block-button brutal-button brutal-button--primary"><a class="wp-block-button__link wp-element-button">UPCOMING EVENTS</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"brutal-button"} -->
+<div class="wp-block-button brutal-button"><a class="wp-block-button__link wp-element-button">LEARN MORE</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->',
+    ));
+
+    // Ticker Section Pattern
+    register_block_pattern('industry-plants/ticker', array(
+        'title'       => __('Mission Ticker', 'industry-plants-brutalist'),
+        'description' => __('A scrolling ticker bar with repeating text.', 'industry-plants-brutalist'),
+        'categories'  => array('industry-plants'),
+        'content'     => '<!-- wp:html -->
+<div class="ticker-bar">
+    <div class="ticker-content">
+        <span>/// FEED THE SCENE /// SUPPORT LOCAL NOISE /// EAT PLANTS /// INDUSTRY PLANTS /// GLASGOW ///</span>
+        <span>/// FEED THE SCENE /// SUPPORT LOCAL NOISE /// EAT PLANTS /// INDUSTRY PLANTS /// GLASGOW ///</span>
+        <span>/// FEED THE SCENE /// SUPPORT LOCAL NOISE /// EAT PLANTS /// INDUSTRY PLANTS /// GLASGOW ///</span>
+        <span>/// FEED THE SCENE /// SUPPORT LOCAL NOISE /// EAT PLANTS /// INDUSTRY PLANTS /// GLASGOW ///</span>
+    </div>
+</div>
+<!-- /wp:html -->',
+    ));
+
+    // Feature Grid Pattern
+    register_block_pattern('industry-plants/feature-grid', array(
+        'title'       => __('Feature Grid', 'industry-plants-brutalist'),
+        'description' => __('A 3-column grid with numbered feature blocks.', 'industry-plants-brutalist'),
+        'categories'  => array('industry-plants'),
+        'content'     => '<!-- wp:group {"className":"feature-grid","layout":{"type":"constrained"}} -->
+<div class="wp-block-group feature-grid"><!-- wp:columns {"className":"grid-brutal grid-brutal-3"} -->
+<div class="wp-block-columns grid-brutal grid-brutal-3"><!-- wp:column {"className":"feature-block"} -->
+<div class="wp-block-column feature-block"><!-- wp:heading {"level":3,"className":"feature-title"} -->
+<h3 class="wp-block-heading feature-title">ROOTS</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"feature-description"} -->
+<p class="feature-description">Plant-based food that fuels the underground music scene.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<span class="feature-number">01</span>
+<!-- /wp:html --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"className":"feature-block"} -->
+<div class="wp-block-column feature-block"><!-- wp:heading {"level":3,"className":"feature-title"} -->
+<h3 class="wp-block-heading feature-title">SOUND</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"feature-description"} -->
+<p class="feature-description">Interviews with Glasgow\'s loudest and most creative voices.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<span class="feature-number">02</span>
+<!-- /wp:html --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"className":"feature-block"} -->
+<div class="wp-block-column feature-block"><!-- wp:heading {"level":3,"className":"feature-title"} -->
+<h3 class="wp-block-heading feature-title">SCENE</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"feature-description"} -->
+<p class="feature-description">Building community one gig at a time.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<span class="feature-number">03</span>
+<!-- /wp:html --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->',
+    ));
+}
+add_action('init', 'industry_plants_register_block_patterns');
