@@ -1,0 +1,599 @@
+/*
+Theme Name: Industry Plants Brutalist
+Theme URI: https://industryplants.co.uk
+Author: Industry Plants
+Description: A brutalist WordPress theme inspired by "Brutalist Plants" by Olivia Broome. Features light concrete greys and vibrant greens.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+Text Domain: industry-plants-brutalist
+*/
+
+/* ==========================================================================
+   CSS Custom Properties - Brutalist Plants Color Palette
+   ========================================================================== */
+
+:root {
+  /* Concrete/Grey Palette */
+  --color-concrete-light: #F5F5F0;
+  --color-concrete-medium: #D0D0C8;
+  --color-concrete-medium-dark: #9A9A8F;
+  --color-concrete-dark: #6B6B60;
+  --color-concrete-very-dark: #3A3A35;
+  
+  /* Green Palette (vibrant foliage) */
+  --color-green-lime: #A8D854;
+  --color-green-medium: #7CB342;
+  --color-green-deep: #558B2F;
+  --color-green-muted: #689F38;
+  
+  /* Earth Tones */
+  --color-brown-muted: #8D6E63;
+  --color-brown-light: #BCAAA4;
+  
+  /* Background & Text */
+  --color-background: #F8F8F3;
+  --color-text: #2C2C28;
+  --color-text-secondary: #6B6B60;
+  
+  /* Accent Colors */
+  --color-accent-concrete: #E8E8E0;
+  --color-accent-green: #A8D854;
+  
+  /* Typography */
+  --font-mono: 'Space Mono', monospace;
+  --font-display: 'Syne', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  background-image: 
+    /* Subtle concrete noise texture */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E"),
+    /* Subtle grid pattern */
+    linear-gradient(to right, rgba(154, 154, 143, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(154, 154, 143, 0.03) 1px, transparent 1px);
+  background-size: 150px 150px, 40px 40px, 40px 40px;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+a {
+  color: var(--color-green-deep);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-green-lime);
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.grid-brutal {
+  display: grid;
+  gap: 0;
+}
+
+.grid-brutal-3 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .grid-brutal-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--color-background);
+  border-bottom: 3px solid var(--color-concrete-dark);
+  padding: var(--spacing-sm) 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.site-logo span {
+  color: var(--color-green-lime);
+}
+
+.main-navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.main-navigation a {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  padding: var(--spacing-xs) 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.main-navigation a:hover {
+  color: var(--color-green-deep);
+  border-bottom-color: var(--color-green-lime);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero-section {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xl) 0;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-green-lime) 0%, var(--color-green-medium) 100%);
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-title {
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-title .accent {
+  color: var(--color-green-lime);
+  display: block;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  border-left: 4px solid var(--color-green-lime);
+  padding-left: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.brutal-button {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  border: 3px solid var(--color-concrete-dark);
+  background-color: var(--color-concrete-light);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 4px 4px 0 var(--color-concrete-dark);
+}
+
+.brutal-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-concrete-dark);
+}
+
+.brutal-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-concrete-dark);
+}
+
+.brutal-button--primary {
+  background-color: var(--color-green-lime);
+  border-color: var(--color-green-deep);
+  box-shadow: 4px 4px 0 var(--color-green-deep);
+}
+
+.brutal-button--primary:hover {
+  box-shadow: 6px 6px 0 var(--color-green-deep);
+}
+
+.brutal-button--primary:active {
+  box-shadow: 2px 2px 0 var(--color-green-deep);
+}
+
+/* ==========================================================================
+   Mission Ticker
+   ========================================================================== */
+
+.ticker-bar {
+  background-color: var(--color-concrete-medium);
+  border-top: 3px solid var(--color-concrete-dark);
+  border-bottom: 3px solid var(--color-concrete-dark);
+  padding: var(--spacing-sm) 0;
+  overflow: hidden;
+}
+
+.ticker-content {
+  display: flex;
+  gap: var(--spacing-lg);
+  animation: ticker 20s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-content span {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-green-deep);
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   Feature Grid
+   ========================================================================== */
+
+.feature-grid {
+  padding: var(--spacing-xl) 0;
+}
+
+.feature-block {
+  position: relative;
+  padding: var(--spacing-lg);
+  background-color: var(--color-concrete-light);
+  border: 2px solid var(--color-concrete-medium-dark);
+  transition: all 0.2s ease;
+}
+
+.feature-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-green-lime) 0%, var(--color-green-medium) 100%);
+}
+
+.feature-block:hover {
+  background-color: var(--color-background);
+  border-color: var(--color-green-medium);
+}
+
+.feature-block:hover .feature-title {
+  color: var(--color-green-deep);
+}
+
+.feature-number {
+  position: absolute;
+  bottom: var(--spacing-sm);
+  right: var(--spacing-sm);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-concrete-medium);
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.feature-block:hover .feature-number {
+  color: var(--color-green-lime);
+  opacity: 0.3;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-xs);
+  transition: color 0.2s ease;
+}
+
+.feature-description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Content Sections
+   ========================================================================== */
+
+.content-section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+  border-bottom: 4px solid var(--color-concrete-dark);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+  margin-bottom: var(--spacing-xs);
+}
+
+.section-subtitle {
+  font-family: var(--font-mono);
+  color: var(--color-green-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--color-concrete-very-dark);
+  color: var(--color-concrete-light);
+  padding: var(--spacing-lg) 0;
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.footer-logo span {
+  color: var(--color-green-lime);
+}
+
+.footer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.footer-nav a {
+  font-size: 0.875rem;
+  color: var(--color-concrete-medium);
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--color-green-lime);
+}
+
+.footer-credits {
+  width: 100%;
+  text-align: center;
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-concrete-dark);
+  font-size: 0.75rem;
+  color: var(--color-concrete-medium-dark);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.light-concrete {
+  background-color: var(--color-concrete-light);
+}
+
+.concrete-bg {
+  background-color: var(--color-concrete-medium);
+}
+
+.vibrant-green {
+  color: var(--color-green-lime);
+}
+
+.green-accent {
+  border-color: var(--color-green-lime);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+/* ==========================================================================
+   Custom Scrollbar
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-concrete-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-green-medium);
+  border: 2px solid var(--color-concrete-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green-lime);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .main-navigation {
+    display: none;
+  }
+  
+  .feature-block {
+    padding: var(--spacing-md);
+  }
+  
+  .feature-number {
+    font-size: 3rem;
+  }
+}
+
+/* ==========================================================================
+   WordPress Specific
+   ========================================================================== */
+
+.wp-block-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.alignwide {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignfull {
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+/* WordPress editor styles */
+.editor-styles-wrapper {
+  font-family: var(--font-mono);
+  background-color: var(--color-background);
+}
