@@ -24,49 +24,38 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-# Check if WordPress container is running
-echo "Checking if WordPress container is running..."
-if ! docker compose -f docker-compose.yml ps wordpress 2>/dev/null | grep -q "running"; then
-    echo "WordPress container not running. Starting services..."
-    docker compose -f docker-compose.yml up -d
-    echo "Waiting for services to start..."
-    sleep 30
-else
-    echo "WordPress container is running."
-fi
-
-# Wait for WordPress to be fully ready
-echo "Waiting for WordPress to be ready..."
+# Ensure containers are running
+echo "Ensuring WordPress container is running..."
+docker compose -f docker-compose.yml up -d wordpress
+echo "Waiting 10 seconds for WordPress to initialize..."
 sleep 10
 
-# Install WP-CLI in the WordPress container if not present
+# Install WP-CLI in the WordPress container
 echo "Installing WP-CLI in WordPress container..."
 docker compose -f docker-compose.yml exec -T wordpress bash -c '
-    if ! command -v wp &> /dev/null; then
-        echo "Installing WP-CLI..."
-        curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-        chmod +x wp-cli.phar
-        mv wp-cli.phar /usr/local/bin/wp
-        echo "WP-CLI installed."
-    else
-        echo "WP-CLI already installed."
-    fi
-' || echo "Note: WP-CLI installation may have failed, continuing anyway..."
+if ! command -v wp &> /dev/null; then
+    echo "Installing WP-CLI..."
+    curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    chmod +x wp-cli.phar
+    mv wp-cli.phar /usr/local/bin/wp
+    echo "WP-CLI installed."
+else
+    echo "WP-CLI already installed."
+fi
+'
 
-# Check if WordPress is installed, if not run core install
-echo "Checking WordPress installation..."
-WP_INSTALLED=$(docker compose -f docker-compose.yml exec -T wordpress wp core is-installed --allow-root 2>/dev/null && echo "yes" || echo "no")
+# Check if WordPress is installed
+echo "Checking WordPress installation status..."
+WP_INSTALLED=$(docker compose -f docker-compose.yml exec -T wordpress wp core is-installed --allow-root 2>&1 && echo "yes" || echo "no")
 
-if [ "$WP_INSTALLED" = "no" ]; then
+if [[ "$WP_INSTALLED" != *"yes"* ]]; then
     echo "WordPress not installed. Running installation..."
     
-    # Get the WordPress URL from environment or default
+    # Get credentials from environment or use defaults
     WP_URL="${WP_URL:-https://industryplants.co.uk}"
     WP_ADMIN_USER="${WP_ADMIN_USER:-admin}"
     WP_ADMIN_EMAIL="${WP_ADMIN_EMAIL:-admin@industryplants.co.uk}"
-    
-    # Generate a random password if not set
-    WP_ADMIN_PASS="${WP_ADMIN_PASS:-$(openssl rand -base64 16)}"
+    WP_ADMIN_PASS="${WP_ADMIN_PASS:-$(openssl rand -base64 12)}"
     
     docker compose -f docker-compose.yml exec -T wordpress wp core install \
         --url="$WP_URL" \
@@ -78,9 +67,11 @@ if [ "$WP_INSTALLED" = "no" ]; then
         --allow-root
     
     echo ""
+    echo "=========================================="
     echo "WordPress installed!"
     echo "Admin User: $WP_ADMIN_USER"
     echo "Admin Password: $WP_ADMIN_PASS"
+    echo "=========================================="
     echo ""
     echo "IMPORTANT: Save these credentials!"
     echo ""
@@ -90,79 +81,74 @@ fi
 
 # Activate the theme
 echo "Activating Industry Plants Brutalist theme..."
-docker compose -f docker-compose.yml exec -T wordpress wp theme activate industry-plants-brutalist --allow-root 2>/dev/null || echo "Theme activation may have failed - check if theme exists"
+docker compose -f docker-compose.yml exec -T wordpress wp theme activate industry-plants-brutalist --allow-root || echo "Theme may not exist yet, continuing..."
 
 # Configure site settings
 echo "Configuring site settings..."
-docker compose -f docker-compose.yml exec -T wordpress bash -c '
-    wp option update blogname "Industry Plants" --allow-root
-    wp option update blogdescription "Plant-based food for the Glasgow music scene" --allow-root
-    wp option update timezone_string "Europe/London" --allow-root
-    wp rewrite structure "/%postname%/" --allow-root 2>/dev/null || true
-    wp rewrite flush --allow-root 2>/dev/null || true
-' 2>/dev/null || echo "Some settings may have failed to update"
+docker compose -f docker-compose.yml exec -T wordpress wp option update blogname "Industry Plants" --allow-root
+docker compose -f docker-compose.yml exec -T wordpress wp option update blogdescription "Plant-based food for the Glasgow music scene" --allow-root
+docker compose -f docker-compose.yml exec -T wordpress wp option update timezone_string "Europe/London" --allow-root
+docker compose -f docker-compose.yml exec -T wordpress wp rewrite structure '/%postname%/' --allow-root 2>/dev/null || true
+docker compose -f docker-compose.yml exec -T wordpress wp rewrite flush --allow-root 2>/dev/null || true
 
 # Create Home page
 echo "Creating Home page..."
-docker compose -f docker-compose.yml exec -T wordpress bash -c '
-    HOME_ID=$(wp post list --post_type=page --name=home --field=ID --allow-root 2>/dev/null || echo "")
-    if [ -z "$HOME_ID" ]; then
-        HOME_ID=$(wp post create --post_type=page --post_title="Home" --post_status=publish --post_content="" --porcelain --allow-root)
-        echo "Created Home page with ID: $HOME_ID"
-    else
-        echo "Home page already exists with ID: $HOME_ID"
-    fi
-    wp option update show_on_front page --allow-root
-    wp option update page_on_front "$HOME_ID" --allow-root
-' 2>/dev/null || echo "Home page creation may have failed"
+HOME_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name=home --field=ID --allow-root 2>/dev/null | tr -d '\r' || echo "")
+
+if [ -z "$HOME_ID" ]; then
+    HOME_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post create --post_type=page --post_title="Home" --post_status=publish --post_content="" --porcelain --allow-root | tr -d '\r')
+    echo "Created Home page with ID: $HOME_ID"
+else
+    echo "Home page already exists with ID: $HOME_ID"
+fi
+
+# Set Home page as front page
+docker compose -f docker-compose.yml exec -T wordpress wp option update show_on_front page --allow-root
+docker compose -f docker-compose.yml exec -T wordpress wp option update page_on_front "$HOME_ID" --allow-root
 
 # Create additional pages
 echo "Creating additional pages..."
-docker compose -f docker-compose.yml exec -T wordpress bash -c '
-    for page in "Events" "Menu" "About" "Contact"; do
-        slug=$(echo "$page" | tr "[:upper:]" "[:lower:]")
-        EXISTS=$(wp post list --post_type=page --name="$slug" --field=ID --allow-root 2>/dev/null || echo "")
-        if [ -z "$EXISTS" ]; then
-            wp post create --post_type=page --post_title="$page" --post_status=publish --allow-root
-            echo "Created page: $page"
-        else
-            echo "Page already exists: $page"
-        fi
-    done
-' 2>/dev/null || echo "Some pages may have failed to create"
+for page in "Events" "Menu" "About" "Contact"; do
+    slug=$(echo "$page" | tr '[:upper:]' '[:lower:]')
+    EXISTS=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name="$slug" --field=ID --allow-root 2>/dev/null | tr -d '\r' || echo "")
+    if [ -z "$EXISTS" ]; then
+        docker compose -f docker-compose.yml exec -T wordpress wp post create --post_type=page --post_title="$page" --post_status=publish --allow-root
+        echo "Created page: $page"
+    else
+        echo "Page already exists: $page"
+    fi
+done
 
 # Create navigation menu
 echo "Creating navigation menu..."
-docker compose -f docker-compose.yml exec -T wordpress bash -c '
-    MENU_EXISTS=$(wp menu list --fields=name --format=csv --allow-root 2>/dev/null | grep -c "Primary Menu" || echo "0")
-    if [ "$MENU_EXISTS" = "0" ]; then
-        wp menu create "Primary Menu" --allow-root
-        
-        HOME_ID=$(wp post list --post_type=page --name=home --field=ID --allow-root 2>/dev/null)
-        EVENTS_ID=$(wp post list --post_type=page --name=events --field=ID --allow-root 2>/dev/null)
-        MENU_ID=$(wp post list --post_type=page --name=menu --field=ID --allow-root 2>/dev/null)
-        ABOUT_ID=$(wp post list --post_type=page --name=about --field=ID --allow-root 2>/dev/null)
-        CONTACT_ID=$(wp post list --post_type=page --name=contact --field=ID --allow-root 2>/dev/null)
-        
-        [ -n "$HOME_ID" ] && wp menu item add-post "Primary Menu" "$HOME_ID" --title="Home" --allow-root 2>/dev/null
-        [ -n "$EVENTS_ID" ] && wp menu item add-post "Primary Menu" "$EVENTS_ID" --title="Events" --allow-root 2>/dev/null
-        [ -n "$MENU_ID" ] && wp menu item add-post "Primary Menu" "$MENU_ID" --title="Menu" --allow-root 2>/dev/null
-        [ -n "$ABOUT_ID" ] && wp menu item add-post "Primary Menu" "$ABOUT_ID" --title="About" --allow-root 2>/dev/null
-        [ -n "$CONTACT_ID" ] && wp menu item add-post "Primary Menu" "$CONTACT_ID" --title="Contact" --allow-root 2>/dev/null
-        
-        wp menu location assign "Primary Menu" primary --allow-root 2>/dev/null
-        echo "Primary Menu created"
-    else
-        echo "Primary Menu already exists"
-    fi
-' 2>/dev/null || echo "Menu creation may have failed"
+MENU_EXISTS=$(docker compose -f docker-compose.yml exec -T wordpress wp menu list --fields=name --format=csv --allow-root 2>/dev/null | grep -c "Primary Menu" || echo "0")
+
+if [ "$MENU_EXISTS" = "0" ]; then
+    docker compose -f docker-compose.yml exec -T wordpress wp menu create "Primary Menu" --allow-root
+    
+    # Get page IDs and add to menu
+    HOME_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name=home --field=ID --allow-root 2>/dev/null | tr -d '\r')
+    EVENTS_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name=events --field=ID --allow-root 2>/dev/null | tr -d '\r')
+    MENU_PAGE_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name=menu --field=ID --allow-root 2>/dev/null | tr -d '\r')
+    ABOUT_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name=about --field=ID --allow-root 2>/dev/null | tr -d '\r')
+    CONTACT_ID=$(docker compose -f docker-compose.yml exec -T wordpress wp post list --post_type=page --name=contact --field=ID --allow-root 2>/dev/null | tr -d '\r')
+    
+    [ -n "$HOME_ID" ] && docker compose -f docker-compose.yml exec -T wordpress wp menu item add-post "Primary Menu" "$HOME_ID" --title="Home" --allow-root 2>/dev/null || true
+    [ -n "$EVENTS_ID" ] && docker compose -f docker-compose.yml exec -T wordpress wp menu item add-post "Primary Menu" "$EVENTS_ID" --title="Events" --allow-root 2>/dev/null || true
+    [ -n "$MENU_PAGE_ID" ] && docker compose -f docker-compose.yml exec -T wordpress wp menu item add-post "Primary Menu" "$MENU_PAGE_ID" --title="Menu" --allow-root 2>/dev/null || true
+    [ -n "$ABOUT_ID" ] && docker compose -f docker-compose.yml exec -T wordpress wp menu item add-post "Primary Menu" "$ABOUT_ID" --title="About" --allow-root 2>/dev/null || true
+    [ -n "$CONTACT_ID" ] && docker compose -f docker-compose.yml exec -T wordpress wp menu item add-post "Primary Menu" "$CONTACT_ID" --title="Contact" --allow-root 2>/dev/null || true
+    
+    docker compose -f docker-compose.yml exec -T wordpress wp menu location assign "Primary Menu" primary --allow-root 2>/dev/null || true
+    echo "Primary Menu created"
+else
+    echo "Primary Menu already exists"
+fi
 
 # Clean up default content
 echo "Cleaning up default content..."
-docker compose -f docker-compose.yml exec -T wordpress bash -c '
-    wp post delete 1 --force --allow-root 2>/dev/null || true
-    wp post delete 2 --force --allow-root 2>/dev/null || true
-' 2>/dev/null || true
+docker compose -f docker-compose.yml exec -T wordpress wp post delete 1 --force --allow-root 2>/dev/null || true
+docker compose -f docker-compose.yml exec -T wordpress wp post delete 2 --force --allow-root 2>/dev/null || true
 
 echo ""
 echo "=== Deployment Complete! ==="
@@ -171,6 +157,4 @@ echo "Your Industry Plants website should now be ready!"
 echo ""
 echo "Website: https://industryplants.co.uk"
 echo "Admin:   https://industryplants.co.uk/wp-admin"
-echo ""
-echo "If this is a fresh install, check above for the admin credentials."
 echo ""
