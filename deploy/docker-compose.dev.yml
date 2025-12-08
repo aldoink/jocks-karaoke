@@ -25,6 +25,7 @@ services:
       - frontend
       - backend
       - portainer
+      - industryplants
 
   mysql:
     image: mysql:8.0
@@ -78,6 +79,15 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
+
+  industryplants:
+    build:
+      context: ../../IndustryPlants
+      dockerfile: Dockerfile
+    image: industry-plants/frontend:local
+    restart: unless-stopped
+    expose:
+      - "3001"
 
 volumes:
   mysql-data:

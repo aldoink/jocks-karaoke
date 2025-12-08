@@ -8,7 +8,10 @@ jocks-karaoke.com, www.jocks-karaoke.com {
     reverse_proxy frontend:3000
   }
 }
-
 portainer.jocks-karaoke.com {
   reverse_proxy portainer:9000
+}
+
+industry-plants.jocks-karaoke.com {
+  reverse_proxy industryplants:3001
 }

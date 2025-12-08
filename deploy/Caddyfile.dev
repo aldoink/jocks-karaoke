@@ -28,6 +28,10 @@
   reverse_proxy portainer:9000
 }
 
+:8083 {
+  reverse_proxy industryplants:3001
+}
+
 # Also provide prod-like hostnames with local TLS so the FE can call
 # https://backend.jocks-karaoke.com directly during local development.
 # Add to /etc/hosts: 127.0.0.1 jocks-karaoke.com www.jocks-karaoke.com backend.jocks-karaoke.com portainer.jocks-karaoke.com
@@ -45,6 +49,11 @@ https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
 https://portainer.jocks-karaoke.com, portainer.jocks-karaoke.com {
   tls internal
   reverse_proxy portainer:9000
+}
+
+https://industry-plants.jocks-karaoke.com {
+  tls internal
+  reverse_proxy industryplants:3001
 }
 
 

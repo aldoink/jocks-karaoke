@@ -70,6 +70,45 @@ tasks:
           --build-arg PUBLIC_URL={{.PUBLIC_URL}} \
           -t aldoink/jocks-karaoke:frontend_${FRONTEND_VERSION} ./frontend --push
 
+  release:industryplants-update-compose:
+    desc: "Update docker-compose.yml with current IndustryPlants version from package.json"
+    cmds:
+      - |
+        INDUSTRY_PLANTS_VERSION=$(node -p "require('../IndustryPlants/package.json').version")
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+          sed -i '' "s|industryplants/industryplants:frontend_[0-9.]*|industryplants/industryplants:frontend_${INDUSTRY_PLANTS_VERSION}|g" deploy/docker-compose.yml
+        else
+          sed -i "s|industryplants/industryplants:frontend_[0-9.]*|industryplants/industryplants:frontend_${INDUSTRY_PLANTS_VERSION}|g" deploy/docker-compose.yml
+        fi
+        echo "Updated docker-compose.yml to use version ${INDUSTRY_PLANTS_VERSION}"
+
+  release:industryplants-image:
+    desc: "Build and push IndustryPlants image (tag uses package.json version)"
+    cmds:
+      - |
+        docker buildx create --use >/dev/null 2>&1 || true
+        INDUSTRY_PLANTS_VERSION=$(node -p "require('../IndustryPlants/package.json').version")
+        docker buildx build --platform linux/amd64 \
+          -t industryplants/industryplants:frontend_${INDUSTRY_PLANTS_VERSION} ../IndustryPlants --push
+
+  release:industryplants-all:
+    desc: "Complete IndustryPlants release: update compose, build image, and deploy (optional DEPLOY_HOST/DEPLOY_USER)"
+    vars:
+      DEPLOY_HOST: '{{.DEPLOY_HOST | default ""}}'
+      DEPLOY_USER: '{{.DEPLOY_USER | default "allister"}}'
+    cmds:
+      - task: release:industryplants-update-compose
+      - task: release:industryplants-image
+      - |
+        if [ -n "{{.DEPLOY_HOST}}" ]; then
+          ssh {{.DEPLOY_USER}}@{{.DEPLOY_HOST}} 'cd ~/jocks-karaoke/deploy && \
+            docker compose -f docker-compose.yml pull && \
+            docker compose -f docker-compose.yml up -d'
+        else
+          echo "Skipping deploy (set DEPLOY_HOST to auto-deploy)"
+          echo "To deploy manually, run: task release:deploy DEPLOY_HOST=jocks-karaoke.com DEPLOY_USER=allister"
+        fi
+
   release:init-remote-env:
     desc: "Ensure remote deploy/.env exists with MYSQL_ROOT_PASSWORD and JWT_SECRET"
     vars:

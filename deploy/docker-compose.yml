@@ -32,6 +32,7 @@ services:
       - frontend
       - backend
       - portainer
+      - industryplants
 
   mysql:
     image: mysql:8.0
@@ -83,6 +84,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
+
+  industryplants:
+    image: industryplants/industryplants:frontend_0.0.1
+    restart: always
+    expose:
+      - "3001"
 
 volumes:
   caddy-data:
