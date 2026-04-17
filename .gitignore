@@ -1,2 +1,11 @@
 .idea
 .gradle
+# Environment variables (except template)
+.env
+!.env.example
+.env.production
+.env.mcp
+deploy/.env
+deploy/.env.docker.prod
+
+</gitignore>
