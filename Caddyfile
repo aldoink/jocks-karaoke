@@ -1,15 +1,29 @@
+# Jock's Karaoke - Caddy Reverse Proxy Configuration
+# https://caddyserver.com/docs/caddyfile/
+
+# === Domain Routes ===
+
+# Main application: Frontend (React + TypeScript)
+# Proxies requests from http(s)://jocks-karaoke.com to the frontend service
 https://www.jocks-karaoke.com, jocks-karaoke.com {
 	reverse_proxy localhost:3000
 }
 
+# Portainer: Docker management interface
+# Access at: https://portainer.jocks-karaoke.com
 portainer.jocks-karaoke.com {
 	reverse_proxy localhost:9000
 }
 
+# Old site redirect (legacy domain)
+# If you have old.jocks-karaoke.com pointing here, requests go to old service
 old.jocks-karaoke.com {
 	reverse_proxy localhost:4000
 }
 
+# Backend API: Spring Boot REST API
+# Proxies to backend service running on port 9090
+# The frontend makes API calls to: https://backend.jocks-karaoke.com/api/...
 https://backend.jocks-karaoke.com, backend.jocks-karaoke.com {
 	reverse_proxy localhost:9090
 }
