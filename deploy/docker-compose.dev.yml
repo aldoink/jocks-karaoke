@@ -51,7 +51,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Nak4pic.mysql
       JWT_SECRET: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jocks-karaoke
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jocks-karaoke?useSSL=false
     ports:
       - "9090:9090"
     depends_on:

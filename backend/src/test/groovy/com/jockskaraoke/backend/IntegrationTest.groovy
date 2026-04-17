@@ -22,7 +22,7 @@ abstract class IntegrationTest extends Specification {
     private static final MySQLContainer mySQLContainer;
 
     static {
-        mySQLContainer = (MySQLContainer) (new MySQLContainer("mysql")
+        mySQLContainer = (MySQLContainer) (new MySQLContainer("mysql:8.0")
                 .withUsername("testcontainers")
                 .withPassword("unimportant")
                 .withReuse(true))
